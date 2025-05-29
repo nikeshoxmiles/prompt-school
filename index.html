@@ -51,7 +51,13 @@
         }
         .blog-article-link .card-img-top { height: 200px; object-fit: cover; }
         .article-content img { max-width: 100%; height: auto; border-radius: 0.5rem; }
-        #viewArticlesBtn { transition: all 0.3s ease; }
+        /* 調整導覽列中按鈕的樣式 */
+        .navbar .btn-nav-explore { 
+            font-size: 0.9rem; 
+            padding: 0.375rem 0.75rem; 
+            margin-left: 15px; /* 與品牌標題的間距 */
+        }
+        #viewArticlesBtn { transition: all 0.3s ease; } /* 保持原有的 hover 效果 */
         #viewArticlesBtn:hover { background-color: #198754; color: white; }
     </style>
 </head>
@@ -59,7 +65,10 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><strong>提示詞產生器 & AI 部落格</strong></a>
-            <div class="d-flex align-items-center">
+            <button id="viewArticlesBtn" class="btn btn-outline-success btn-nav-explore ms-auto ms-lg-2 order-lg-1">
+                <i class="bi bi-journal-richtext me-1"></i>探索文章
+            </button>
+            <div class="d-flex align-items-center order-lg-2">
                 <img src="" alt="User Avatar" class="user-avatar" id="user-avatar" onerror="this.src='https://placehold.co/40x40/0084ff/FFFFFF?text=U';">
                 <span class="navbar-text" id="user-display-name"></span>
             </div>
@@ -75,10 +84,7 @@
                         <h5 class="mb-3">1. 選擇版型並填寫</h5>
                         <div id="category-filters" class="mb-3"></div>
                         <select id="templateSelector" class="form-select mb-3"></select>
-                        <button id="viewArticlesBtn" class="btn btn-outline-success w-100 py-2">
-                            <i class="bi bi-journal-richtext me-2"></i>探索 AI 提示詞相關文章
-                        </button>
-                    </div>
+                        </div>
                     <div class="card-body p-4" id="prompt-form-container"></div>
                 </div>
                 <div class="card mt-4">
@@ -364,7 +370,9 @@
                 </div>
             </div>
         </div>
-    </div> <div id="article1-content" class="article-content" style="display:none;">
+    </div> 
+    
+    <div id="article1-content" class="article-content" style="display:none;">
         <article>
             <header class="mb-4">
                 <h1 class="mb-3 display-5 fw-bold">提示詞是什麼？為什麼它對 AI 如此重要？</h1>
@@ -540,6 +548,12 @@
         </article>
     </div>
 
+   
+    
+    
+    
+    
+    
     <script type="text/template-data">
         {
             "name": "社群貼文小幫手",
@@ -624,6 +638,15 @@
         請生成一份完整的職位描述內容。
     </script>
 
+
+
+
+
+
+
+
+
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -686,9 +709,12 @@
                  $('#prompt-form-container').empty().html('<p class="text-center text-muted">此分類下沒有可用的模板。</p>');
                  $('#output').text('請選擇一個模板...');
             } else if (Object.keys(window.templates).length === 0) {
-                $('#prompt-form-container').parent().hide();
-                $('#output').parent().parent().hide();
-                filterContainer.parent().prepend('<div class="alert alert-warning text-center">目前沒有可用的提示詞範本。</div>');
+                // If no templates at all, hide the generator card or show a more prominent message.
+                // For now, let's hide the core generator parts if no templates are loaded.
+                $('#category-filters').parent().hide(); // Hide the card header content
+                $('#prompt-form-container').parent().hide(); // Hide the whole card
+                // Optionally, display a message elsewhere or adjust layout.
+                 // For now, this will effectively remove the generator if no templates.
             }
         };
 
@@ -729,10 +755,14 @@
             if ($('#templateSelector').val()) buildForm($('#templateSelector').val());
         } else {
             // If no templates, hide the entire generator section or show a specific message.
-            // The populateDropdown function handles showing messages within the generator structure if it's empty.
-            // For a more drastic "no generator" scenario:
-            $('#prompt-form-container').parent().parent().parent().html('<div class="alert alert-warning text-center col-lg-10 mx-auto">提示詞產生器目前沒有可用的範本。</div>');
+             // Hiding the parent card of the form container.
+            $('#prompt-form-container').closest('.card').hide();
+            // Also hide the output card
+            $('#output').closest('.card').hide();
+            // Optionally, show a message in place of the generator.
+            // Example: $('.row.justify-content-center').first().html('<div class="col-lg-10"><div class="alert alert-warning text-center">提示詞產生器目前沒有可用的範本。</div></div>');
         }
+
 
         $('#category-filters').on('click', '.filter-btn', function() {
             const newCategory = $(this).data('category');
@@ -760,10 +790,6 @@
         function showArticleContent(articleId, shouldScroll = true) {
             const articleHtml = $('#' + articleId).html();
             if (articleHtml) {
-                // Hide prompt generator related sections if they are too high on page
-                // This is optional, depends on desired layout when reading article
-                // $('.row.justify-content-center').first().hide(); // Hides generator and output cards
-
                 blogArticleDisplayArea.html(articleHtml).show();
                 blogArticleList.hide(); 
                 if (shouldScroll) {
@@ -778,8 +804,6 @@
         }
 
         function showBlogList(shouldScroll = true) {
-             // $('.row.justify-content-center').first().show(); // Show generator again
-
             blogArticleDisplayArea.hide().empty();
             blogArticleList.show(); 
             if (shouldScroll) {
@@ -810,27 +834,59 @@
             if (targetArticleContent.length) {
                 setTimeout(() => { showArticleContent(urlArticleId, true); }, 100);
             } else {
-                showBlogList(false); // Show blog list without scrolling if article in URL is invalid
+                showBlogList(false); 
             }
         } else {
-            // If no specific article in URL, ensure blog list is shown if blog section is target of a hash
             if (window.location.hash === '#blog-section' || window.location.hash === '#blog-article-list') {
                  showBlogList(true);
             } else if (window.location.hash === '#blog-article-display-area') {
-                // If hash points to display area but no article in param, show list
                 showBlogList(true);
             }
         }
 
-        $('#copyBtn').on('click', () => { /* ... copy logic ... */ });
+        $('#copyBtn').on('click', () => { 
+            const textToCopy = $('#output').text();
+            const textArea = document.createElement("textarea");
+            textArea.style.position = 'fixed';
+            textArea.style.top = '0';
+            textArea.style.left = '0';
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            textArea.style.padding = '0';
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            textArea.style.background = 'transparent';
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                const successful = document.execCommand('copy');
+                const originalText = $('#copyBtn').text();
+                if (successful) {
+                    $('#copyBtn').text('已複製!');
+                } else {
+                    $('#copyBtn').text('複製失敗');
+                }
+                setTimeout(() => {
+                    $('#copyBtn').text(originalText);
+                }, 2000);
+            } catch (err) {
+                const originalText = $('#copyBtn').text();
+                $('#copyBtn').text('複製失敗');
+                 setTimeout(() => {
+                    $('#copyBtn').text(originalText);
+                }, 2000);
+            }
+            document.body.removeChild(textArea);
+        });
         
         $('a[href^="#"]').on('click', function(event) {
             const hash = this.hash;
             if (hash && $(hash).length) {
                 if ($(this).hasClass('blog-article-link') || $(this).parent().hasClass('contact-icon') || $(this).hasClass('cta-button')) {
-                    // Let blog links be handled by their specific JS
-                    // Let contact icons and cta button navigate normally if they are just anchors
-                    if ($(this).hasClass('blog-article-link')) return; // Already handled
+                    if ($(this).hasClass('blog-article-link')) return; 
                 }
                 event.preventDefault();
                 $('html, body').stop().animate({
