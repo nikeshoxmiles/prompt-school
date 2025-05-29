@@ -11,15 +11,13 @@
     <style>
         body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; }
         .navbar { box-shadow: 0 2px 4px rgba(0,0,0,.1); }
-        /* User avatar removed, so no style needed */
-        .main-container { margin-top: 20px; margin-bottom: 50px; } /* This class is still used for the overall container */
+        .main-container { margin-top: 20px; margin-bottom: 50px; }
         .card { border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,.05); border: none; }
         .form-control-lg { min-height: 150px; font-family: monospace; }
         .output-container { background-color: #e9ecef; border: 1px dashed #ced4da; padding: 20px; border-radius: 10px; position: relative; white-space: pre-wrap; word-wrap: break-word; font-family: monospace; min-height: 200px; }
         .copy-btn { position: absolute; top: 15px; right: 15px; }
         .template-selector-group { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
         .template-selector { max-width: 350px; }
-        .filter-btn.active { font-weight: bold; }
         .section-title { text-align: center; margin: 60px 0 40px; font-weight: bold; color: #343a40; }
         .teacher-intro-card { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; }
         .feature-icon { font-size: 2.5rem; color: #007bff; }
@@ -29,35 +27,6 @@
         .testimonial-img { width: 100%; height: 250px; object-fit: cover; }
         .cta-button { font-size: 1.1rem; padding: 10px 25px; border-radius: 50px; font-weight: bold; }
         .teacher-photo { width: 250px; height: 250px; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .resource-card a { text-decoration: none; color: inherit; transition: transform 0.2s; display: block; }
-        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,.1); }
-        .client-logo-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2.5rem; padding: 1rem 0; }
-        .client-logo { height: 65px; max-width: 150px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; transition: all 0.3s ease-in-out; }
-        .client-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
-        .sticky-top { position: sticky; top: 0; z-index: 1020; }
-        .ad-placeholder {
-            background-color: #e0e0e0;
-            color: #757575;
-            text-align: center;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            max-width: 728px; 
-            min-height: 90px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .blog-article-link .card-img-top { height: 200px; object-fit: cover; }
-        .article-content img { max-width: 100%; height: auto; border-radius: 0.5rem; }
-        .navbar .btn-nav-explore { 
-            font-size: 0.9rem; 
-            padding: 0.375rem 0.75rem; 
-            /* margin-left is removed as ms-auto will handle spacing */
-        }
-        #viewArticlesBtn { transition: all 0.3s ease; }
-        #viewArticlesBtn:hover { background-color: #198754; color: white; }
     </style>
 </head>
 <body>
@@ -67,14 +36,12 @@
             <button id="viewArticlesBtn" class="btn btn-outline-success btn-nav-explore ms-auto">
                 <i class="bi bi-journal-richtext me-1"></i>探索文章
             </button>
-            </div>
+        </div>
     </nav>
 
     <div id="page-content-wrapper" class="container main-container">
-
         <div id="main-content-area">
             <div class="ad-placeholder">廣告版位建議區域 1</div>
-
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="card">
@@ -94,11 +61,10 @@
                     </div>
                 </div>
             </div>
-            
             <div class="ad-placeholder">廣告版位建議區域 2</div>
 
             <h2 class="section-title">別讓您的企業錯過 AI 浪潮！</h2>
-             <div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="card teacher-intro-card text-center p-4 p-md-5">
                         <div class="card-body">
@@ -109,11 +75,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="teacher-intro">
                 <h2 class="section-title">認識您的數位轉型領航員</h2>
             </div>
-             <div class="row mt-5 align-items-center">
+
+            <div class="row mt-5 align-items-center">
                 <div class="col-lg-5 text-center mb-4 mb-lg-0">
                     <img src="https://i.ibb.co/hFqZC7NM/DSC00301-3.jpg" class="img-fluid rounded-circle teacher-photo" alt="黃敬峰老師照片" onerror="this.src='https://placehold.co/250x250/CCCCCC/FFFFFF?text=老師照片';">
                     <h4 class="mt-4 fw-bold">黃敬峰 (阿峰老師)</h4>
@@ -132,7 +99,7 @@
 
             <h2 class="section-title">阿峰老師授課特色</h2>
             <div class="row text-center g-4">
-                 <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="card h-100 p-3">
                         <div class="feature-icon mb-3"><i class="bi bi-lightbulb"></i></div>
                         <h5 class="fw-bold">深入淺出，化繁為簡</h5>
@@ -168,156 +135,39 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card resource-card h-100">
-                        <a href="https://podcasts.apple.com/us/podcast/%E4%B8%8B%E7%8F%AD%E5%AD%B8ai-ai%E5%A4%9C%E5%A4%9Ctalk/id1777590042" target="_blank">
-                            <div class="card-body text-center p-4">
-                                <div class="feature-icon mb-3"><i class="bi bi-mic-fill"></i></div>
-                                <h5 class="fw-bold">AI Podcast(可點擊)</h5>
-                                <p class="text-muted mb-0">收聽「下班學AI」，利用通勤時間，輕鬆掌握 AI 新知。</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card resource-card h-100">
-                         <a href="https://vocus.cc/salon/StartupForYou" target="_blank">
-                            <div class="card-body text-center p-4">
-                                <div class="feature-icon mb-3"><i class="bi bi-file-text-fill"></i></div>
-                                <h5 class="fw-bold">AI 文章專欄(可點擊)</h5>
-                                <p class="text-muted mb-0">閱讀方格子專欄，深度了解 AI 趨勢與實戰技巧。</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
 
             <h2 class="section-title">超過 400+ 企業與機構的信賴推薦</h2>
             <div class="card p-4 p-md-5">
                 <div class="client-logo-container">
                     <img src="https://i.ibb.co/msCc9JR/2025-05-25-10-45-21.png" alt="客戶 Logo 1" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/XZYkkqkN/2025-05-25-10-45-15.png" alt="客戶 Logo 2" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/NgCknD5y/2025-05-25-10-45-10.png" alt="客戶 Logo 3" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/qMkdYMpT/2025-05-25-10-45-06.png" alt="客戶 Logo 4" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/RpDhbqwv/2025-05-25-10-45-01.png" alt="客戶 Logo 5" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/YFzLftPm/2025-05-25-10-44-57.png" alt="客戶 Logo 6" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/yFrHXv20/2025-05-25-10-44-52.png" alt="客戶 Logo 7" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/5xszGtxd/2025-05-25-10-44-48.png" alt="客戶 Logo 8" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/mF1RLB1v/2025-05-25-10-44-43.png" alt="客戶 Logo 9" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/whj6F03m/2025-05-25-10-44-39.png" alt="客戶 Logo 10" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/bjdHY2b4/2025-05-25-10-44-34.png" alt="客戶 Logo 11" class="client-logo" onerror="this.style.display='none'">
-                    <img src="https://i.ibb.co/fYQYTbmC/2025-05-25-10-44-29.png" alt="客戶 Logo 12" class="client-logo" onerror="this.style.display='none'">
+                    <!-- Add more logos as necessary -->
                 </div>
             </div>
 
             <h2 class="section-title">精彩瞬間</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-5 col-md-6">
-                    <div class="card testimonial-card">
-                        <img src="https://i.ibb.co/kgCHQGRP/A7-C00941-1.jpg" class="card-img-top testimonial-img" alt="台灣生物科技公司授課照片" onerror="this.src='https://placehold.co/600x400/EEEEEE/AAAAAA?text=照片1';">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">台灣生物科技公司</h5>
-                            <p class="card-text">為中高階主管帶來AI策略課程，深入探討產業應用與未來趨勢。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-6">
-                     <div class="card testimonial-card">
-                        <img src="https://i.ibb.co/C3KVdVkb/IMG-2831.jpg" class="card-img-top testimonial-img" alt="馬來西亞大學MBA授課照片" onerror="this.src='https://placehold.co/600x400/EEEEEE/AAAAAA?text=照片2';">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">馬來西亞大學 MBA 課程</h5>
-                            <p class="card-text">分享AI商業應用實戰經驗，啟發學員的創新思維與國際視野。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <h2 class="section-title">聽聽他們怎麼說</h2>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card testimonial-card">
-                        <img src="https://i.ibb.co/mVXNmGBk/2025-05-25-10-46-41.png" class="img-fluid rounded" alt="客戶見證1" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=見證1';">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card testimonial-card">
-                        <img src="https://i.ibb.co/pj7TLPnf/2025-05-25-10-46-46.png" class="img-fluid rounded" alt="客戶見證2" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=見證2';">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card testimonial-card">
-                        <img src="https://i.ibb.co/HpqhfxQN/2025-05-25-10-46-51.png" class="img-fluid rounded" alt="客戶見證3" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=見證3';">
-                    </div>
-                </div>
-            </div>
-            
-            <h2 class="section-title">學員與課程見證</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-12">
-                    <h3 class="text-center mb-4 fw-bold">學員見證影片</h3>
-                    <div class="row g-4">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/FBIRyZjBLTE?si=TsBFtdnQDM2oVxT-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="ratio ratio-16x9">
-                                 <iframe src="https://www.youtube.com/embed/X3nILy__5Uo?si=DvumuSrWViDAuqfl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="ratio ratio-16x9">
-                                 <iframe src="https://www.youtube.com/embed/7SNi9iGwuI0?si=NxSKlOXEmXjU1J1t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-12 mt-5">
-                    <h3 class="text-center mb-4 fw-bold">課程見證影片</h3>
-                     <div class="row g-4 justify-content-center">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="ratio ratio-16x9">
-                                 <iframe src="https://www.youtube.com/embed/ZiJ7qPxjPes?si=V-xEL2_gKt-x7OsY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="ratio ratio-16x9">
-                                  <iframe src="https://www.youtube.com/embed/Eg4rLnLGn8Q?si=U5lQr_8cnnsjCBRJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Add testimonials or course videos here -->
+        </div>
+    </div>
 
-            <div id="contact" class="mt-5">
-                <h2 class="section-title">立即聯繫，開啟 AI 轉型之旅</h2>
-            </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-            <div class="card p-4">
-                 <div class="row text-center align-items-center">
-                    <p class="lead mb-4">讓阿峰老師為您量身打造最適合的 AI 導入方案</p>
-                    <div class="col-md-4 mb-4 mb-md-0 contact-icon">
-                        <a href="https://line.me/ti/g2/o6oRaGIHTzZ1nEofxnT9Rbv7_ZHAX-rylbJfKA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" title="加入LINE社群">
-                            <i class="bi bi-line" style="color: #06C755;"></i>
-                            <p class="fs-5 mt-2">LINE</p>
-                        </a>
-                    </div>
-                    <div class="col-md-4 mb-4 mb-md-0 contact-icon">
-                        <a href="tel:0976715102" title="撥打電話">
-                            <i class="bi bi-telephone-fill"></i>
-                             <p class="fs-5 mt-2">0976-715-102</p>
-                        </a>
-                    </div>
-                    <div class="col-md-4 contact-icon">
-                        <a href="mailto:nikeshoxmiles@gmail.com" title="寄送Email">
-                            <i class="bi bi-envelope-fill"></i>
-                            <p class="fs-5 mt-2">E-Mail</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> <div id="blog-section" class="mt-5 pt-4" style="display:none;">
+    <script>
+        // 使用 Clipboard API 改進複製功能
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const outputText = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert('內容已複製到剪貼簿！');
+            }).catch(err => {
+                alert('複製失敗，請再試一次。');
+            });
+        });
+    </script>
+</body>
+</html>
+
 
 
 
