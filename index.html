@@ -318,3 +318,4469 @@
                 </div>
             </div>
         </div> <div id="blog-section" class="mt-5 pt-4" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <script type="text/template-data">
+{
+    "name": "公司內部政策草擬",
+    "category": "人資",
+    "structure": [
+        { "id": "policy_topic", "type": "text", "label": "政策主題", "placeholder": "例如：遠距工作" },
+        { "id": "policy_details", "type": "textarea", "label": "政策要點", "placeholder": "請條列說明政策要點、適用對象、規定、例外情況等。\n例如：\n- 適用對象：全體正職員工\n- 規定：員工每週可選擇最多2天遠距工作\n- 設備：公司將提供筆記型電腦，但員工需自備穩定的網路環境\n- 例外情況：新人試用期內不適用" }
+    ]
+}
+---PROMPT---
+請幫我草擬一份關於「<<<{policy_topic}>>>」的公司內部政策初稿。
+
+主要需涵蓋以下要點：
+<<<{policy_details}>>>
+
+請確保語氣專業、條理清晰，並包含標題、目的、適用範圍、具體內容、生效日期等段落。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "Gemini Generate speech：Podcast 腳本生成",
+    "category": "行銷",
+    "structure": [
+        { "type": "text", "id": "speaker1Name", "label": "Speaker 1 角色名稱", "placeholder": "主持人" },
+        { "type": "text", "id": "speaker1Role", "label": "Speaker 1 任務", "placeholder": "負責開場、引導話題、提出問題和做總結。" },
+        { "type": "text", "id": "speaker2Name", "label": "Speaker 2 角色名稱", "placeholder": "評論員/搭檔" },
+        { "type": "text", "id": "speaker2Role", "label": "Speaker 2 任務", "placeholder": "負責補充事件細節、提供關鍵資訊。" },
+        { "type": "textarea", "id": "longText", "label": "原始長文本", "placeholder": "請在此貼上您希望改寫的原始文章或資料..." }
+    ]
+}
+---PROMPT---
+角色：
+你現在是一位專業的 Podcast 腳本作家。
+
+情境：
+你的任務是根據我提供的【原始文本】，將其改寫成一段生動、口語化的【雙人對談腳本】。
+
+期望：
+請嚴格遵守以下【格式與規則】來輸出，缺一不可：
+
+ 1. 第一行 - 整體語氣 (Overall Tone)：
+ 腳本的第一行，必須是且只能是以 `Read aloud in a...` 開頭的英文句子，用來描述這段對話的整體風格。
+
+ 2. 第二行開始 - 角色對話 (Dialogue)：
+ 從第二行開始，每一行都是對話內容。對話必須以 `Speaker 1:` 或 `Speaker 2:` 開頭。
+
+ 3. 內容與角色分配 (Content & Roles)：
+ Speaker 1 (<<<{speaker1Name}>>>)：<<<{speaker1Role}>>>
+ Speaker 2 (<<<{speaker2Name}>>>)：<<<{speaker2Role}>>>
+
+ 整個腳本需要完整消化【原始長文本】的精華，並流暢地串連起來。
+
+ 4. 輸出限制 (Strict Output)：
+ 絕對不要在腳本前後添加任何額外的標題、前言、註解、說明或結語。
+
+ ---
+
+<<<原始長文本>>>
+<<<{longText}>>>
+</script>
+
+<script type="text/template-data">
+{
+    "name": "潛在客戶公司資訊快搜",
+    "category": "業務",
+    "structure": [
+        { "type": "text", "id": "targetCompany", "label": "目標公司名稱", "placeholder": "例如：Google" },
+        { "type": "text", "id": "monthRange", "label": "近期動態時間範圍 (月)", "placeholder": "3-6" }
+    ]
+}
+---PROMPT---
+情境：「在我深入研究或決定聯繫人之前，我需要對潛在客戶公司 <<<目標公司名稱>>> 有一個基本的了解。我想知道他們是做什麼的，最近狀況如何。」
+
+角色：「請扮演一位「公司資訊快搜助理」，協助我快速掌握一家公司的概況。」
+
+期待：請搜尋並摘要關於 <<<{targetCompany}>>> 的以下「關鍵公開資訊」：
+1.  「公司核心業務」：他們的主要產品、服務以及所屬的產業。
+2.  「近期重要動態」：過去 <<<{monthRange}>>> 個月內的主要新聞、公告或里程碑（如融資、新產品、合作案）。
+3.  「官方網站呈現的關鍵訊息」：例如公司使命、價值觀、或目標客群描述。
+
+請以「簡潔的條列式摘要」格式呈現，讓我能「快速掌握該公司的基本面貌與近期焦點」。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "競爭對手動態與市場聲量分析",
+    "category": "市場分析",
+    "structure": [
+        { "type": "text", "id": "competitor1_name", "label": "競爭對手1名稱", "placeholder": "例如：Gogoro" },
+        { "type": "text", "id": "competitor2_name", "label": "競爭對手2名稱", "placeholder": "例如：WeMo" },
+        { "type": "text", "id": "time_frame", "label": "時間範圍", "placeholder": "例如：3個月、半年" }
+    ]
+}
+---PROMPT---
+### 情境
+我想了解我的主要競爭對手 <<<{competitor1_name}>>> 和 <<<{competitor2_name}>>> 在過去 <<<{time_frame}>>> 的「主要公開動態」以及「市場上的評價或討論趨勢」。
+
+### 角色
+請扮演一位「市場動態觀察員」，協助彙整競爭對手的近期公開資訊與網路聲量概況。
+
+### 期待
+請為我列出的「每一家」競爭對手，搜尋並摘要以下兩方面的公開資訊（聚焦於指定的 <<<{time_frame}>>> ）：
+
+1.  **「近期主要新聞/公告」**：重要的產品更新、市場活動、合作夥伴關係、獲獎、融資等公開宣布的事件。
+2.  **「公開平台上的評價/討論趨勢」**：從主要評論網站、論壇或社群媒體搜尋結果中，總結「近期常被提及的正面評價點、負面抱怨點或熱門討論話題」。
+
+請將結果「分開呈現」給每個競爭對手。摘要應著重於「關鍵事件和顯著趨勢」，而非流水帳。請標示出任何「特別值得注意的動態或聲量變化」。註明資訊來源為「公開管道」，且聲量分析僅為初步概觀。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "競爭對手橫向比較分析",
+    "category": "行政",
+    "structure": [
+        { "type": "text", "id": "comparison_aspect", "label": "特定比較面向", "placeholder": "例如：核心功能、計價方式、主要行銷通路" },
+        { "type": "text", "id": "competitor1_name", "label": "競爭對手1名稱", "placeholder": "Apple" },
+        { "type": "text", "id": "competitor2_name", "label": "競爭對手2名稱", "placeholder": "Google" },
+        { "type": "text", "id": "competitor3_name", "label": "競爭對手3名稱", "placeholder": "Microsoft" },
+        { "type": "textarea", "id": "our_situation", "label": "簡述自家產品/服務的對應狀況", "placeholder": "我們的產品提供 A、B、C 功能，採用訂閱制收費..." }
+    ]
+}
+---PROMPT---
+請比較我方與數個競爭對手在特定面向上的公開資訊。
+
+角色：「請扮演一位「競爭情報分析助理」，協助整理用於橫向比較的結構化數據。」
+
+情境：「我需要比較我們的產品/服務與主要競爭對手在 <<<{comparison_aspect}>>> 方面的異同。我的競爭對手包括：<<<{competitor1_name}>>>、<<<{competitor2_name}>>>、<<<{competitor3_name}>>>。我們自家在該面向的情況是：<<<{our_situation}>>>。」
+
+期待：請針對我列出的「每一家」競爭對手（以及我們自己），搜尋其「公開網站、公開文件」等來源中，與 <<<{comparison_aspect}>>> 相關的資訊。請將結果整理成一個「比較表格」或清晰的「對比列表」，方便比較各方在 <<<{comparison_aspect}>>> 上的異同點。請專注於從「公開資訊」提取，若某項資訊無法公開查得，請註明「資訊未公開」。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "競爭對手基本資訊摘要",
+    "category": "市場分析",
+    "structure": [
+        { "type": "text", "id": "competitor_name", "label": "請填寫競爭對手公司名稱", "placeholder": "例如：Canva" }
+    ]
+}
+---PROMPT---
+請協助我收集並摘要關於特定競爭對手的公開基本資訊。
+角色：「請扮演一位「市場研究助理」，專注於從公開來源彙整單一公司的基本資料。」
+情境：「我需要快速了解主要競爭對手 <<<{competitor_name}>>> 的基本情況，包括他們做什麼、賣什麼、近期動態等。」
+期待：請搜尋並摘要關於 <<<{competitor_name}>>> 的以下「公開資訊」：
+1.  「主要產品/服務線」：簡述他們提供的核心產品或服務是什麼。
+2.  「目標市場/客戶描述」：根據其公開資料，他們主要服務哪些客戶群體？
+3.  「公開的定價資訊」：如果他們的網站或其他公開資料有提供價格方案（例如分級、試用），請簡述。
+4.  「近期（例如過去6-12個月）重要新聞/公告」：例如新產品發布、融資消息、重大合作案等。
+5.  「公開客戶評價概況」：若有公開評論平台資訊，簡述「整體評價趨勢」和「常被提及的優缺點」。
+請以「結構化摘要」（如條列式）呈現，並註明資訊主要來自「公開可取得的管道」。
+</script>
+
+
+
+好的，交給我吧。
+
+這個「部落格文章大綱產生器」是行銷人員和內容創作者的實用工具，可以快速發想文章架構，確保內容完整且具吸引力。
+
+請直接複製貼上以下為您準備好的 PromptsWebsite.php 模板程式碼。
+
+<script type="text/template-data">
+{
+    "name": "部落格文章大綱產生器",
+    "category": "行銷",
+    "structure": [
+        {
+            "type": "text",
+            "id": "blog_topic",
+            "label": "部落格文章主題",
+            "placeholder": "例如：如何有效學習 AI 詠唱技巧"
+        },
+        {
+            "type": "text",
+            "id": "target_audience",
+            "label": "目標讀者輪廓",
+            "placeholder": "例如：對 AI 繪圖有興趣，但剛入門的初學者"
+        },
+        {
+            "type": "text",
+            "id": "article_goal",
+            "label": "文章目標",
+            "placeholder": "例如：提供讀者一套完整的學習路徑，並引導他們訂閱電子報"
+        }
+    ]
+}
+---PROMPT---
+# 指令
+
+你是一位經驗豐富的內容行銷專家與 SEO 策略師。請根據我提供的資訊，為我規劃一篇專業的部落格文章大綱。
+
+---
+# 文章資訊
+
+- **主題**：<<<{blog_topic}>>>
+- **目標讀者**：<<<{target_audience}>>>
+- **核心目標**：<<<{article_goal}>>>
+
+---
+# 產出要求
+
+請嚴格遵循以下結構，產生一份吸引人且架構完整的文章大綱：
+
+1.  **引人入勝的標題建議 (提供 3 個)**：
+    - 結合 SEO 關鍵字與高點閱率元素。
+
+2.  **前言 (Introduction)**：
+    - 精準點出目標讀者的痛點，或創造一個情境引發好奇心。
+    - 簡要預告文章將提供什麼價值。
+
+3.  **主要段落標題 (3-5 個)**：
+    - 依邏輯順序安排，每個標題都解決一個核心問題。
+    - 標題需清晰、有吸引力，讓人想繼續閱讀。
+
+4.  **結論 (Conclusion)**：
+    - 快速總結文章核心重點。
+    - 提供一個明確的「行動呼籲 (Call-to-Action)」，引導讀者完成文章目標（例如：留言、訂閱、點擊連結等）。
+</script>
+
+
+<script type="text/template-data">
+{
+    "name": "廣告文案 A/B Test 產生器",
+    "category": "行銷",
+    "structure": [
+        {
+            "type": "text",
+            "id": "product_name",
+            "label": "產品/服務名稱",
+            "placeholder": "例如：GPT-5 學習課程"
+        },
+        {
+            "type": "text",
+            "id": "ad_platform",
+            "label": "廣告平台",
+            "placeholder": "例如：Facebook Ads / Google Ads"
+        },
+        {
+            "type": "textarea",
+            "id": "core_value",
+            "label": "主要賣點/優惠",
+            "placeholder": "例如：限時早鳥優惠 7 折，再送 2 小時實戰工作坊"
+        },
+        {
+            "type": "textarea",
+            "id": "target_audience",
+            "label": "目標客群",
+            "placeholder": "例如：希望轉職 AI 領域，但缺乏系統化學習方法的 25-35 歲上班族"
+        }
+    ]
+}
+---PROMPT---
+# 指令
+
+你是一位頂尖的廣告文案專家 (Copywriter)，特別擅長撰寫高轉換率的數位廣告。請根據我提供的產品資訊，設計 A/B Test 文案。
+
+---
+# 產品資訊
+
+- **產品/服務**：<<<{product_name}>>>
+- **廣告平台**：<<<{ad_platform}>>>
+- **主要賣點/優惠**：<<<{core_value}>>>
+- **目標客群**：<<<{target_audience}>>>
+
+---
+# 產出要求
+
+請嚴格遵循以下格式，為每個項目提供 **2 種**風格或切角不同的文案版本，以便進行 A/B 測試：
+
+### 1. 廣告標題 (Headline)
+- **版本 A**：(強調效益或解決痛點)
+- **版本 B**：(營造稀缺性或好奇心)
+
+### 2. 廣告內文 (Body Text)
+- **版本 A**：(採用故事性或情境式描述)
+- **版本 B**：(採用條列式，清晰呈現價值)
+
+### 3. 行動呼籲 (Call-to-Action)
+- **版本 A**：(直接、明確的指令)
+- **版本 B**：(引導式、低門檻的邀請)
+</script>
+
+<script type="text/template-data">
+{
+    "name": "Email 電子報主題規劃師",
+    "category": "行銷",
+    "structure": [
+        {
+            "type": "text",
+            "id": "promotion_focus",
+            "label": "想推廣的產品/服務/內容",
+            "placeholder": "例如：新上架的「高效專案管理」線上課程"
+        },
+        {
+            "type": "text",
+            "id": "brand_industry",
+            "label": "你的品牌/產業領域",
+            "placeholder": "例如：提供職場技能教學的線上教育平台"
+        },
+        {
+            "type": "textarea",
+            "id": "subscriber_profile",
+            "label": "目標訂閱戶輪廓",
+            "placeholder": "例如：追求個人成長、對學習新知有高度興趣的辦公室工作者"
+        }
+    ]
+}
+---PROMPT---
+# 指令
+你是一位資深的內容策略師與 Email 行銷專家。我們正在規劃下一期的電子報，請幫我發想內容主題。
+
+---
+# 背景資訊
+
+- **推廣重點**：<<<{promotion_focus}>>>
+- **品牌/產業**：<<<{brand_industry}>>>
+- **訂閱戶輪廓**：<<<{subscriber_profile}>>>
+
+---
+# 任務要求
+
+請以提升訂閱戶參與度與價值感為核心目標，發想 **5 個**不同切角的電子報主題或單元點子。
+
+每個點子都需要包含：
+1.  **主題標題**：吸引人開啟信件的標題。
+2.  **內容簡述**：簡單說明這個主題會提供什麼內容。
+3.  **如何連結到推廣重點**：說明內容如何自然地引導讀者關注我們想推廣的項目。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "目標客戶畫像 (Persona) 產生器",
+    "category": "行銷",
+    "structure": [
+        {
+            "type": "text",
+            "id": "audience_summary",
+            "label": "目標客群簡述",
+            "placeholder": "例如：中小企業的行銷經理"
+        },
+        {
+            "type": "textarea",
+            "id": "audience_pain_points",
+            "label": "主要痛點/挑戰",
+            "placeholder": "例如：行銷預算有限、缺乏人手、需要同時處理多項任務、難以衡量成效"
+        },
+        {
+            "type": "textarea",
+            "id": "audience_goals",
+            "label": "追求的目標/價值",
+            "placeholder": "例如：提升品牌知名度、獲取更多潛在客戶、證明行銷活動的 ROI"
+        },
+        {
+            "type": "textarea",
+            "id": "audience_channels",
+            "label": "可能使用的資訊管道",
+            "placeholder": "例如：數位時代、經理人月刊、Facebook 行銷社團、Google 搜尋"
+        }
+    ]
+}
+---PROMPT---
+# 指令
+
+你是一位市場研究專家與品牌策略師，擅長將數據和觀察轉化為生動的客戶畫像 (Customer Persona)。請根據我提供的基本資訊，建立一個詳細、有故事性的 Persona。
+
+---
+# 客戶基本資訊
+
+- **客群簡述**：<<<{audience_summary}>>>
+- **主要痛點**：<<<{audience_pain_points}>>>
+- **追求目標**：<<<{audience_goals}>>>
+- **資訊管道**：<<<{audience_channels}>>>
+
+---
+# Persona 產出結構
+
+請生成一個包含以下完整結構的 Persona 描述：
+
+1.  **姓名與照片**：(給他/她一個常見的虛擬姓名，並描述一張符合形象的照片)
+2.  **個人背景 (Background)**：
+    -   基本人口統計資料 (年齡、居住地、家庭狀況等)
+    -   簡短的背景故事，描述他/她的生活與事業軌跡。
+3.  **工作職責 (Job Role)**：
+    -   他/她的主要工作內容與責任。
+4.  **痛點 (Pain Points)**：
+    -   將輸入的痛點轉化為更具體的日常情境描述。
+5.  **目標 (Goals)**：
+    -   分為「工作目標」與「個人目標」。
+6.  **資訊習慣 (Watering Holes)**：
+    -   他/她通常會在哪裡獲取新知或與同儕交流？
+7.  **一句代表性的話 (Quote)**：
+    -   一句能總結他/她核心想法或困境的話。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "專業新聞稿產生器",
+    "category": "行銷",
+    "structure": [
+        { "type": "text", "id": "pr_title", "label": "1. 標題", "placeholder": "提供一個簡潔有力的標題，吸引眼球" },
+        { "type": "text", "id": "who", "label": "2. 誰 (Who)", "placeholder": "事件主體，例如：科技巨頭 FutureTech Inc." },
+        { "type": "text", "id": "what", "label": "3. 什麼 (What)", "placeholder": "事件內容，例如：發表全球首款 AI 個人助理 Nova" },
+        { "type": "text", "id": "when", "label": "4. 何時 (When)", "placeholder": "事件時間，例如：2025年10月28日" },
+        { "type": "text", "id": "where", "label": "5. 何地 (Where)", "placeholder": "事件地點，例如：線上全球發表會" },
+        { "type": "textarea", "id": "why", "label": "6. 為何 (Why)", "placeholder": "事件發生的原因，例如：為了徹底改變人機互動模式" },
+        { "type": "textarea", "id": "how", "label": "7. 如何 (How)", "placeholder": "事件如何發生，例如：透過先進的自然語言處理演算法" },
+        { "type": "textarea", "id": "secondary_details", "label": "8. 次要細節", "placeholder": "提供相關的背景信息，例如：產品開發歷時三年..." },
+        { "type": "text", "id": "tone_of_voice", "label": "9. 語言風格", "placeholder": "例如：專業、權威、輕鬆、科技感" },
+        { "type": "textarea", "id": "news_value", "label": "10. 新聞價值", "placeholder": "為何重要？例如：技術突破、市場首見、影響深遠" },
+        { "type": "text", "id": "quote_name", "label": "11. 引言人姓名", "placeholder": "例如：李明" },
+        { "type": "text", "id": "quote_title", "label": "12. 引言人職稱", "placeholder": "例如：FutureTech Inc. 執行長" },
+        { "type": "textarea", "id": "quote_text", "label": "13. 引言內容", "placeholder": "一句直接引言，例如：「我們相信 Nova 是未來的開端。」" },
+        { "type": "text", "id": "specific_data", "label": "14. 具體數據", "placeholder": "用數字支撐，例如：能處理超過 95% 的日常指令" },
+        { "type": "text", "id": "objective_fact", "label": "15. 客觀重點", "placeholder": "希望強調的客觀事實，例如：已獲得 3 項國際專利" },
+        { "type": "text", "id": "length_control", "label": "16. 篇幅控制", "placeholder": "例如：400字左右 (留空則由 AI 決定)" },
+        { "type": "textarea", "id": "cta_contact", "label": "17. 結尾行動呼籲/聯絡資訊", "placeholder": "例如：欲了解更多資訊，請訪問 www.futuretech.com..." }
+    ]
+}
+---PROMPT---
+# 指令
+你是一位資深的公關經理 (PR Manager)，請根據我提供的結構化資訊，撰寫一篇專業、完整、且符合媒體格式的標準新聞稿。
+
+---
+# 新聞稿構成要素
+
+- **標題**：<<<{pr_title}>>>
+
+- **導言 (5W1H)**:
+    - 誰 (Who): <<<{who}>>>
+    - 什麼 (What): <<<{what}>>>
+    - 何時 (When): <<<{when}>>>
+    - 何地 (Where): <<<{where}>>>
+    - 為何 (Why): <<<{why}>>>
+    - 如何 (How): <<<{how}>>>
+
+- **次要細節**：<<<{secondary_details}>>>
+
+- **語言風格**：<<<{tone_of_voice}>>>
+
+- **新聞價值**：<<<{news_value}>>>
+
+- **權威引言**:
+    - 姓名: <<<{quote_name}>>>
+    - 職稱: <<<{quote_title}>>>
+    - 引言: "<<<{quote_text}>>>"
+
+- **具體數據**：<<<{specific_data}>>>
+
+- **客觀重點**：<<<{objective_fact}>>>
+
+- **篇幅控制**：<<<{length_control}>>>
+
+- **結尾與聯絡資訊**：<<<{cta_contact}>>>
+
+---
+# 產出要求
+請整合以上所有資訊，產出一篇結構完整、語氣適當、可直接發布的新聞稿。
+</script>
+
+<script type="text/template-data">
+{
+    "name": "企劃書內容產生器",
+    "category": "行銷",
+    "structure": [
+        { "type": "textarea", "id": "goal", "label": "1. 企劃目標", "placeholder": "例如：解決用戶在規劃旅行時資訊混亂的問題，並在半年內達成 10 萬次下載。" },
+        { "type": "text", "id": "audience", "label": "2. 主要閱讀對象", "placeholder": "例如：公司高層主管、潛在投資人" },
+        { "type": "text", "id": "audience_concern", "label": "他們最關心的是", "placeholder": "例如：市場潛力、預期投資回報率 (ROI)、可行性" },
+        { "type": "textarea", "id": "core_value", "label": "3. 企劃核心價值 (一句話總結)", "placeholder": "例如：我們打造一款 AI 旅行助理 App，讓用戶在 5 分鐘內完成個人化行程規劃。" },
+        { "type": "textarea", "id": "background", "label": "4. 背景與需求", "placeholder": "例如：根據觀光局統計，自由行市場年增長 15%，但 70% 的旅客認為行前規劃是最大痛點。" },
+        { "type": "text", "id": "step1_action", "label": "5. 執行步驟 1", "placeholder": "例如：完成 App 原型設計與使用者測試" },
+        { "type": "text", "id": "step1_time", "label": "時間", "placeholder": "例如：第一個月" },
+        { "type": "text", "id": "step1_owner", "label": "負責人", "placeholder": "例如：產品經理-小王" },
+        { "type": "text", "id": "step2_action", "label": "執行步驟 2", "placeholder": "例如：核心功能開發與前後端串接" },
+        { "type": "text", "id": "step2_time", "label": "時間", "placeholder": "例如：第二至三個月" },
+        { "type": "text", "id": "step2_owner", "label": "負責人", "placeholder": "例如：技術主管-老李" },
+        { "type": "text", "id": "step3_action", "label": "執行步驟 3", "placeholder": "例如：市場推廣與社群行銷啟動" },
+        { "type": "text", "id": "step3_time", "label": "時間", "placeholder": "例如：第四個月" },
+        { "type": "text", "id": "step3_owner", "label": "負責人", "placeholder": "例如：行銷經理-小陳" },
+        { "type": "textarea", "id": "resources_needed", "label": "所需資源", "placeholder": "例如：iOS/Android 開發工程師各 2 名、UI/UX 設計師 1 名、雲端伺服器資源" },
+        { "type": "textarea", "id": "unique_advantage", "label": "6. 獨特優勢與創新", "placeholder": "例如：我們獨家的 AI 推薦演算法，能比競品更精準預測用戶偏好。" },
+        { "type": "text", "id": "total_cost", "label": "7. 預計總成本", "placeholder": "例如：新台幣 300 萬元 (第一年)" },
+        { "type": "text", "id": "funding_source", "label": "資金來源", "placeholder": "例如：公司內部預算、申請政府補助款" },
+        { "type": "textarea", "id": "resource_allocation", "label": "資源分配細項", "placeholder": "例如：人事成本 60%、行銷費用 25%、營運雜支 15%" },
+        { "type": "text", "id": "risk1_desc", "label": "8. 風險 1", "placeholder": "例如：使用者接受度不如預期" },
+        { "type": "text", "id": "risk1_solution", "label": "應對方法", "placeholder": "例如：透過初期問卷與 A/B 測試，持續優化使用者體驗" },
+        { "type": "text", "id": "risk2_desc", "label": "風險 2", "placeholder": "例如：開發時程延誤" },
+        { "type": "text", "id": "risk2_solution", "label": "應對方法", "placeholder": "例如：採用敏捷開發，每兩週檢討進度並調整" },
+        { "type": "textarea", "id": "expected_outcome", "label": "9. 預期成果", "placeholder": "例如：第一年達到 15 萬用戶、付費轉換率 5%、創造 200 萬營收。" },
+        { "type": "textarea", "id": "evaluation_criteria", "label": "評估標準", "placeholder": "例如：每月活躍用戶數 (MAU)、使用者留存率、App Store 評分。" },
+        { "type": "text", "id": "presentation_style", "label": "10. 呈現風格", "placeholder": "例如：專業簡約，多使用圖表呈現數據，條列式說明" }
+    ]
+}
+---PROMPT---
+# 指令
+你是一位經驗豐富的商業顧問與企劃專家。請根據我提供的結構化資訊，撰寫一份邏輯清晰、具說服力的完整企劃書。
+
+# 企劃書構成要素
+
+### 1. 企劃摘要 (Executive Summary)
+- **核心價值**: <<<{core_value}>>>
+- **主要目標**: <<<{goal}>>>
+- **閱讀對象**: <<<{audience}>>>，他們最關心的是：<<<{audience_concern}>>>
+
+### 2. 背景分析與市場需求 (Background & Needs)
+- **企劃背景**: <<<{background}>>>
+- **獨特賣點與創新之處**: <<<{unique_advantage}>>>
+
+### 3. 執行計畫 (Execution Plan)
+- **實施步驟**:
+    - **步驟 1**: <<<{step1_action}>>> (時間：<<<{step1_time}>>>，負責人：<<<{step1_owner}>>>)
+    - **步驟 2**: <<<{step2_action}>>> (時間：<<<{step2_time}>>>，負責人：<<<{step2_owner}>>>)
+    - **步驟 3**: <<<{step3_action}>>> (時間：<<<{step3_time}>>>，負責人：<<<{step3_owner}>>>)
+- **所需資源**: <<<{resources_needed}>>>
+
+### 4. 預算與資源分配 (Budget & Allocation)
+- **預計總成本**: <<<{total_cost}>>>
+- **資金來源**: <<<{funding_source}>>>
+- **資源分配**: <<<{resource_allocation}>>>
+
+### 5. 風險評估與應對策略 (Risk Assessment & Mitigation)
+- **風險 1**: <<<{risk1_desc}>>>
+    - **應對方法**: <<<{risk1_solution}>>>
+- **風險 2**: <<<{risk2_desc}>>>
+    - **應對方法**: <<<{risk2_solution}>>>
+
+### 6. 預期成果與評估標準 (Expected Outcomes & KPIs)
+- **預期成果**: <<<{expected_outcome}>>>
+- **成功評估標準**: <<<{evaluation_criteria}>>>
+
+# 產出要求
+請整合以上所有資訊，以「**<<<{presentation_style}>>>**」的風格，產出一份結構完整的企劃書草稿。
+</script>
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "電話開發逐字稿產生器",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "call_objective", "label": "1. 電話目的", "placeholder": "例如：預約 15 分鐘的線上產品演示會議" },
+
+        { "type": "text", "id": "my_name", "label": "2. 我的姓名", "placeholder": "例如：陳大文" },
+
+        { "type": "text", "id": "my_company", "label": "我的公司", "placeholder": "例如：高效雲端科技" },
+
+        { "type": "textarea", "id": "company_value", "label": "公司核心價值/服務簡述", "placeholder": "例如：我們專門協助中小企業透過 AI 工具，自動化繁瑣的行政流程。" },
+
+        { "type": "textarea", "id": "customer_context", "label": "3. 建立連結 (破冰點)", "placeholder": "例如：我有在貴公司官網上看到，最近正在擴大招募業務團隊..." },
+
+        { "type": "textarea", "id": "problem_solved", "label": "4. 價值主張 (能解決的問題)", "placeholder": "例如：我們的系統能自動整理客戶資料，減少業務人員 50% 的文書工作時間。" },
+
+        { "type": "text", "id": "specific_value", "label": "具體價值 (數字或成果)", "placeholder": "例如：平均能為每個業務團隊每月多爭取 20 小時的客戶開發時間。" },
+
+        { "type": "textarea", "id": "open_question", "label": "5. 開放式問題", "placeholder": "例如：想請教一下，目前團隊在管理客戶資料或製作報表時，主要會遇到哪些挑戰呢？" },
+
+        { "type": "text", "id": "potential_objection", "label": "6. 預想的異議", "placeholder": "例如：我們已經有在使用類似的系統了。" },
+
+        { "type": "textarea", "id": "objection_response", "label": "我的回應", "placeholder": "例如：了解，那太好了！我們很多客戶也是從其他系統轉過來的，他們發現我們的 AI 自動化標籤功能是市面上沒有的，這點特別能幫助他們..." },
+
+        { "type": "text", "id": "cta_action", "label": "7. 行動號召 (CTA)", "placeholder": "例如：跟您預約一個 15 分鐘的線上會議" },
+
+        { "type": "text", "id": "cta_time", "label": "具體時間建議", "placeholder": "例如：不曉得這週四或週五下午，哪個時段對您比較方便？" },
+
+        { "type": "text", "id": "positive_phrase", "label": "8. 正面語句", "placeholder": "例如：非常感謝您寶貴的時間" },
+
+        { "type": "textarea", "id": "pause_point", "label": "9. 預計停頓點", "placeholder": "例如：自我介紹完、問完開放式問題後。" },
+
+        { "type": "text", "id": "tone_style", "label": "10. 語氣/風格", "placeholder": "例如：自信、專業、不失親和力" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+你是一位頂尖的 B2B 業務開發專家 (SDR)，請根據我提供的資訊，撰寫一份完整、專業且具說服力的電話開發逐字稿 (Cold Call Script)。
+
+
+
+# 通話腳本構成要素
+
+
+
+- **通話目的**: <<<{call_objective}>>>
+
+- **自我介紹**:
+
+    - 姓名: <<<{my_name}>>>
+
+    - 公司: <<<{my_company}>>>
+
+    - 核心服務: <<<{company_value}>>>
+
+- **破冰與連結**: <<<{customer_context}>>>
+
+- **價值主張**:
+
+    - 解決的問題: <<<{problem_solved}>>>
+
+    - 具體成效: <<<{specific_value}>>>
+
+- **探索需求 (開放式問題)**: <<<{open_question}>>>
+
+- **異議處理**:
+
+    - 預想的異議: "<<<{potential_objection}>>>"
+
+    - 我的回應: "<<<{objection_response}>>>"
+
+- **行動號召 (CTA)**:
+
+    - 下一步行動: <<<{cta_action}>>>
+
+    - 時間建議: <<<{cta_time}>>>
+
+- **溝通策略**:
+
+    - 正面語句範例: <<<{positive_phrase}>>>
+
+    - 計劃停頓點: <<<{pause_point}>>>
+
+    - 整體語氣風格: <<<{tone_style}>>>
+
+
+
+# 產出要求
+
+請整合以上所有資訊，生成一份從開頭問候到結尾約定的完整電話逐字稿。腳本中需包含「說話內容」以及「括號內的動作/語氣提示」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "標準職位描述 (JD) 草稿產生器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "職位名稱", "placeholder": "例如：社群行銷專員" },
+
+        { "type": "textarea", "id": "core_responsibilities", "label": "核心職責", "placeholder": "例如：\n- 規劃與執行社群內容\n- 管理 Facebook, Instagram 粉絲專頁\n- 回覆粉絲留言與私訊" },
+
+        { "type": "textarea", "id": "key_requirements", "label": "所需關鍵技能/資格", "placeholder": "例如：\n- 1 年以上社群操作經驗\n- 熟悉社群分析工具\n- 具備基礎作圖能力 (Canva)" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+你是一位高效率的人力資源專員。請根據我提供的職位資訊，快速生成一份標準格式的職位描述 (Job Description) 草稿。
+
+
+
+# 職位資訊
+
+- **職位名稱**: <<<{job_title}>>>
+
+- **核心職責**: 
+
+<<<{core_responsibilities}>>>
+
+- **所需條件**: 
+
+<<<{key_requirements}>>>
+
+
+
+# 產出要求
+
+請生成一份包含以下三個主要區塊的職位描述草稿：
+
+1.  **職位摘要 (Position Summary)**: 簡要描述此職位的核心目的。
+
+2.  **主要職責 (Key Responsibilities)**: 將提供的職責內容以專業的動詞開頭，條列式呈現。
+
+3.  **所需條件 (Qualifications)**: 清晰地條列出必要的技能與資格。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "優化版職位描述 (JD) 產生器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "職位名稱", "placeholder": "例如：資深前端工程師" },
+
+        { "type": "textarea", "id": "core_responsibilities", "label": "核心職責與目標", "placeholder": "例如：主要負責優化我們電商網站的使用者體驗，目標是提升頁面載入速度 30% 並降低跳出率。" },
+
+        { "type": "textarea", "id": "requirements", "label": "所需技能/特質 (必備與加分)", "placeholder": "例如：\n必備：精通 React、熟悉 Webpack、有 RWD 開發經驗。\n加分：有 TypeScript 或 CI/CD 經驗。" },
+
+        { "type": "textarea", "id": "company_culture", "label": "公司文化或團隊特色 (選填)", "placeholder": "例如：我們是一個鼓勵技術分享與自主學習的團隊，每兩週有一次內部讀書會，並提供線上課程補助。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位資深的招募顧問，協助我將一份職位描述優化得更具吸引力，以精準吸引頂尖人才。
+
+
+
+# 職位資訊
+
+- **職位名稱**: <<<{job_title}>>>
+
+- **核心職責與目標**: <<<{core_responsibilities}>>>
+
+- **所需技能/特質**: <<<{requirements}>>>
+
+- **公司文化/團隊特色**: <<<{company_culture}>>>
+
+
+
+# 產出要求
+
+請產出一份專業且具吸引力的職位描述，需包含以下特點：
+
+1.  **引人入勝的開頭**: 不只是職位名稱，而是能勾起候選人興趣的開場白。
+
+2.  **職責描述優化**: 使用更具影響力的動詞 (例如：你將主導...、你將打造...、你將優化...)，並連結到職位價值與發展性。
+
+3.  **條件要求分層**: 清晰區分「必要條件 (Must-have)」與「加分條件 (Nice-to-have)」。
+
+4.  **文化融入**: 將公司或團隊的特色自然地融入描述中，傳遞雇主品牌形象。
+
+</script>
+
+<script type="text/template-data">
+
+{
+
+    "name": "完整版職位描述 (JD) 產生/優化器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "職位名稱", "placeholder": "例如：數據分析師" },
+
+        { "type": "textarea", "id": "detailed_responsibilities", "label": "詳細職責", "placeholder": "例如：\n- 建立與維護商業智慧 (BI) 儀表板。\n- 執行專項數據分析，提供業務單位決策支持。\n- 與工程團隊合作，確保數據來源的品質與一致性。" },
+
+        { "type": "textarea", "id": "detailed_skills", "label": "所需技能 (區分必要/加分/學經歷)", "placeholder": "例如：\n必要技能：精通 SQL, 熟悉 Tableau 或 Power BI。\n加分技能：會使用 Python (Pandas)。\n學經歷：統計、資工或商管相關科系畢，2 年以上相關經驗。" },
+
+        { "type": "textarea", "id": "existing_draft", "label": "現有職位描述草稿 (選填，供優化用)", "placeholder": "若有草稿可貼於此，AI 將針對此版本進行優化。" },
+
+        { "type": "textarea", "id": "team_structure", "label": "團隊/職涯資訊 (選填)", "placeholder": "例如：此職位將直接向數據部門總監匯報，團隊目前有 3 位成員。未來有機會發展為資深分析師或數據科學家。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位經驗豐富的人力資源經理，協助我生成或完善一份內容完整、結構清晰、用詞精準專業的職位描述。
+
+
+
+# 職位資訊
+
+- **職位名稱**: <<<{job_title}>>>
+
+- **詳細職責**: <<<{detailed_responsibilities}>>>
+
+- **所需技能**: <<<{detailed_skills}>>>
+
+- **團隊/職涯資訊**: <<<{team_structure}>>>
+
+- **(優化用) 現有草稿**: <<<{existing_draft}>>>
+
+
+
+# 產出要求
+
+請根據提供的資訊，生成一份全面、結構化的職位描述。
+
+- **如果提供了「現有草稿」**，請優先針對草稿進行分析與優化，並提出具體建議，再產出最終的優化版本。
+
+- **如果未提供草稿**，請直接生成一份新的職位描述。
+
+
+
+最終產出的內容**必須**包含以下區塊：
+
+1.  **公司簡介** (可留一個位置讓使用者自行填寫)
+
+2.  **職位概述 (Position Overview)**: 總結此職位的核心使命與價值。
+
+3.  **主要工作職責 (What You'll Do)**: 詳細、條列式地說明工作內容。
+
+4.  **我們在找這樣的你 (Who You Are)**: 整合並清晰呈現「必要條件」與「加分條件」。
+
+5.  **為什麼要加入我們 (Why Join Us)**: 根據團隊/職涯資訊，撰寫具吸引力的段落。
+
+6.  **其他資訊** (例如：地點、薪資範圍提示等，可留空)。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "單一履歷關鍵資訊提取器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "textarea", "id": "resume_text", "label": "候選人履歷內容", "placeholder": "請在此貼上單一候選人的完整履歷文字..." },
+
+        { "type": "text", "id": "relevant_skills", "label": "想關注的關鍵技能", "placeholder": "例如：數據分析、專案管理、Python" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+你是一位高效率的招募專員，請從我提供的履歷文字中，快速提取關鍵資訊並生成摘要。
+
+
+
+# 履歷內容
+
+<<<{resume_text}>>>
+
+
+
+# 提取要求
+
+請從上方履歷中，提取與「<<<{relevant_skills}>>>」相關的資訊，並嚴格按照以下格式，以條列式摘要呈現：
+
+
+
+- **最高學歷**: 
+
+- **總工作經驗年限 (估算)**: 
+
+- **最近/目前職位**: (包含公司與職稱)
+
+- **提及的相關關鍵技能**: (僅列出履歷中提到，且與指定技能相關的項目)
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "多份履歷比較摘要產生器 (單次)",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "目標職位", "placeholder": "例如：行銷企劃專員" },
+
+        { "type": "text", "id": "candidate_id", "label": "候選人識別資訊", "placeholder": "例如：王小明 / 履歷編號 001" },
+
+        { "type": "textarea", "id": "resume_text", "label": "單一份履歷文字", "placeholder": "請在此貼上「一份」履歷的完整內容..." },
+
+        { "type": "text", "id": "key_skills", "label": "關注的關鍵技能列表", "placeholder": "例如：社群媒體經營, 文案撰寫, 活動策劃" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位高效率的招募助理。我正在為「<<<{job_title}>>>」職位進行履歷比較，請協助我將提供的單份履歷，整理成標準化的摘要格式，以便後續橫向比較。
+
+
+
+# 履歷資訊
+
+- **候選人識別**: <<<{candidate_id}>>>
+
+- **履歷內容**: 
+
+<<<{resume_text}>>>
+
+
+
+# 關注的關鍵技能
+
+<<<{key_skills}>>>
+
+
+
+# 產出要求
+
+請提取資訊，並**嚴格**按照以下「Markdown 表格」格式輸出摘要：
+
+
+
+| 項目 | 資訊摘要 |
+
+| :--- | :--- |
+
+| **候選人** | <<<{candidate_id}>>> |
+
+| **最高學歷** | (請從履歷提取) |
+
+| **總工作年資** | (請從履歷估算) |
+
+| **最相關經驗** | (請簡述與目標職位最相關的一項經驗) |
+
+| **符合的技能**| (請列出履歷中提及且符合關注列表的技能) |
+
+
+
+**提醒**: 此摘要僅供初步參考，詳細評估仍需人工閱讀完整履歷。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "履歷初步篩選標記器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "目標職位", "placeholder": "例如：客服工程師" },
+
+        { "type": "textarea", "id": "screening_criteria", "label": "基本要求條件 (請條列)", "placeholder": "例如：\n1. 資訊工程或相關科系學士以上學位\n2. 至少1年系統維護經驗\n3. 具備 Linux 操作能力" },
+
+        { "type": "textarea", "id": "resume_text", "label": "履歷文字", "placeholder": "請在此貼上單一份履歷的完整內容..." }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一個初步篩選工具，根據我設定的客觀條件，對提供的履歷文字進行掃描與標記。
+
+
+
+# 篩選資訊
+
+- **目標職位**: <<<{job_title}>>>
+
+- **基本要求條件**:
+
+<<<{screening_criteria}>>>
+
+- **待篩選履歷**:
+
+<<<{resume_text}>>>
+
+
+
+# 產出要求
+
+請針對「每一項」基本要求條件，標註該履歷「是否明確提及相關資訊」，並「引用判斷依據的原文」。請使用以下格式輸出：
+
+
+
+- **條件 1**: [是 / 否 / 未提及]
+
+  - **判斷依據**: [引用履歷中的相關文字片段]
+
+- **條件 2**: [是(提及X年) / 否 / 未提及]
+
+  - **判斷依據**: [引用履歷中的相關文字片段]
+
+- **(依此類推)**
+
+
+
+---
+
+**【極重要警示】**
+
+此為自動化初步標記，可能因履歷寫法或解讀差異產生誤差，且無法評估實際能力或潛力，**絕不能取代人工判斷**。篩選結果**必須**經過人工複核，以避免偏見並做出公正評估。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "行為面試問題 (STAR) 產生器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "職位名稱", "placeholder": "例如：專案經理" },
+
+        { "type": "textarea", "id": "core_competencies", "label": "看重的核心能力 (請條列)", "placeholder": "例如：\n- 解決問題\n- 團隊合作\n- 溝通表達\n- 適應性\n- 主動性" },
+
+        { "type": "text", "id": "num_questions", "label": "希望生成的問題數量", "placeholder": "例如：8" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+你是一位資深的人力資源專家，請為特定職位所需的核心能力，生成一套標準的「行為事件訪談 (BEI)」問題。問題設計需能引導候選人依循 STAR 原則（情境、任務、行動、結果）分享過去的具體經驗。
+
+
+
+# 面試資訊
+
+- **面試職位**: <<<{job_title}>>>
+
+- **評估的核心能力**: 
+
+<<<{core_competencies}>>>
+
+- **問題數量**: <<<{num_questions}>>> 個
+
+
+
+# 產出要求
+
+請針對上述每一項核心能力，生成建議的行為面試問題。
+
+- 每個問題後方請用括號標註主要想評估的能力。
+
+- 問題總數請盡量符合指定數量。
+
+- 以條列式呈現。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "專業技能與情境面試問題產生器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "具體職位名稱", "placeholder": "例如：資深後端工程師 (Golang)" },
+
+        { "type": "textarea", "id": "hard_skills", "label": "關鍵技能要求 (硬實力)", "placeholder": "例如：\n- 熟悉 Golang\n- 具備微服務架構經驗\n- 了解 K8s\n- 有大型系統效能調校經驗" },
+
+        { "type": "textarea", "id": "job_scenarios", "label": "工作中可能的典型情境", "placeholder": "例如：\n- 處理高併發請求\n- 設計可擴展的 API\n- 線上緊急故障排除\n- 與前端團隊協作定義規格" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位指定專業領域的「資深技術主管」或「首席面試官」，為我設計一套能深入評估候選人專業能力的深度面試問題。
+
+
+
+# 面試資訊
+
+- **面試職位**: <<<{job_title}>>>
+
+- **關鍵技能要求**: 
+
+<<<{hard_skills}>>>
+
+- **典型工作情境**: 
+
+<<<{job_scenarios}>>>
+
+
+
+# 產出要求
+
+請生成一系列能有效評估上述能力的「技術探針問題」和「情境應對問題」。
+
+1.  **技術探針問題 (Technical Probing Questions)**: 針對關鍵技能，提出能判斷其理解深度與廣度的問題。
+
+2.  **情境應對問題 (Situational Questions)**: 根據典型情境，設計模擬真實工作挑戰的問題，觀察候選人的解決問題思路、架構設計能力與權衡取捨的判斷。
+
+
+
+請將兩類問題分開，並以條列式呈現。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "客製化面試問題 (技能+文化) 產生器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "job_title", "label": "職位名稱", "placeholder": "例如：產品經理" },
+
+        { "type": "textarea", "id": "job_requirements", "label": "職位要求簡述", "placeholder": "例如：負責規劃新功能、撰寫規格文件 (PRD)，並與開發、設計團隊密切合作，管理產品開發時程。" },
+
+        { "type": "textarea", "id": "company_culture", "label": "公司文化特質", "placeholder": "例如：\n- 鼓勵創新與實驗，不怕失敗\n- 強調跨部門溝通與協作\n- 重視數據驅動決策\n- 提倡主人翁精神 (Ownership)" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位資深的招募顧問與組織文化專家，協助我設計一套能同時評估「專業能力」與「文化契合度」的客製化面試問題。
+
+
+
+# 面試資訊
+
+- **面試職位**: <<<{job_title}>>>
+
+- **職位要求**: <<<{job_requirements}>>>
+
+- **公司文化特質**: 
+
+<<<{company_culture}>>>
+
+
+
+# 產出要求
+
+請生成一套結構化的面試問題，並包含以下三個部分：
+
+
+
+### 1. 職能評估問題 (Competency-Based)
+
+針對「職位要求」，設計問題來評估候選人的相關經驗與能力。
+
+
+
+### 2. 文化契合度問題 (Culture-Fit)
+
+針對每一項「公司文化特質」，設計問題來探詢候選人過去的經驗、行為模式或價值觀是否與之一致。
+
+
+
+### 3. 動機與價值觀探詢 (Motivation & Values)
+
+設計通用問題，了解候選人的工作動機、職涯規劃，以及他們對理想工作環境的看法。
+
+
+
+請將三類問題分開條列，並可在問題後方簡單註解其評估重點。
+
+</script>
+
+<script type="text/template-data">
+
+{
+
+    "name": "標準開發信產生器 (角色/產業)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "target_industry", "label": "目標產業/公司類型", "placeholder": "例如：電子製造業" },
+
+        { "type": "text", "id": "target_role", "label": "目標職位", "placeholder": "例如：採購經理" },
+
+        { "type": "textarea", "id": "my_product", "label": "我的產品/服務簡述", "placeholder": "例如：一個 AI 驅動的供應商管理平台" },
+
+        { "type": "textarea", "id": "customer_pain_point", "label": "能解決的共同痛點/目標", "placeholder": "例如：優化供應鏈效率、降低採購成本" },
+
+        { "type": "text", "id": "contact_name", "label": "收件人姓名 (用於內文)", "placeholder": "例如：林經理" },
+
+        { "type": "text", "id": "my_name", "label": "寄件人姓名", "placeholder": "例如：陳大文" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位業務開發文案助理，根據以下資訊，生成一封專業、簡潔且切題的開發信草稿。
+
+
+
+# 信件要素
+
+- **目標讀者背景**: 在「<<<{target_industry}>>>」擔任「<<<{target_role}>>>」的專業人士。
+
+- **我方方案**: <<<{my_product}>>>
+
+- **核心價值**: 主要可以幫助他們「<<<{customer_pain_point}>>>」。
+
+- **收件人稱呼**: <<<{contact_name}>>>
+
+- **寄件人署名**: <<<{my_name}>>>
+
+
+
+# 產出要求
+
+1.  **主旨**: 需簡潔有力，能吸引目標讀者。
+
+2.  **開頭**: 自然地提及收件人的產業或職位背景，建立關聯性。
+
+3.  **中段**: 點出他們可能關心的普遍性問題，並介紹我方產品能如何提供幫助。
+
+4.  **結尾**: 包含一個明確、低門檻的行動呼籲 (CTA)。
+
+5.  **語氣**: 專業、尊重、有禮。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "高度客製化開發信產生器 (深度研究)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "prospect_name", "label": "潛在客戶姓名", "placeholder": "例如：黃執行長" },
+
+        { "type": "text", "id": "prospect_company", "label": "潛在客戶公司名稱", "placeholder": "例如：永續能源科技" },
+
+        { "type": "text", "id": "prospect_role", "label": "潛在客戶職位", "placeholder": "例如：執行長" },
+
+        { "type": "textarea", "id": "research_findings", "label": "具體研究發現 (破冰點)", "placeholder": "例如：\n- 拜讀了您上週在《數位時代》發表的關於 ESG 轉型的專欄文章，印象深刻。\n- 注意到貴公司最近發布了擴展歐洲市場的計畫。" },
+
+        { "type": "textarea", "id": "solution_fit", "label": "我的解決方案如何幫助他", "placeholder": "例如：我們的碳盤查系統，正好能幫助像貴公司這樣積極佈局歐洲市場的企業，快速符合歐盟碳邊境調整機制 (CBAM) 的要求。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位頂尖的業務開發專家，根據我對潛在客戶的深度研究，撰寫一封高度個人化、真誠且具洞察力的開發信。
+
+
+
+# 客戶研究與價值主張
+
+- **潛在客戶**: <<<{prospect_company}>>> 的 <<<{prospect_role}>>> <<<{prospect_name}>>>
+
+- **研究亮點 (破冰點)**: 
+
+<<<{research_findings}>>>
+
+- **我方解決方案的獨特價值**: 
+
+<<<{solution_fit}>>>
+
+
+
+# 產出要求
+
+1.  **主旨**: 需與研究亮點相關，引發好奇心。
+
+2.  **開頭**: 巧妙引用具體的研究發現作為破冰，展現你做過功課。
+
+3.  **價值連結**: 清晰闡述你的解決方案如何直接回應他們的現況或目標。
+
+4.  **行動呼籲 (CTA)**: 提出一個相關性高且門檻低的下一步建議 (例如：分享案例、約 15 分鐘交流看法)。
+
+5.  **語氣**: 必須真誠、尊重、有洞察力，完全不像制式模板。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "多角度開發信產生器 (A/B/C Test)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "prospect_profile", "label": "潛在客戶姓名或類型", "placeholder": "例如：李經理 / 中小企業主" },
+
+        { "type": "text", "id": "product_name", "label": "我的產品/服務名稱", "placeholder": "例如：QuickForm 智能表單系統" },
+
+        { "type": "textarea", "id": "pain_point", "label": "A. 溝通角度 (痛點)", "placeholder": "例如：還在用傳統紙本表單收集客戶資料嗎？整理費時又容易出錯。" },
+
+        { "type": "textarea", "id": "benefit_metric", "label": "B. 溝通角度 (效益)", "placeholder": "例如：我們的客戶平均能節省 50% 的資料整理時間，並提升 20% 的客戶滿意度。" },
+
+        { "type": "textarea", "id": "insight_topic", "label": "C. 溝通角度 (洞察)", "placeholder": "例如：最近看到一篇關於「無紙化辦公」的趨勢報告，發現許多企業都在尋求更高效的數位工具..." }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位創意銷售文案策劃，為同一個目標，提供 3 種不同溝通角度的開發信草稿選項。
+
+
+
+# 目標與產品
+
+- **聯繫對象**: <<<{prospect_profile}>>>
+
+- **介紹產品**: <<<{product_name}>>>
+
+
+
+# 產出要求
+
+請生成 3 個「不同溝通角度/語氣」的開發信草稿，每個選項都需包含「建議主旨」和「完整內文」。
+
+
+
+### 選項 A (痛點導向)
+
+- **切入點**: 強調 <<<{prospect_profile}>>> 可能面臨的「<<<{pain_point}>>>」。
+
+- **語氣**: 感同身受、提出解方。
+
+
+
+### 選項 B (效益導向)
+
+- **切入點**: 聚焦於產品能帶來的「<<<{benefit_metric}>>>」具體成果。
+
+- **語氣**: 自信、數據化、價值驅動。
+
+
+
+### 選項 C (洞察/價值導向)
+
+- **切入點**: 從「<<<{insight_topic}>>>」的行業趨勢或觀察切入。
+
+- **語氣**: 樂於助人、建立關係。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "會議後追蹤郵件產生器",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "meeting_time", "label": "會議/通話時間", "placeholder": "例如：今天上午" },
+
+        { "type": "text", "id": "contact_name", "label": "對方姓名", "placeholder": "例如：王總監" },
+
+        { "type": "text", "id": "contact_company", "label": "對方公司名稱", "placeholder": "例如：創新國際" },
+
+        { "type": "textarea", "id": "meeting_summary", "label": "會議重點/主題簡述", "placeholder": "例如：關於導入我們 CRM 系統以整合客戶資料的可能性。" },
+
+        { "type": "textarea", "id": "next_steps", "label": "達成的共識/下一步行動", "placeholder": "例如：我方將於本週五前提供一份客製化的導入方案與報價；貴司將進行內部評估。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位專業的客戶經理，幫我草擬一封簡潔、專業的會議後追蹤郵件。
+
+
+
+# 會議資訊
+
+- **時間**: <<<{meeting_time}>>>
+
+- **對象**: <<<{contact_company}>>> 的 <<<{contact_name}>>>
+
+- **討論主題**: <<<{meeting_summary}>>>
+
+- **下一步行動**: <<<{next_steps}>>>
+
+
+
+# 產出要求
+
+請生成一封追蹤郵件草稿，內容需包含：
+
+1.  **主旨**: 清晰明瞭，例如「關於今日會議重點摘要」。
+
+2.  感謝對方撥冗。
+
+3.  簡要重申會議核心結論。
+
+4.  明確指出約定的下一步行動、負責人與時程。
+
+5.  結尾表達期待後續合作。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "溫和提醒追蹤郵件產生器",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "sent_date", "label": "上次寄送日期", "placeholder": "例如：上週三" },
+
+        { "type": "text", "id": "document_type", "label": "寄送的資訊/文件類型", "placeholder": "例如：合作提案、產品型錄" },
+
+        { "type": "text", "id": "contact_name", "label": "對方姓名", "placeholder": "例如：張經理" },
+
+        { "type": "text", "id": "original_topic", "label": "原始溝通主題", "placeholder": "例如：關於貴司的數位轉型方案" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位體貼的溝通者，協助我撰寫一封語氣溫和、不造成壓力的提醒郵件。
+
+
+
+# 背景資訊
+
+- **上次寄送時間**: <<<{sent_date}>>>
+
+- **寄送內容**: <<<{document_type}>>>
+
+- **收件人**: <<<{contact_name}>>>
+
+- **原始主題**: <<<{original_topic}>>>
+
+
+
+# 產出要求
+
+請生成一封**非常簡短、有禮貌**的追蹤郵件草稿。
+
+- **主旨**: 可以使用「Re:」回覆原信，或用一個簡單的標題如「一點小小的提醒」。
+
+- **內容**: 目的僅是輕柔地提醒，並確認對方「是否有收到？」或「是否有機會過目？」。
+
+- **語氣**: 核心在於「表達關心和提供協助的意願」，**完全避免任何催促感**。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "提供新價值的追蹤郵件產生器",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "last_contact_date", "label": "上次聯繫日期 (選填)", "placeholder": "例如：大約一個月前" },
+
+        { "type": "text", "id": "contact_name", "label": "對方姓名", "placeholder": "例如：劉總" },
+
+        { "type": "textarea", "id": "new_value_info", "label": "新的、有價值的資訊", "placeholder": "例如：我最近讀到一篇關於您所屬產業的供應鏈分析報告，其中提到了幾個降低成本的策略，覺得對您可能會有幫助。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位樂於分享的行業顧問，草擬一封以提供新價值為核心的追蹤郵件，以重新建立聯繫。
+
+
+
+# 背景資訊
+
+- **聯繫對象**: <<<{contact_name}>>>
+
+- **上次聯繫日期**: <<<{last_contact_date}>>> (可斟酌是否提及)
+
+- **想分享的新價值**: <<<{new_value_info}>>>
+
+
+
+# 產出要求
+
+請生成一封「以提供新價值為核心」的追蹤郵件草稿。
+
+1.  **重點**: 將信件重點放在「分享這個新的資訊/資源」，並「簡單說明為什麼」我認為這對他可能有用。
+
+2.  **提及過往**: 可以非常簡略地提及之前的聯繫，甚至不提，重心放在「當下的價值提供」。
+
+3.  **CTA**: 行動呼籲應較「軟性」，例如：詢問他們對分享內容的看法、或僅是單純分享。
+
+4.  **語氣**: 展現專業和樂於助人的態度，而非直接推銷。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "關係維護問候郵件 (簡易版)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "contact_name", "label": "聯絡人姓名", "placeholder": "例如：吳經理" },
+
+        { "type": "text", "id": "last_interaction_time", "label": "上次互動時間/場合", "placeholder": "例如：幾個月前 / 上次的台北國際電腦展" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位友善的聯繫人，協助我撰寫一封輕鬆、無壓力的關係維護問候訊息。
+
+
+
+# 背景資訊
+
+- **問候對象**: <<<{contact_name}>>>
+
+- **上次互動**: <<<{last_interaction_time}>>>
+
+- **本次目的**: 純粹維繫關係，無具體業務目的。
+
+
+
+# 產出要求
+
+請生成一封**非常簡短、語氣溫和友善**的問候郵件/訊息草稿。
+
+- **開場**: 可以用「最近好嗎？」、「剛好想到您，打聲招呼」等輕鬆的開場。
+
+- **內容**: 傳達「保持聯繫」的意願，可簡短提及上次互動。
+
+- **結尾**: 表明「無需特別回覆」，降低對方的社交壓力。
+
+- **語氣**: 必須真誠、輕鬆、無壓力。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "關係維護問候郵件 (個人化版)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "contact_name", "label": "聯絡人姓名", "placeholder": "例如：謝大哥" },
+
+        { "type": "textarea", "id": "memory_point", "label": "過去互動的特定記憶點", "placeholder": "例如：上次聽您分享對於 AI 在智慧製造應用的看法，獲益良多。" },
+
+        { "type": "textarea", "id": "common_interest", "label": "共同/已知興趣", "placeholder": "例如：知道您也是個攝影愛好者，最近看到一部關於徠卡鏡頭的紀錄片，特別有感觸。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位細心且善於建立連結的溝通者，草擬一封個人化的關係維護郵件。
+
+
+
+# 連結點
+
+- **問候對象**: <<<{contact_name}>>>
+
+- **特定記憶點**: <<<{memory_point}>>>
+
+- **共同/已知興趣**: <<<{common_interest}>>>
+
+
+
+# 產出要求
+
+請生成一封**簡短、個人化**的問候郵件草稿。
+
+1.  信件內容需要**自然地提及**「特定的互動記憶點」或「共同/已知興趣」作為開場。
+
+2.  可以簡單詢問「那件事情後來發展如何？」或分享「一個與之相關的簡短新資訊」。
+
+3.  重點放在**展現您記得細節、建立人情連結**，避免任何銷售意圖。
+
+4.  語氣應**親切、體貼**。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "關係維護郵件 (分享價值資訊)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "contact_name", "label": "聯絡人姓名", "placeholder": "例如：周總" },
+
+        { "type": "text", "id": "resource_type", "label": "資源類型", "placeholder": "例如：一篇關於他們行業的文章 / 一份市場報告" },
+
+        { "type": "textarea", "id": "resource_topic", "label": "資源主題 (與對方相關)", "placeholder": "例如：我最近看到一篇關於「零售業如何運用大數據提升顧客體驗」的文章，覺得裡面的觀點很棒，想跟您分享。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位樂於分享的行業觀察者，草擬一封以分享價值資訊為主的關係維護郵件。
+
+
+
+# 分享資訊
+
+- **分享對象**: <<<{contact_name}>>>
+
+- **分享資源**: <<<{resource_type}>>>
+
+- **資源主題與理由**: <<<{resource_topic}>>>
+
+
+
+# 產出要求
+
+請生成一封「以分享資源為核心」的關係維護郵件草稿。
+
+1.  友善地分享這個資源（可預留貼上連結的位置）。
+
+2.  簡述為什麼您認為這可能對他有價值。
+
+3.  **明確表示這只是單純分享**，沒有任何附帶要求。
+
+4.  結尾可以簡單說「希望對您有幫助」或類似的話。
+
+5.  語氣應**大方、樂於助人、無銷售意圖**。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "單一競爭對手概覽分析",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "competitor_name", "label": "競爭對手公司名稱", "placeholder": "例如：Canva" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位市場研究助理，從公開來源彙整關於特定競爭對手的基本資料。
+
+
+
+# 研究目標
+
+我需要快速了解競爭對手「<<<{competitor_name}>>>」的基本情況。
+
+
+
+# 產出要求
+
+請搜尋並摘要關於「<<<{competitor_name}>>>」的以下**公開資訊**：
+
+1.  **主要產品/服務線**: 簡述他們提供的核心產品或服務。
+
+2.  **目標市場/客戶描述**: 他們主要服務哪些客戶群體？
+
+3.  **公開的定價資訊**: 簡述其價格方案（若有公開）。
+
+4.  **近期重要新聞/公告 (過去6-12個月)**: 例如新產品發布、融資、重大合作等。
+
+5.  **公開客戶評價概況**: 簡述整體評價趨勢和常被提及的優缺點。
+
+
+
+請以**結構化摘要 (條列式)** 呈現，並註明資訊來源為**公開可取得管道**。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "多重競爭對手特定面向比較分析",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "comparison_aspect", "label": "特定比較面向", "placeholder": "例如：核心功能、計價方式、主要行銷通路" },
+
+        { "type": "textarea", "id": "my_product_info", "label": "我方在該面向的狀況", "placeholder": "例如：我們的計價方式分為月繳與年繳，提供三種方案..." },
+
+        { "type": "text", "id": "competitor1_name", "label": "競爭對手1名稱", "placeholder": "例如：競品A" },
+
+        { "type": "text", "id": "competitor2_name", "label": "競爭對手2名稱", "placeholder": "例如：競品B" },
+
+        { "type": "text", "id": "competitor3_name", "label": "競爭對手3名稱 (選填)", "placeholder": "例如：競品C" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位競爭情報分析助理，協助我比較自家與競爭對手在特定面向上的公開資訊，並整理成易於比較的格式。
+
+
+
+# 比較標的
+
+- **比較面向**: <<<{comparison_aspect}>>>
+
+- **我方狀況**: <<<{my_product_info}>>>
+
+- **競爭對手**: <<<{competitor1_name}>>>、<<<{competitor2_name}>>>、<<<{competitor3_name}>>>
+
+
+
+# 產出要求
+
+請針對我列出的「每一家」公司（包含我方），搜尋其公開資訊中與「<<<{comparison_aspect}>>>」相關的內容。
+
+請將結果整理成一個清晰的**Markdown 比較表格**，方便橫向比較各方異同。
+
+若某項資訊無法從公開管道查得，請在表格中註明「資訊未公開」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "競爭對手近期動態與聲量分析",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "time_frame", "label": "時間範圍", "placeholder": "例如：過去3個月" },
+
+        { "type": "text", "id": "competitor1_name", "label": "競爭對手1名稱", "placeholder": "例如：競品A" },
+
+        { "type": "text", "id": "competitor2_name", "label": "競爭對手2名稱 (選填)", "placeholder": "例如：競品B" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位市場動態觀察員，協助我彙整主要競爭對手在指定時間範圍內的公開動態與市場聲量概況。
+
+
+
+# 分析目標
+
+- **時間範圍**: <<<{time_frame}>>>
+
+- **競爭對手**: <<<{competitor1_name}>>>、<<<{competitor2_name}>>>
+
+
+
+# 產出要求
+
+請為「每一家」競爭對手，搜尋並摘要以下兩方面的公開資訊：
+
+1.  **近期主要新聞/公告**: 重要的產品更新、市場活動、合作案等公開事件。
+
+2.  **公開平台上的評價/討論趨勢**: 從評論網站、論壇或社群媒體中，總結近期常被提及的「正面評價點」、「負面抱怨點」或「熱門討論話題」。
+
+
+
+請將結果分開呈現給每個競爭對手，並著重於「關鍵事件和顯著趨勢」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "目標公司快速快照研究",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "company_name", "label": "目標公司名稱", "placeholder": "例如：台積電" },
+
+        { "type": "text", "id": "time_frame", "label": "近期動態的時間範圍", "placeholder": "例如：3-6個月" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位公司資訊快搜助理，協助我快速彙整一家潛在客戶公司的基本公開資訊。
+
+
+
+# 研究目標
+
+我需要對潛在客戶公司「<<<{company_name}>>>」有一個基本的了解。
+
+
+
+# 產出要求
+
+請搜尋並摘要關於「<<<{company_name}>>>」的以下關鍵公開資訊：
+
+1.  **公司核心業務**: 他們的主要產品、服務以及所屬產業。
+
+2.  **近期重要動態**: 過去 <<<{time_frame}>>> 內的主要新聞、公告或里程碑。
+
+3.  **官方網站呈現的關鍵訊息**: 例如公司使命、價值觀或目標客群描述。
+
+
+
+請以**簡潔的條列式摘要**格式呈現，讓我能快速掌握該公司的基本面貌與近期焦點。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "目標聯繫人深度背景研究",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "contact_name", "label": "目標聯繫人姓名", "placeholder": "例如：劉德音" },
+
+        { "type": "text", "id": "contact_role", "label": "目標聯繫人職稱", "placeholder": "例如：董事長" },
+
+        { "type": "text", "id": "company_name", "label": "目標公司名稱", "placeholder": "例如：台積電" },
+
+        { "type": "text", "id": "linkedin_url", "label": "LinkedIn 檔案連結 (選填)", "placeholder": "貼上連結可提升準確度" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位專業人士背景分析師，專注於從公開來源（尤其是專業社交平台）提取個人化溝通所需的資訊。
+
+
+
+# 研究目標
+
+我計劃聯繫 <<<{company_name}>>> 的 <<<{contact_role}>>>，「<<<{contact_name}>>>」。
+
+
+
+# 產出要求
+
+請搜尋並摘要關於「<<<{contact_name}>>>」的以下公開專業資訊：
+
+1.  **目前職位與可能職責**。
+
+2.  **相關工作經歷**: 過往公司與擔任過的關鍵職位。
+
+3.  **近期公開的專業活動**: 例如最近在 LinkedIn 等平台分享的文章、發表的評論、參加的公開活動。
+
+4.  **個人檔案中強調的技能、專業領域或興趣**。
+
+
+
+請以「結構化的人物側寫」呈現，並**特別標示出「可用於建立連結或作為話題切入點」的資訊**。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "開發信溝通切入點產生器",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "company_name", "label": "目標公司名稱", "placeholder": "例如：國泰金控" },
+
+        { "type": "text", "id": "contact_name", "label": "目標聯繫人姓名 (若已知)", "placeholder": "例如：蔡宏圖" },
+
+        { "type": "textarea", "id": "my_value_prop", "label": "我方產品/服務的價值主張", "placeholder": "例如：我們的資安解決方案，能協助金融業應對新興的 AI 風險，並符合金管會的最新規範。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位商機觸發點分析師，協助我從公開資訊中，為特定潛在客戶挖掘潛在的溝通契機。
+
+
+
+# 目標與價值主張
+
+- **目標**: <<<{company_name}>>> (或其聯繫人 <<<{contact_name}>>>)
+
+- **我方價值**: <<<{my_value_prop}>>>
+
+
+
+# 產出要求
+
+請搜尋目標的「近期公開資訊」（包括新聞、社群動態、公司報告、招募職位、行業趨勢等），找出可能與我方價值主張相關的「潛在接觸點」。
+
+
+
+請列出「**3 個可能的溝通切入點建議**」，每個建議應包含：
+
+1.  **觸發事件/資訊來源**: 這是什麼事件？從哪裡看到的？
+
+2.  **與我方價值的連結點**: 為什麼這個事件會讓他們對我們的解決方案感興趣？
+
+
+
+目標是提供**具體、有依據**的理由，讓我能更有自信且切題地開啟第一次接觸。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "外部活動邀請信產生器",
+
+    "category": "活動",
+
+    "structure": [
+
+        { "type": "text", "id": "event_name", "label": "活動名稱", "placeholder": "例如：智慧供應鏈管理系統產品說明會" },
+
+        { "type": "text", "id": "target_industry", "label": "目標產業", "placeholder": "例如：中型製造業" },
+
+        { "type": "text", "id": "target_role", "label": "目標職位", "placeholder": "例如：營運長、廠長" },
+
+        { "type": "textarea", "id": "product_desc", "label": "活動介紹的產品/服務", "placeholder": "例如：介紹我們最新的 AI 智慧供應鏈管理系統..." },
+
+        { "type": "textarea", "id": "key_benefits", "label": "能為客戶帶來的核心價值", "placeholder": "例如：本次活動將聚焦於如何協助您提升營運效率、降低原料採購風險。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位市場行銷專員，協助我草擬一封專業且具吸引力的活動邀請信。
+
+
+
+# 活動資訊
+
+- **活動名稱**: <<<{event_name}>>>
+
+- **邀請對象**: <<<{target_industry}>>> 的 <<<{target_role}>>>
+
+- **活動內容**: 將介紹我們的「<<<{product_desc}>>>」。
+
+- **核心價值**: 主要幫助與會者了解如何「<<<{key_benefits}>>>」。
+
+
+
+# 產出要求
+
+請生成一封「簡潔、專業、具吸引力」的邀請信草稿。
+
+1.  **主旨**: 需清晰傳達活動價值。
+
+2.  **開頭**: 需提及收件人的產業背景或職責關注點，建立關聯。
+
+3.  **內文**: 說明活動主題與為何值得他們參加。
+
+4.  **CTA**: 信末需有明確的行動呼籲（例如：點擊報名、回覆確認）。
+
+5.  **格式**: 包含活動時間、地點等必要資訊的欄位。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "內部員工活動通知信產生器",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "event_name", "label": "活動名稱", "placeholder": "例如：第一季團隊建設日 (Team Building Day)" },
+
+        { "type": "text", "id": "target_department", "label": "通知對象 (部門/全體)", "placeholder": "例如：行銷部全體同仁" },
+
+        { "type": "textarea", "id": "event_purpose", "label": "活動目的", "placeholder": "例如：為了增進部門成員之間的默契與士氣，並慶祝上一季的卓越成績。" },
+
+        { "type": "textarea", "id": "event_content", "label": "活動內容", "placeholder": "例如：包含團隊合作遊戲、主題討論、共進午餐等。" },
+
+        { "type": "text", "id": "event_date", "label": "活動日期", "placeholder": "例如：2025年6月20日 (週五)" },
+
+        { "type": "text", "id": "event_time", "label": "活動時間", "placeholder": "例如：上午 9:30 - 下午 4:00" },
+
+        { "type": "text", "id": "event_location", "label": "活動地點", "placeholder": "例如：陽明山 XX 會館" },
+
+        { "type": "textarea", "id": "event_notes", "label": "注意事項", "placeholder": "例如：請穿著輕便服裝與運動鞋，並記得攜帶個人環保杯。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位人資經理，協助我撰寫一封友善而具激勵性的內部活動通知信。
+
+
+
+# 活動資訊
+
+- **通知對象**: <<<{target_department}>>>
+
+- **活動名稱**: <<<{event_name}>>>
+
+- **活動目的**: <<<{event_purpose}>>>
+
+- **主要內容**: <<<{event_content}>>>
+
+- **日期**: <<<{event_date}>>>
+
+- **時間**: <<<{event_time}>>>
+
+- **地點**: <<<{event_location}>>>
+
+- **注意事項**: <<<{event_notes}>>>
+
+
+
+# 產出要求
+
+請生成一封「親切、具體、具鼓舞性」的通知信。
+
+1.  **主旨**: 需活潑且吸引人。
+
+2.  **開頭**: 以親切的口吻向同仁問候。
+
+3.  **內文**: 清晰說明活動的目的、時間、地點與精彩內容。
+
+4.  **結尾**: 鼓勵員工踴躍參與，並再次提醒注意事項。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "業界專家活動邀請信產生器",
+
+    "category": "活動",
+
+    "structure": [
+
+        { "type": "text", "id": "event_name", "label": "活動名稱", "placeholder": "例如：AI 驅動產業革新圓桌論壇" },
+
+        { "type": "text", "id": "target_expert_name", "label": "受邀專家姓名", "placeholder": "例如：李開復博士" },
+
+        { "type": "text", "id": "target_expert_title", "label": "受邀專家職稱/背景", "placeholder": "例如：創新工場創辦人" },
+
+        { "type": "textarea", "id": "event_theme", "label": "活動主題與討論內容", "placeholder": "例如：本次活動將由多位產業領袖共同討論「AI 在製造業中的應用與挑戰」。" },
+
+        { "type": "textarea", "id": "event_goal", "label": "活動目的與價值", "placeholder": "例如：我們致力於促進高層間的交流合作，共同擘劃產業的未來藍圖。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位資深公關顧問，協助我撰寫一封高質感且具專業分量的活動邀請信，以邀請業界專家。
+
+
+
+# 邀請資訊
+
+- **邀請對象**: <<<{target_expert_title}>>> <<<{target_expert_name}>>>
+
+- **活動名稱**: <<<{event_name}>>>
+
+- **活動主題**: <<<{event_theme}>>>
+
+- **活動價值**: <<<{event_goal}>>>
+
+
+
+# 產出要求
+
+請生成一封「正式、精緻且具影響力」的邀請信。
+
+1.  **稱謂**: 使用最尊敬的稱謂。
+
+2.  **開頭**: 表達對專家專業地位的敬佩，並說明邀請緣由。
+
+3.  **內文**: 強調活動的「產業影響力」、「專業討論價值」與「與會者的業界地位」，凸顯此活動的獨特性與重要性。
+
+4.  **結尾**: 致上最誠摯的邀請，並提供明確的行動呼籲（例如：期待您的回覆、附上報名連結）。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "行銷活動企劃師",
+
+    "category": "活動",
+
+    "structure": [
+
+        { "type": "text", "id": "target_audience", "label": "目標客群", "placeholder": "例如：面臨數位轉型挑戰的中小企業主" },
+
+        { "type": "text", "id": "product_desc", "label": "推廣的產品/服務", "placeholder": "例如：雲端會計系統" },
+
+        { "type": "textarea", "id": "brand_goal", "label": "主要目標", "placeholder": "例如：提升品牌在中小企業主中的認知度，並獲取 100 個高質量潛在客戶名單。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位經驗豐富的行銷活動企劃師，根據我的需求，規劃一場具吸引力與實際轉換效果的行銷活動。
+
+
+
+# 企劃背景
+
+- **目標客群**: <<<{target_audience}>>>
+
+- **推廣產品**: <<<{product_desc}>>>
+
+- **核心目標**: <<<{brand_goal}>>>
+
+
+
+# 產出要求
+
+請提出一套「具策略性與執行性」的活動規劃方案，內容需包含：
+
+1.  **活動定位與主題**: 為活動命名，並設定一個能吸引目標客群的主題。
+
+2.  **活動形式建議**: 建議採用線上、實體或混合形式，並說明理由。
+
+3.  **核心流程設計**: 規劃活動的主要環節（例如：專家分享、產品演示、客戶見證、Q&A）。
+
+4.  **關鍵吸引點**: 設計能吸引目標客群報名參加的誘因（例如：獨家報告、限時優惠、抽獎活動）。
+
+5.  **預期成效與衡量指標 (KPI)**: 預測活動可能達成的效果，並列出衡量成功的具體指標。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "團隊凝聚力活動規劃師",
+
+    "category": "人資",
+
+    "structure": [
+
+        { "type": "text", "id": "participants", "label": "參與對象", "placeholder": "例如：設計部門全體員工 (約20人)" },
+
+        { "type": "textarea", "id": "team_goal", "label": "主要目的", "placeholder": "例如：提升跨職能同仁間的合作默契，並在專案壓力後，重新激發團隊的正面能量。" },
+
+        { "type": "text", "id": "event_style", "label": "偏好活動風格", "placeholder": "例如：希望具備互動性、趣味性，避免純說教。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位企業文化顧問，協助我設計一場符合需求、實用又有趣的內部團隊建設活動。
+
+
+
+# 活動需求
+
+- **參與對象**: <<<{participants}>>>
+
+- **主要目的**: <<<{team_goal}>>>
+
+- **偏好風格**: <<<{event_style}>>>
+
+
+
+# 產出要求
+
+請設計一套「具創意且落地可行」的團隊活動規劃，內容包括：
+
+1.  **活動主題建議 (2個)**: 提出兩個不同風格的主題供選擇。
+
+2.  **詳細流程規劃**: 針對其中一個主題，設計包含時間安排的詳細活動流程。
+
+3.  **預期效果**: 說明此活動預期能如何達成設定的目標。
+
+4.  **所需資源建議**: 建議活動可能需要的場地、道具或預算考量。
+
+5.  **備選方案**: 簡述一個備用的雨天或室內方案。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "產業論壇活動策展人",
+
+    "category": "活動",
+
+    "structure": [
+
+        { "type": "text", "id": "industry_type", "label": "產業類型", "placeholder": "例如：綠色能源產業" },
+
+        { "type": "text", "id": "event_theme", "label": "探討主題", "placeholder": "例如：未來五年內能源轉型策略與商機" },
+
+        { "type": "textarea", "id": "brand_goal", "label": "我方品牌目標", "placeholder": "例如：強化我們品牌在該產業的專業形象與思想領導地位。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位頂尖的產業活動策展人，協助我設計一場高水準的論壇活動方案。
+
+
+
+# 活動背景
+
+- **目標產業**: <<<{industry_type}>>>
+
+- **核心主題**: <<<{event_theme}>>>
+
+- **品牌目標**: <<<{brand_goal}>>>
+
+
+
+# 產出要求
+
+請提供一套「具結構、具說服力」的活動規劃提案，內容包括：
+
+1.  **活動定位與Slogan**: 為活動設定一個清晰的定位與一句響亮的口號。
+
+2.  **議程架構設計**: 規劃包含主題演講 (Keynote)、專題座談 (Panel Discussion)、交流茶會 (Networking) 等環節的議程。
+
+3.  **講者邀請名單建議**: 建議應邀請哪些類型（或具體人選）的產業領袖、技術專家或政府官員。
+
+4.  **目標與會者輪廓**: 描繪我們希望吸引哪些人來參加。
+
+5.  **合作夥伴與贊助方案建議**: 提出可以邀請哪些單位作為合作夥伴，以擴大活動影響力。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "文件基本翻譯助理",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "source_language", "label": "來源語言", "placeholder": "例如：英文" },
+
+        { "type": "text", "id": "target_language", "label": "目標語言", "placeholder": "例如：繁體中文" },
+
+        { "type": "text", "id": "document_purpose", "label": "文件主要用途", "placeholder": "例如：內部參考、與國際夥伴溝通" },
+
+        { "type": "textarea", "id": "text_to_translate", "label": "請貼上要翻譯的原文", "placeholder": "Paste the text you want to translate here..." }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位專業翻譯助理，將我提供的文件內容，準確且流暢地從「<<<{source_language}>>>」翻譯成「<<<{target_language}>>>」。
+
+
+
+# 翻譯要求
+
+- **主要用途**: <<<{document_purpose}>>>
+
+- 請保持原文的專業語氣和基本格式。
+
+- 請確保翻譯結果通順、易於理解。
+
+
+
+# 待翻譯原文
+
+<<<{text_to_translate}>>>
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "專業領域文件翻譯 (法律/技術)",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "source_language", "label": "來源語言", "placeholder": "例如：英文" },
+
+        { "type": "text", "id": "target_language", "label": "目標語言", "placeholder": "例如：德文" },
+
+        { "type": "text", "id": "document_types", "label": "文件類型", "placeholder": "例如：商業合約、技術規格書" },
+
+        { "type": "textarea", "id": "text_to_translate", "label": "請貼上專業文件原文", "placeholder": "Paste the professional document text here..." }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位資深的法律與技術翻譯專家，為我提供高度精準且符合行業標準的翻譯。
+
+
+
+# 翻譯要求
+
+- **文件類型**: <<<{document_types}>>>
+
+- **從**: <<<{source_language}>>>
+
+- **到**: <<<{target_language}>>>
+
+- **核心要求**: 「精確性」與「專業術語的統一性」至關重要。
+
+- **針對合約**: 確保法律條款的嚴謹性與無歧義性。
+
+- **針對技術文件**: 確保所有專有技術名詞和參數的翻譯一致且準確。
+
+- **若有模糊處**: 請標註並提供建議的處理方式。
+
+
+
+# 待翻譯原文
+
+<<<{text_to_translate}>>>
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "本地化內容翻譯策略師",
+
+    "category": "行銷",
+
+    "structure": [
+
+        { "type": "text", "id": "target_market", "label": "目標市場", "placeholder": "例如：日本市場" },
+
+        { "type": "text", "id": "source_language", "label": "原始語言", "placeholder": "例如：中文" },
+
+        { "type": "text", "id": "target_language", "label": "目標市場語言", "placeholder": "例如：日文" },
+
+        { "type": "textarea", "id": "text_to_translate", "label": "請貼上待本地化的原文", "placeholder": "Paste the text to be localized here..." }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位本地化內容策略師，協助我將商業內容調整以適應「<<<{target_market}>>>」。
+
+
+
+# 翻譯與本地化要求
+
+- **從**: <<<{source_language}>>>
+
+- **到**: <<<{target_language}>>>
+
+- **核心目標**: 讓文件能有效地與目標市場溝通，並符合當地的商業習慣和文化期望。
+
+- **翻譯重點**: 不僅要確保內容準確，更要注重譯文的「本地化和文化適應性」。請特別注意可能存在的文化敏感詞彙或表達方式，並提出更合適的譯法建議。
+
+
+
+# 待處理原文
+
+<<<{text_to_translate}>>>
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "商務郵件摘要與回覆草擬助理",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "source_language", "label": "收到郵件的語言", "placeholder": "例如：日文" },
+
+        { "type": "textarea", "id": "email_text", "label": "請貼上收到的郵件原文", "placeholder": "Paste the original email text here..." },
+
+        { "type": "text", "id": "target_language", "label": "希望回覆的語言", "placeholder": "例如：英文" },
+
+        { "type": "textarea", "id": "reply_message", "label": "我希望回覆的核心信息", "placeholder": "例如：告知對方，訂單已收到，預計下週一出貨。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位高效商務郵件助理，快速理解郵件重點並協助草擬回覆。
+
+
+
+# 任務一：摘要收到的郵件
+
+請先為以下這封「<<<{source_language}>>>」郵件，提供一個簡潔的「繁體中文摘要」，讓我快速掌握其要點。
+
+
+
+**收到郵件原文：**
+
+<<<{email_text}>>>
+
+
+
+---
+
+# 任務二：草擬回覆郵件
+
+請根據我提供的核心信息，以專業且符合商業禮儀的「<<<{target_language}>>>」，草擬一封回覆郵件。
+
+
+
+**我希望回覆的核心信息：**
+
+<<<{reply_message}>>>
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "標準合約翻譯 (法律精確性)",
+
+    "category": "行政",
+
+    "structure": [
+
+        { "type": "text", "id": "contract_type", "label": "合約類型", "placeholder": "例如：服務協議、保密協議 (NDA)" },
+
+        { "type": "text", "id": "source_language", "label": "來源語言", "placeholder": "例如：英文" },
+
+        { "type": "text", "id": "target_language", "label": "目標語言", "placeholder": "例如：繁體中文" },
+
+        { "type": "textarea", "id": "contract_text", "label": "請貼上合約原文", "placeholder": "Paste the original contract text here..." }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位專業法律翻譯師，將我提供的「<<<{contract_type}>>>」從「<<<{source_language}>>>」精確翻譯成「<<<{target_language}>>>」。
+
+
+
+# 翻譯要求
+
+- **核心**: 譯文的每一個字詞、條款的精確性都至關重要。
+
+- **專業性**: 必須忠實反映原文的所有法律術語、定義、權利與義務。
+
+- **一致性**: 確保法律用詞的專業性和一致性。
+
+- **結構**: 保留合約的原始結構（如章節、條款編號）。
+
+- **標準**: 翻譯成果需達到可提交給法務部門進行最終審核的標準。
+
+
+
+# 待翻譯合約原文
+
+<<<{contract_text}>>>
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "特定國家商業文化與談判策略分析",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "target_country", "label": "目標國家", "placeholder": "例如：日本、德國、沙烏地阿拉伯" },
+
+        { "type": "text", "id": "my_country", "label": "我方所屬的國家/文化背景", "placeholder": "例如：台灣" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位資深國際商業顧問，專精於特定國家的市場進入策略與跨文化溝通。我需要一份針對「<<<{target_country}>>>」的詳細商業文化與談判策略分析報告。
+
+
+
+# 分析要求
+
+報告應至少包含：
+
+1.  **核心商業價值觀與溝通風格**: (例如：集體/個人主義、溝通直接/間接、時間觀念)
+
+2.  **商業禮儀與禁忌**: (例如：見面、名片、餐飲、送禮)
+
+3.  **決策過程與層級**: (例如：關鍵決策者、決策速度、共識需求)
+
+4.  **常見的談判策略與技巧**: (例如：重視價格/品質/關係、常用的說服方式)
+
+5.  **針對我方 (來自 <<<{my_country}>>>) 的具體建議**: 與該國人士互動時的應注意事項。
+
+
+
+請提供**實際案例或情境模擬**以輔助說明，並點出建立信任的關鍵要素。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "特定商業情境談判策略教練",
+
+    "category": "業務",
+
+    "structure": [
+
+        { "type": "text", "id": "negotiation_goal", "label": "我的談判目標", "placeholder": "例如：達成一份價值100萬美元的採購訂單" },
+
+        { "type": "text", "id": "opponent_country", "label": "對手所屬國家", "placeholder": "例如：美國" },
+
+        { "type": "textarea", "id": "opponent_style_impression", "label": "我對對方風格的初步了解", "placeholder": "例如：直接且結果導向，非常注重數據分析與投資回報率。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位經驗豐富的國際談判教練，針對我的具體商業情境和對手背景，提供客製化的談判策略建議。
+
+
+
+# 談判情境
+
+- **我的目標**: <<<{negotiation_goal}>>>
+
+- **談判對手**: 來自「<<<{opponent_country}>>>」的公司
+
+- **對手風格**: <<<{opponent_style_impression}>>>
+
+
+
+# 產出要求
+
+請基於對方的文化背景與我方的目標，提供一套「具體的談判策略優化建議」，內容包括：
+
+1.  **談判前準備**: 應收集哪些額外資訊？如何設定我方底線(BATNA)？
+
+2.  **開場策略**: 如何建立初步信任？如何提出我方立場最為有效？
+
+3.  **核心議題的溝通技巧**: 如何呈現數據和證據？闡述觀點時應強調什麼？
+
+4.  **應對常見策略與壓力**: 如果對方採取高壓或拖延戰術，應如何應對？
+
+5.  **讓步與交換的藝術**: 如何進行讓步最能促進協議達成？
+
+6.  **應避免的行為**: 列出在此次談判中應避免的文化誤區。
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "跨文化郵件行銷素材優化師",
+
+    "category": "行銷",
+
+    "structure": [
+
+        { "type": "text", "id": "target_market_country", "label": "目標市場國家/地區", "placeholder": "例如：泰國、巴西、德國" },
+
+        { "type": "textarea", "id": "product_desc", "label": "我的產品/服務描述", "placeholder": "請詳細描述您的產品/服務、核心功能與主要賣點。" },
+
+        { "type": "textarea", "id": "target_audience_profile", "label": "目標客群文化輪廓", "placeholder": "請描述目標客群的年齡、興趣、消費習慣，以及他們重視的文化價值觀，例如：重視家庭、熱愛折扣、偏好視覺化內容等。" }
+
+    ]
+
+}
+
+---PROMPT---
+
+# 指令
+
+請扮演一位跨文化郵件行銷專家，精通運用文化洞察來提升郵件行銷活動的成效。
+
+
+
+# 行銷活動資訊
+
+- **目標市場**: <<<{target_market_country}>>>
+
+- **目標客群**: <<<{target_audience_profile}>>>
+
+- **推廣產品**: <<<{product_desc}>>>
+
+- **主要目標**: 提升開信率與點擊率。
+
+
+
+# 產出要求
+
+請為此行銷郵件生成以下「高度符合目標市場文化習慣」的內容：
+
+1.  **5 個引人注目的郵件標題建議**: 需考慮當地語言表達習慣、文化元素或熱點，並簡述每個標題的「文化考量點」。
+
+2.  **1 個具吸引力的 Slogan**: 能簡潔傳達產品核心價值，且易於被目標市場記憶。
+
+3.  **郵件正文開頭段落 (約 50-100 字)**: 需能快速抓住注意力並引導閱讀。
+
+4.  **明確的行動呼籲 (CTA) 文字建議 (2-3 個選項)**: 需符合當地文化中較能促使其行動的表達方式。
+
+</script>
+
+
+HTML
+
+<script type="text/template-data">
+{
+    "name": "單次活動企劃書與紀錄範本",
+    "category": "長照",
+    "structure": [
+        { "type": "text", "id": "activity_org_type", "label": "服務機構類型", "placeholder": "例如：社區中心、企業福委會、非營利組織" },
+        { "type": "text", "id": "activity_target_audience", "label": "目標對象", "placeholder": "例如：銀髮族、公司同仁、親子家庭" },
+        { "type": "text", "id": "activity_theme", "label": "活動主題", "placeholder": "例如：端午節懷舊粽香" },
+        { "type": "text", "id": "activity_time", "label": "預計時間", "placeholder": "例如：下個月的週三下午" }
+    ]
+}
+---PROMPT---
+角色： 
+請你扮演一位資深的『活動企劃』，協助我發想並草擬一份專業的團體活動設計方案。
+
+情境 ：
+我服務於一個 <<<{activity_org_type}>>>，
+近期需要為 <<<{activity_target_audience}>>> 規劃一個團體活動。
+活動的主題是『<<<{activity_theme}>>>』，預計在 <<<{activity_time}>>> 舉辦。
+
+期待 ： 
+請為我生成一份完整的「活動設計方案」草稿，內容需包含以下結構：
+1.「活動名稱與宗旨」
+2.「目標對象分析」
+3.「活動時間、地點、流程」
+4.「所需資源與預算初估」
+5.「預期成效與評估方式」：請建議幾個衡量活動成功與否的「關鍵指標（KPI）」。
+6.請附上一個「活動後紀錄與成效評估」的表格範本，欄位需包含「參與狀況」、「活動回饋摘要」與「成效達成分析」。
+</script>
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "單次活動企劃書與紀錄範本",
+ "category": "長照",
+
+    "structure": [
+
+        { "type": "text", "id": "activity_org_type", "label": "服務機構類型", "placeholder": "例如：社區中心、企業福委會、非營利組織" },
+
+        { "type": "text", "id": "activity_target_audience", "label": "目標對象", "placeholder": "例如：銀髮族、公司同仁、親子家庭" },
+
+        { "type": "text", "id": "activity_theme", "label": "活動主題", "placeholder": "例如：端午節懷舊粽香" },
+
+        { "type": "text", "id": "activity_time", "label": "預計時間", "placeholder": "例如：下個月的週三下午" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色： 
+
+請你扮演一位資深的『活動企劃』，協助我發想並草擬一份專業的團體活動設計方案。
+
+
+
+情境 ：
+
+我服務於一個 <<<{activity_org_type}>>>，
+
+近期需要為 <<<{activity_target_audience}>>> 規劃一個團體活動。
+
+活動的主題是『<<<{activity_theme}>>>』，預計在 <<<{activity_time}>>> 舉辦。
+
+
+
+期待 ： 
+
+請為我生成一份完整的「活動設計方案」草稿，內容需包含以下結構：
+
+1.「活動名稱與宗旨」
+
+2.「目標對象分析」
+
+3.「活動時間、地點、流程」
+
+4.「所需資源與預算初估」
+
+5.「預期成效與評估方式」：請建議幾個衡量活動成功與否的「關鍵指標（KPI）」。
+
+6.請附上一個「活動後紀錄與成效評估」的表格範本，欄位需包含「參與狀況」、「活動回饋摘要」與「成效達成分析」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "個案飲食計畫調整建議",
+ "category": "長照",
+
+    "structure": [
+
+        { "type": "text", "id": "diet_type", "label": "住民的飲食類型", "placeholder": "例如：管灌飲食、軟質餐、糖尿病餐" },
+
+        { "type": "textarea", "id": "patient_symptoms", "label": "描述具體狀況", "placeholder": "例如：消化不良、腹瀉情形、便秘" },
+
+        { "type": "textarea", "id": "patient_data", "label": "提供住民相關資訊", "placeholder": "例如：85歲、體重45公斤、使用「安素」配方，每日1500cc" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：
+
+請扮演一位「臨床營養師顧問」，擅長分析個案的飲食紀錄與生理數據，並提供專業的膳食調整策略。
+
+
+
+情境：
+
+我需要針對一位住民的狀況進行評估。他的飲食類型是「<<<{diet_type}>>>」。
+
+根據近期的紀錄，他的「體重連續兩週呈現下降趨勢」，且出現「<<<{patient_symptoms}>>>」。
+
+我將提供他的「<<<{patient_data}>>>」等資訊。
+
+
+
+期待：
+
+1.請根據這些資訊，進行「綜合分析」，點出可能造成體重下降與不適的原因。
+
+2.接著，提出一份「具體的飲食調整計畫」，內容需包含：
+
+(1)建議調整的「管灌配方、灌食速度或量」
+
+(2)「可額外補充的營養品建議」
+
+(3)「後續需要觀察的重點」。
+
+3.請以「列點方式」清楚說明你的建議與理由。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "用白話文解釋評鑑術語",
+
+    "structure": [
+
+        { "type": "text", "id": "accreditation_term", "label": "請輸入要解釋的評鑑術語", "placeholder": "例如：住民自主權、個別化照顧、連續性照護" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色： 作為一位教育訓練專員
+
+
+
+情境： 
+
+1.解釋評鑑中常提到的<<<{accreditation_term}>>>這個概念，
+
+2.用白話文說明它的意思，
+
+3.並舉 1-2 個在日常照顧中如何尊重的例子。
+
+
+
+期望： 
+
+簡單易懂的解釋加上具體例子。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "異常事件預防與處理計畫書",
+ "category": "長照",
+
+    "structure": [
+
+        { "type": "textarea", "id": "prevention_measures", "label": "高風險住民的預防措施", "placeholder": "例如：防滑措施、定時翻身、營養支持" },
+
+        { "type": "textarea", "id": "reporting_process", "label": "事件發生時的通報與處理流程", "placeholder": "例如：發現者立即通知護理站，護理站啟動通報鏈" },
+
+        { "type": "textarea", "id": "rca_improvement_plan", "label": "根本原因分析 (RCA) 與改善方案", "placeholder": "例如：召開跨專業團隊會議，分析事件原因並提出改善計畫" },
+
+        { "type": "text", "id": "incident_report_form", "label": "事件紀錄單 (表單附件名稱)", "placeholder": "例如：住民異常事件紀錄單" },
+
+        { "type": "text", "id": "rca_analysis_form", "label": "RCA分析表 (表單附件名稱)", "placeholder": "例如：根本原因分析會議紀錄表" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色: 
+
+請扮演一位「長照機構的護理督導或品質管理師」，協助我撰寫一份符合評鑑要求的內部管理計畫書。
+
+
+
+情境: 
+
+我需要整合並撰寫一份機構官方的「跌倒、壓瘡（褥瘡）、意外事件預防與處理計畫書」。此計畫需完整涵蓋從前端預防到後端改善的所有環節，包含：「<<<{prevention_measures}>>>」、「<<<{reporting_process}>>>」，以及事後的「<<<{rca_improvement_plan}>>>」。
+
+
+
+期待: 
+
+請為我草擬一份「結構化且完整」的計畫書範本。內容應包含明確的章節，例如：
+
+1.計畫目的與政策
+
+2.高風險住民「篩檢評估」與「分級照護」標準
+
+3.具體的「預防介入措施」（分述跌倒、壓瘡等項目）
+
+4.標準化的「事件通報與處理流程」（含對內通報與對外家屬溝通）
+
+5.「根本原因分析（RCA）」的執行方式與團隊組成
+
+6.「改善方案」的追蹤與成效評估機制
+
+7.相關表單附件列表 (例如：<<<{incident_report_form}>>>、<<<{rca_analysis_form}>>>) 這份文件需要「流程清晰、權責分明」，可作為機構內部正式的執行與稽核依據。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "一週軟質飲食菜單範本",
+
+    "structure": [
+
+        { "type": "text", "id": "target_audience", "label": "供餐對象", "placeholder": "例如：長期照護機構的銀髮族" },
+
+        { "type": "text", "id": "dietary_needs", "label": "其他健康需求", "placeholder": "例如：低鈉、高纖維" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：
+
+請扮演一位「專業營養師助理」，專門協助設計符合特定飲食需求的週期性菜單。
+
+
+
+情境：
+
+我正在為 <<<{target_audience}>>> 設計一份為期一週的菜單。
+
+這些對象普遍需要「軟質且易於消化的飲食」，同時要考量到 <<<{dietary_needs}>>> 的健康需求。
+
+
+
+期待：
+
+1.請生成一份包含「早、午、晚三餐與下午點心」的「七日菜單範本」。
+
+2.菜單設計需「多樣化且食材容易取得」，並簡要說明餐點設計如何符合「軟質」與「<<<{dietary_needs}>>>」的要求。
+
+3.請用「表格格式」呈現，方便我直接使用。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "長照機構安全與環境管理SOP",
+ "category": "長照",
+
+    "structure": []
+
+}
+
+---PROMPT---
+
+角色： 
+
+請扮演一位「熟悉台灣長照機構設立標準與評鑑規範的專家」，協助我建立一套完整的管理制度。
+
+
+
+情境：
+
+我們是一家長照機構，為了要符合「衛福部」與地方「社會局」的規範，並為「機構評鑑」做準備，需要將「公共安全與環境檢核」制度化。檢核內容需涵蓋法規要求的所有面向，包括：「消防安全計畫與演練」、「建築物公安申報」、「無障礙設施維護」，並特別強化「感染管制程序」、「住民跌倒與意外事件預防機制」、「緊急災害應變計畫（特別是針對行動不便者的疏散）」以及「廚房膳食衛生安全」。
+
+
+
+期待：
+
+請為我草擬一份「長照機構安全與環境管理標準作業程序（SOP）」。文件需「架構完整、條理分明」，並在適當處「引述相關法規名稱或評鑑條文重點」。內容應包含：
+
+1.各項檢核作業的「負責人、執行頻率、作業說明、檢查標準」。
+
+2.住民「安全風險評估」的流程與方法。
+
+3.「異常事件的通報、處理與檢討改善」流程。
+
+4.所有「紀錄表單的留存與管理」規範。 目標是讓這份文件成為機構營運與迎接評鑑的核心指南。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "常用工作簡易查檢表",
+
+    "structure": [
+
+        { "type": "textarea", "id": "checklist_topic", "label": "請輸入查檢表的主題與重點項目", "placeholder": "例如：5-7 個重點項目的「護理人員交班」簡易查檢表" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色： 作為一位資深護理長
+
+
+
+情境： 
+
+為了確保交班時資訊完整，減少評鑑時被指出交班紀錄缺失的風險，
+
+請設計一份包含<<<{checklist_topic}>>>。
+
+
+
+期望：
+
+提供條列式查檢表。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "每日護理紀錄範本",
+ "category": "長照",
+
+    "structure": [
+
+        { "type": "text", "id": "care_facility_type", "label": "照護機構類型", "placeholder": "例如：護理之家、安養中心" },
+
+        { "type": "text", "id": "patient_diagnosis", "label": "個案主要診斷", "placeholder": "例如：中風後失能、糖尿病" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：請扮演一位「資深護理長」，指導我如何撰寫一份結構完整、符合臨床標準的護理紀錄。
+
+
+
+情境：
+
+我正在照顧一位住在 <<<{care_facility_type}>>> 的個案，
+
+他的主要健康問題是 <<<{patient_diagnosis}>>>。
+
+我需要完成今天的護理紀錄，內容應包含生命徵象、給藥、執行的護理活動，以及相關的風險評估。
+
+
+
+期待：
+
+1.請生成一份「結構化」的護理紀錄範本，讓我能快速填寫。內容需包含「生命徵象」、「給藥紀錄」、「傷口護理」、「健康問題處理」等基本區塊。
+
+2.請特別加入「跌倒風險」與「壓瘡風險」的評估項目，並在需要填寫具體觀察或數據的地方預留[填寫處]，格式要「清晰條列、一目了然」。
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "感染管制計畫書大綱",
+ "category": "長照",
+
+    "structure": [
+
+        { "type": "text", "id": "institution_type_medical", "label": "機構類型", "placeholder": "例如：醫院、護理之家、診所" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色： 
+
+請扮演一位「醫療管理顧問」，專精於撰寫院內規章與作業流程。
+
+
+
+情境：
+
+1.我是一位 <<<{institution_type_medical}>>> 的管理者，需要為我們的機構草擬一份完整的「感染管制計畫書」。
+
+2.這份計畫書必須涵蓋幾個核心面向：洗手時機與步驟、環境消毒標準、廢棄物分類處理、特定傳染病（如流感、肺炎、疥瘡）的監測、通報及隔離處理流程，以及工作人員的健康管理辦法。
+
+
+
+期待： 
+
+1.請為我生成一份「結構化、條理分明」的感染管制計畫書「大綱範本」。範本應包含上述所有核心面向的「章節標題」，並在每個標題下列出「建議應包含的重點內容（以列點方式呈現）」。
+
+2.此外，請特別加入一個關於「PDCA 持續改善」的章節，說明應如何「設定監測指標（如：院內感染率）」以及「規劃改善活動的流程」。
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "提升住民社交互動活動構想",
+
+    "structure": [
+
+        { "type": "textarea", "id": "resident_characteristics", "label": "我們機構住民的特性", "placeholder": "例如：平均年齡 80 歲，多為輕度失能，部分有認知障礙" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色： 「作為一位活動企劃人員」。
+
+
+
+情境與任務： 
+
+針對評鑑指標中「提升住民社交互動參與率」的要求，
+
+根據我們機構住民的特性<<<{resident_characteristics}>>>，
+
+發想下個季度可以執行的 3-5 個團體活動初步構想。
+
+
+
+期望： 
+
+用非正式的語氣，並使用條列式重點。
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "提升住民社交互動活動構想",
+ "category": "長照",
+
+    "structure": [
+
+        { "type": "textarea", "id": "resident_characteristics", "label": "我們機構住民的特性", "placeholder": "例如：平均年齡 80 歲，多為輕度失能，部分有認知障礙" }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色： 「作為一位活動企劃人員」。
+
+
+
+情境與任務： 
+
+針對評鑑指標中「提升住民社交互動參與率」的要求，
+
+根據我們機構住民的特性<<<{resident_characteristics}>>>，
+
+發想下個季度可以執行的 3-5 個團體活動初步構想。
+
+
+
+期望： 
+
+用非正式的語氣，並使用條列式重點。
+
+</script>
+
+<script type="text/template-data">
+{
+    "name": "醫美短影音腳本生成",
+    "category": "醫美",
+    "structure": [
+        {
+            "id": "video_platform",
+            "label": "平台",
+            "placeholder": "例如：Instagram Reels 或 TikTok",
+            "type": "text"
+        },
+        {
+            "id": "video_length",
+            "label": "影片長度",
+            "placeholder": "例如：30秒",
+            "type": "text"
+        },
+        {
+            "id": "video_topic",
+            "label": "影片主題",
+            "placeholder": "例如：醫美諮詢師的一天",
+            "type": "text"
+        },
+        {
+            "id": "script_style",
+            "label": "腳本風格",
+            "placeholder": "例如：趣味、快節奏、有記憶點",
+            "type": "text"
+        }
+    ]
+}
+---PROMPT---
+角色：「請扮演一位「病毒式短影音腳本企劃」，你懂得如何用簡潔的畫面和節奏感，在30秒內抓住觀眾的眼球。」
+情境：「我想為診所的「<<<{video_platform}>>>」製作一支長度約「<<<{video_length}>>>」的短影音。這次的影片主題是「<<<{video_topic}>>>」。」
+期待：請以「表格格式」提供一份完整的短影音腳本，欄位需包含「秒數」、「畫面/場景描述」、「旁白/台詞」以及「音效/音樂建議」。整個腳本的風格要「<<<{script_style}>>>」，目的是以輕鬆的方式呈現我們的專業日常，拉近與粉絲的距離。
+</script>
+
+<script type="text/template-data">
+
+{
+
+    "name": "醫美社群吸睛文案撰寫",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "promo_item",
+
+            "label": "推廣的療程/產品",
+
+            "placeholder": "例如：第四代鳳凰電波",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "social_platform",
+
+            "label": "社群平台",
+
+            "placeholder": "例如：Facebook",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "target_audience",
+
+            "label": "目標客群描述",
+
+            "placeholder": "例如：40-55歲，重視生活品質與自然美的女性",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "copy_style",
+
+            "label": "文案風格",
+
+            "placeholder": "例如：專業但帶有溫度",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "core_benefits",
+
+            "label": "核心優點",
+
+            "placeholder": "例如：非侵入性、效果自然、恢復期短",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「醫美產業社群文案專家」，你的文字能精準打動目標客群，兼具專業與情感溫度。」
+
+情境：「我需要為我們新引進的「<<<{promo_item}>>>」撰寫一篇「<<<{social_platform}>>>」的推廣貼文。我們的「目標客群」是「<<<{target_audience}>>>」。」
+
+期待：請生成一篇完整的貼文文案。文案需以「<<<{copy_style}>>>」的口吻，有力地強調產品的「<<<{core_benefits}>>>」。文末必須包含一個「明確的行動呼籲（CTA）」，並附上「5-7個相關的Hashtags」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "醫美社群貼文主題發想",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "social_platform",
+
+            "label": "社群平台",
+
+            "placeholder": "例如：Instagram",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "post_theme",
+
+            "label": "貼文主題/季節",
+
+            "placeholder": "例如：台灣的夏天",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "related_keywords",
+
+            "label": "希望連結的療程或關鍵字",
+
+            "placeholder": "例如：控油、除毛、美白",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "idea_count",
+
+            "label": "數量",
+
+            "placeholder": "例如：5個",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「醫美社群行銷創意總監」，擅長發想有話題性且能引發互動的內容點子。」
+
+情境：「我的醫美診所需要為「<<<{social_platform}>>>」規劃下個月的貼文。目前的行銷主軸是「<<<{post_theme}>>>」，希望能多曝光與「<<<{related_keywords}>>>」相關的內容。」
+
+期待：請提供「<<<{idea_count}>>>」不同切角、風格各異的貼文主題。每個主題請附上「簡短的內容方向說明」和「建議的貼文形式（例如：單圖、多圖輪播、Reels短影音）」，要「有創意且吸睛」，能夠吸引用戶停留和互動。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "模擬醫美疑難雜症應對",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "treatment_name",
+
+            "label": "療程名稱",
+
+            "placeholder": "例如：玻尿酸填充",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "client_concern",
+
+            "label": "客戶的具體擔憂",
+
+            "placeholder": "例如：怕變塑膠臉、表情僵硬",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「經驗豐富的醫美溝通技巧教練」，專門協助專業人士應對棘手的客戶問題。」
+
+情境：「我需要應對一位對「<<<{treatment_name}>>>」感興趣，但又非常害怕結果會「不自然」的客戶。她的核心擔憂是「<<<{client_concern}>>>」。我希望能專業地化解她的疑慮，而不是迴避問題。」
+
+期待：請提供「3個不同的溝通切入點」與對應的「建議說法」，來應對這位客戶。你的建議需要達到兩個目的：「有效建立客戶的信心」與「同時做好期望值管理」。請分別說明每個切入點的「溝通策略」，並提供「具體的對話範例」，幫助我在不誇大效果的前提下，讓客戶感到安心。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "個人化諮詢內容生成",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "treatment_name",
+
+            "label": "療程名稱",
+
+            "placeholder": "例如：海菲刀",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "client_profile",
+
+            "label": "客戶背景與膚況",
+
+            "placeholder": "例如：35歲、油性肌膚、在意毛孔粗大",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "comparison_target",
+
+            "label": "比較對象",
+
+            "placeholder": "例如：傳統做臉",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「資深醫美諮詢顧問」，擅長根據客戶的個人狀況，提供客製化且具說服力的說明。」
+
+情境：「我即將為一位客戶進行諮詢，她是「第一次」接觸「<<<{treatment_name}>>>」。這位客戶的背景是「<<<{client_profile}>>>」。我需要一份專為她客製化的說明資料，幫助她在諮詢前建立基本認識與好感。」
+
+期待：請幫我生成一份「諮詢前說明懶人包」。內容需特別強調此療程「對她個人膚質能帶來的好處」，並清楚解釋「與<<<{comparison_target}>>>的主要不同之處」。請以「吸引人且專業」的口吻撰寫，可包含「預期效果」與「療程流程簡述」，讓客戶感到安心並產生期待感。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "標準化衛教資訊生成",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "treatment_name",
+
+            "label": "醫美療程名稱",
+
+            "placeholder": "例如：皮秒雷射",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "core_instructions",
+
+            "label": "核心衛教重點",
+
+            "placeholder": "例如：清潔、保濕、防曬",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "common_reactions",
+
+            "label": "常見術後反應",
+
+            "placeholder": "例如：輕微紅腫、結痂",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「專業的醫美衛教內容助理」，你的任務是產出清晰、標準化且容易遵循的衛教資訊。」
+
+情境：「我需要為剛做完「<<<{treatment_name}>>>」的客戶，提供一份術後衛教說明。目標是建立一份「標準化」的範本，以便快速提供給所有做此項療程的客戶，減少我重複說明的時間。」
+
+期待：請以「親切且易懂」的口吻，並使用繁體中文，生成一份關於該療程術後「一週內」的注意事項草稿。內容必須包含「<<<{core_instructions}>>>」三大要點，並需提醒客戶可能會出現的「<<<{common_reactions}>>>」是正常現象。請將重點「條列化」，讓客戶能一目了然。
+
+</script>
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "競品分析報告",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "target_market",
+
+            "label": "目標市場",
+
+            "placeholder": "例如：台灣市場",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "treatment_type",
+
+            "label": "療程類型",
+
+            "placeholder": "例如：增肌減脂療程",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "competitor_names",
+
+            "label": "主要競品名稱",
+
+            "placeholder": "例如：Emsculpt, CoolSculpting",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「醫美產業市場情報分析師」，你擅長從公開資訊中，洞察並整理出競爭者的核心策略。」
+
+情境：「我需要一份針對「<<<{target_market}>>>」的競品分析報告，分析的焦點是「<<<{treatment_type}>>>」。主要的參考競品是「<<<{competitor_names}>>>」。」
+
+期待：請以「條列式」報告呈現，內容需包含以下幾個面向：「主要行銷訴求（他們主打什麼效果或客群痛點？）」、「目標客群輪廓（他們主要溝通的對象是誰？）」、「公開的定價策略或價格區間」以及「常見的促銷手法（例如：體驗價、組合優惠、KOL合作模式）」。請幫我「總結」出他們的共同點與差異點。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "行銷活動策劃",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "campaign_duration",
+
+            "label": "活動總時長",
+
+            "placeholder": "例如：三個月",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "campaign_period",
+
+            "label": "活動檔期",
+
+            "placeholder": "例如：母親節檔期",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "business_goal",
+
+            "label": "主要商業目標",
+
+            "placeholder": "例如：提升客單價與舊客回流率",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "main_treatment",
+
+            "label": "診所主力療程或特色",
+
+            "placeholder": "例如：鳳凰電波、美白針組合",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「資深醫美行銷策略顧問」，專長是規劃整合線上與線下的完整行銷活動藍圖。」
+
+情境：「我需要為我的診所規劃一檔為期「<<<{campaign_duration}>>>」的「<<<{campaign_period}>>>」行銷活動。這次活動的「主要商業目標」是「<<<{business_goal}>>>」。我們的「主力療程」是「<<<{main_treatment}>>>」。」
+
+期待：請提出一份「階段性行銷活動藍圖」，需清晰劃分「預熱期」、「活動高潮」和「延續期」三個階段。針對「每一個階段」，請提供「具體的活動建議（例如：早鳥優惠、滿額贈、會員專屬療程組合）」、「溝通主軸」以及「推薦的行銷渠道（例如：LINE官方帳號、FB廣告、IG Reels）」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "診所SWOT分析",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "clinic_location",
+
+            "label": "診所地點",
+
+            "placeholder": "例如：台北市大安區",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "clinic_strengths",
+
+            "label": "我們的強項",
+
+            "placeholder": "例如：雷射光療、醫師技術聞名",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "clinic_weaknesses",
+
+            "label": "我們的弱項",
+
+            "placeholder": "例如：裝潢較舊、缺乏線上社群聲量",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「經驗豐富的診所營運顧問」，你能從客觀角度進行全面的商業體質評估，並給出精準的戰略建議。」
+
+情境：「我的診所位於「<<<{clinic_location}>>>」。我們的「強項」是「<<<{clinic_strengths}>>>」，但同時也有一些「弱項」，像是「<<<{clinic_weaknesses}>>>」。」
+
+期待：請為我的診所進行一次完整的「SWOT分析」，並以表格呈現「優勢 (Strengths)」、「劣勢 (Weaknesses)」、「機會 (Opportunities)」和「威脅 (Threats)」。在分析「機會」與「威脅」時，請考量當前的外部市場趨勢。最後，請「基於此分析」，給我「2-3項最關鍵的具體戰略建議」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "製作內部訓練教材大綱",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "trainee_profile",
+
+            "label": "訓練對象",
+
+            "placeholder": "例如：新進的醫美諮詢師",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "training_topic",
+
+            "label": "訓練主題",
+
+            "placeholder": "例如：玻尿酸基礎知識",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "knowledge_modules",
+
+            "label": "必備的知識模組",
+
+            "placeholder": "例如：作用原理、常見品牌比較、適用部位與評估、常見風險與衛教說明",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「醫美產業教育訓練發展專家」，你擅長將複雜的專業知識，轉化為有系統、易吸收的學習大綱。」
+
+情境：「我需要為「<<<{trainee_profile}>>>」，設計一份關於「<<<{training_topic}>>>」的訓練教材，幫助他們快速建立正確且完整的觀念。」
+
+期待：請生成一份「結構化」的訓練大綱。內容需包含「<<<{knowledge_modules}>>>」等核心章節。請以「清晰的層級結構（大標題與子項目）」來呈現，讓我可以依此大綱擴充為完整的教材。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "草擬標準作業流程(SOP)",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "sop_process_name",
+
+            "label": "需要建立SOP的流程名稱",
+
+            "placeholder": "例如：新客首次諮詢流程",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "process_start",
+
+            "label": "流程起點",
+
+            "placeholder": "例如：客人進門接待",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "process_end",
+
+            "label": "流程終點",
+
+            "placeholder": "例如：療程建議與報價",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「診所流程優化顧問」，專長是將營運流程拆解為標準化、可執行的具體步驟。」
+
+情境：「我希望能將診所的「<<<{sop_process_name}>>>」標準化，以確保每一位同仁都能提供一致且高品質的服務。」
+
+期待：請幫我草擬一份該流程的「標準作業流程（SOP）草案」。請以「編號步驟」的方式，清晰列出從「<<<{process_start}>>>」到「<<<{process_end}>>>」的每一個環節。在每個步驟中，請盡量標明「負責人員」、「執行動作」與「注意事項/溝通重點」。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "客製化療程組合方案",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "client_profile",
+
+            "label": "客戶年齡與背景",
+
+            "placeholder": "例如：45歲女性、高階主管",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "client_budget",
+
+            "label": "客戶預算",
+
+            "placeholder": "例如：新台幣8萬元",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "main_concern",
+
+            "label": "主要困擾",
+
+            "placeholder": "例如：法令紋和嘴邊肉造成的鬆弛感",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "treatment_preference",
+
+            "label": "療程偏好或限制",
+
+            "placeholder": "例如：不排斥針劑但希望效果非常自然",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「頂尖醫美療程規劃總監」，你極度擅長根據客戶的個別狀況，量身打造最有效的複合式療程方案。」
+
+情境：「我有一位「<<<{client_profile}>>>」，她的預算大約是「<<<{client_budget}>>>」。她最主要的困擾是「<<<{main_concern}>>>」，並且「<<<{treatment_preference}>>>」。」
+
+期待：請為這位客戶規劃一份「客製化療程建議書」。內容需包含：「建議的療程組合（例如：電波+填充物）」、「預估費用佔比」、詳細說明「為何要這樣搭配的理由與預期效果」，以及建議的「治療時程（先後順序）」。你的建議要能體現「1+1>2」的加乘效果，讓客戶感覺物超所值。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "入門級方案與進階規劃",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "client_profile_skin",
+
+            "label": "客戶年齡與膚況",
+
+            "placeholder": "例如：28歲的年輕客戶，想改善臉頰痘疤和毛孔粗大",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "client_budget_entry",
+
+            "label": "客戶預算",
+
+            "placeholder": "例如：新台幣1萬5千元",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「資深醫美客戶關係顧問」，你懂得如何與客戶建立長期信任，並引導他們進行漸進式的保養規劃。」
+
+情境：「我有一位「<<<{client_profile_skin}>>>」，但他的「預算有限」，大約只有「<<<{client_budget_entry}>>>」。」
+
+期待：請為這位客戶提出一個符合預算的「高CP值入門級改善方案」。同時，請幫我草擬一套「溝通說法」，這套說法需要能夠：「建立正確的治療期待」、「說明這為何是很好的第一步」，並巧妙地「描繪未來的進階治療藍圖」。目標是在「有限預算下成交，並成功培養成高潛力的長期客戶」。
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "療程組合菜單設計",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "common_concern",
+
+            "label": "常見的客戶困擾",
+
+            "placeholder": "例如：臉部鬆弛下垂抗老",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「醫美產品與行銷策略師」，專長是將複雜的療程包裝成消費者能輕易理解與選擇的產品組合。」
+
+情境：「我希望針對診所最常見的客戶問題：「<<<{common_concern}>>>」，設計一套標準化的療程組合菜單，讓諮詢師在面對客戶時，能更有系統地進行銷售。」
+
+期待：請設計「三種不同等級」的療程組合方案，分別是：「入門體驗套餐」、「進階有感套餐」與「頂級全面套餐」。針對「每一個套餐」，請定義出它的「目標客群與預算範圍」、「核心療程組合內容」以及一句「主打的行銷標語或訴求」，讓客戶能一目了然地找到最適合自己的選擇。
+
+</script>
+
+
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "專有名詞與衛教翻譯",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "document_type",
+
+            "label": "療程或文件類型",
+
+            "placeholder": "例如：M22彩衝光的術後衛教",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "target_language",
+
+            "label": "目標語言",
+
+            "placeholder": "例如：英文、日文、泰文",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "source_text_chinese",
+
+            "label": "請在此貼上您要翻譯的中文原文",
+
+            "placeholder": "例如：術後一週內，請避免使用含有酒精、美白、酸類等刺激性成分的保養品。",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「專業醫美領域翻譯師」，你精通醫學美容的專有名詞，並能將內容翻譯得通順自然。」
+
+情境：「我需要將一份關於「<<<{document_type}>>>」的說明文件，翻譯成「<<<{target_language}>>>」，以便提供給外籍客戶閱讀。我的原文如下：『<<<{source_text_chinese}>>>』」
+
+期待：請將上述內容翻譯成「通順自然、符合當地用語習慣」的目標語言。翻譯時必須確保醫學美容相關的「專有名詞」準確無誤，且整體語氣要保持「專業與關懷」。請不要使用生硬的直譯。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "跨文化溝通文稿潤飾",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "comm_channel",
+
+            "label": "溝通渠道",
+
+            "placeholder": "例如：Email",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "client_culture",
+
+            "label": "客戶的文化背景",
+
+            "placeholder": "例如：日本",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "comm_purpose",
+
+            "label": "溝通目的",
+
+            "placeholder": "例如：確認諮詢時間、提醒行前注意事項",
+
+            "type": "textarea"
+
+        },
+
+        {
+
+            "id": "key_info",
+
+            "label": "必要資訊點",
+
+            "placeholder": "例如：諮詢時間是6月3日下午2點、地點在本診所、請攜帶護照",
+
+            "type": "textarea"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「國際客戶關係與禮儀顧問」，你深諳不同國家的溝通文化與禮節，能撰寫出最得體的文稿。」
+
+情境：「我需要透過「<<<{comm_channel}>>>」，聯繫一位來自「<<<{client_culture}>>>」的客戶。這次溝通的目的是「<<<{comm_purpose}>>>」。」
+
+期待：請幫我草擬一份「完整的回覆文稿」。信件風格需要「非常禮貌、周到且友善」，並盡可能「符合對方國家的商業或溝通文化」。內容需包含所有必要的資訊點（例如：<<<{key_info}>>>等），並預留個人化欄位。
+
+</script>
+
+
+
+<script type="text/template-data">
+
+{
+
+    "name": "現場諮詢即時口譯助理",
+
+    "category": "醫美",
+
+    "structure": [
+
+        {
+
+            "id": "client_language",
+
+            "label": "客戶使用的語言",
+
+            "placeholder": "例如：英文",
+
+            "type": "text"
+
+        },
+
+        {
+
+            "id": "consultation_topic",
+
+            "label": "本次諮詢的主要療程或問題",
+
+            "placeholder": "例如：皮秒雷射除斑",
+
+            "type": "text"
+
+        }
+
+    ]
+
+}
+
+---PROMPT---
+
+角色：「請扮演一位「醫美諮詢即時口譯助理」，能快速、準確地進行雙向口語翻譯。」
+
+情境：「我即將為一位說「<<<{client_language}>>>」的客戶進行諮詢，主題是關於「<<<{consultation_topic}>>>」。我需要你協助我們之間的溝通。」
+
+期待：接下來，當我輸入中文時，請你「立即」將其翻譯成「口語化且易懂」的目標語言。反之，當我貼上客戶說的「<<<{client_language}>>>」時，也請立即翻成中文。特別要求：除了翻譯，如果你在我的描述中聽到複雜的醫美概念，請「主動附上一句更簡單的比喻或解釋」，幫助客戶理解。
+
+</script>
+
