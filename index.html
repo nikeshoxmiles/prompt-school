@@ -1,489 +1,480 @@
-{\rtf1\ansi\ansicpg950\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww28900\viewh16940\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提示詞產生器</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; }
+        .navbar { box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; }
+        .main-container { margin-top: 20px; margin-bottom: 50px; }
+        .card { border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,.05); border: none; }
+        .form-control-lg { min-height: 150px; font-family: monospace; }
+        .output-container { background-color: #e9ecef; border: 1px dashed #ced4da; padding: 20px; border-radius: 10px; position: relative; white-space: pre-wrap; word-wrap: break-word; font-family: monospace; min-height: 200px; }
+        .copy-btn { position: absolute; top: 15px; right: 15px; }
+        .template-selector-group { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+        .template-selector { max-width: 350px; }
+        .filter-btn.active { font-weight: bold; }
+        .section-title { text-align: center; margin: 60px 0 40px; font-weight: bold; color: #343a40; }
+        .teacher-intro-card { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; }
+        .feature-icon { font-size: 2.5rem; color: #007bff; }
+        .contact-icon a { font-size: 3rem; color: #343a40; transition: color 0.3s; text-decoration: none; }
+        .contact-icon a:hover { color: #007bff; }
+        .testimonial-card { height: 100%; }
+        .testimonial-img { width: 100%; height: 250px; object-fit: cover; }
+        .cta-button { font-size: 1.1rem; padding: 10px 25px; border-radius: 50px; font-weight: bold; }
+        .teacher-photo { width: 250px; height: 250px; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .resource-card a { text-decoration: none; color: inherit; transition: transform 0.2s; display: block; }
+        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,.1); }
+        .client-logo-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2.5rem; padding: 1rem 0; }
+        .client-logo { height: 65px; max-width: 150px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; transition: all 0.3s ease-in-out; }
+        .client-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+        .sticky-top { position: sticky; top: 0; z-index: 1020; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><strong>提示詞產生器</strong></a>
+            <div class="d-flex align-items-center">
+                <img src="" alt="User Avatar" class="user-avatar" id="user-avatar" onerror="this.src='https://placehold.co/40x40/0084ff/FFFFFF?text=U';">
+                <span class="navbar-text" id="user-display-name"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="container main-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-3">1. 選擇版型並填寫</h5>
+                        <div id="category-filters" class="mb-3">
+                        </div>
+                        <select id="templateSelector" class="form-select"></select>
+                    </div>
+                    <div class="card-body p-4" id="prompt-form-container">
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-header bg-white"><h5 class="mb-0">2. 複製生成結果</h5></div>
+                    <div class="card-body p-4">
+                        <div id="output" class="output-container">請在上方欄位開始填寫...</div>
+                        <button id="copyBtn" class="btn btn-primary copy-btn">複製</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-\f0\fs28 \cf0 \expnd0\expndtw0\kerning0
-<!DOCTYPE html>\
-<html lang="zh-Hant">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>\uc0\u25552 \u31034 \u35422 \u29986 \u29983 \u22120 </title>\
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">\
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">\
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">\
-    <style>\
-        body \{ background-color: #f8f9fa; font-family: 'Inter', sans-serif; \}\
-        .navbar \{ box-shadow: 0 2px 4px rgba(0,0,0,.1); \}\
-        .user-avatar \{ width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; \}\
-        .main-container \{ margin-top: 20px; margin-bottom: 50px; \}\
-        .card \{ border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,.05); border: none; \}\
-        .form-control-lg \{ min-height: 150px; font-family: monospace; \}\
-        .output-container \{ background-color: #e9ecef; border: 1px dashed #ced4da; padding: 20px; border-radius: 10px; position: relative; white-space: pre-wrap; word-wrap: break-word; font-family: monospace; min-height: 200px; \}\
-        .copy-btn \{ position: absolute; top: 15px; right: 15px; \}\
-        .template-selector-group \{ display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; \}\
-        .template-selector \{ max-width: 350px; \}\
-        .filter-btn.active \{ font-weight: bold; \}\
-        .section-title \{ text-align: center; margin: 60px 0 40px; font-weight: bold; color: #343a40; \}\
-        .teacher-intro-card \{ background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; \}\
-        .feature-icon \{ font-size: 2.5rem; color: #007bff; \}\
-        .contact-icon a \{ font-size: 3rem; color: #343a40; transition: color 0.3s; text-decoration: none; \}\
-        .contact-icon a:hover \{ color: #007bff; \}\
-        .testimonial-card \{ height: 100%; \}\
-        .testimonial-img \{ width: 100%; height: 250px; object-fit: cover; \}\
-        .cta-button \{ font-size: 1.1rem; padding: 10px 25px; border-radius: 50px; font-weight: bold; \}\
-        .teacher-photo \{ width: 250px; height: 250px; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); \}\
-        .resource-card a \{ text-decoration: none; color: inherit; transition: transform 0.2s; display: block; \}\
-        .resource-card:hover \{ transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,.1); \}\
-        .client-logo-container \{ display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2.5rem; padding: 1rem 0; \}\
-        .client-logo \{ height: 65px; max-width: 150px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; transition: all 0.3s ease-in-out; \}\
-        .client-logo:hover \{ filter: grayscale(0%); opacity: 1; transform: scale(1.1); \}\
-        .sticky-top \{ position: sticky; top: 0; z-index: 1020; \}\
-    </style>\
-</head>\
-<body>\
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">\
-        <div class="container-fluid">\
-            <a class="navbar-brand" href="#"><strong>\uc0\u25552 \u31034 \u35422 \u29986 \u29983 \u22120 </strong></a>\
-            <div class="d-flex align-items-center">\
-                <img src="" alt="User Avatar" class="user-avatar" id="user-avatar" onerror="this.src='https://placehold.co/40x40/0084ff/FFFFFF?text=U';">\
-                <span class="navbar-text" id="user-display-name"></span>\
-            </div>\
-        </div>\
-    </nav>\
-    <div class="container main-container">\
-        <div class="row justify-content-center">\
-            <div class="col-lg-10">\
-                <div class="card">\
-                    <div class="card-header bg-white">\
-                        <h5 class="mb-3">1. \uc0\u36984 \u25799 \u29256 \u22411 \u20006 \u22635 \u23531 </h5>\
-                        <div id="category-filters" class="mb-3">\
-                        </div>\
-                        <select id="templateSelector" class="form-select"></select>\
-                    </div>\
-                    <div class="card-body p-4" id="prompt-form-container">\
-                    </div>\
-                </div>\
-                <div class="card mt-4">\
-                    <div class="card-header bg-white"><h5 class="mb-0">2. \uc0\u35079 \u35069 \u29983 \u25104 \u32080 \u26524 </h5></div>\
-                    <div class="card-body p-4">\
-                        <div id="output" class="output-container">\uc0\u35531 \u22312 \u19978 \u26041 \u27396 \u20301 \u38283 \u22987 \u22635 \u23531 ...</div>\
-                        <button id="copyBtn" class="btn btn-primary copy-btn">\uc0\u35079 \u35069 </button>\
-                    </div>\
-                </div>\
-            </div>\
-        </div>\
-\
-        <h2 class="section-title">\uc0\u21029 \u35731 \u24744 \u30340 \u20225 \u26989 \u37679 \u36942  AI \u28010 \u28526 \u65281 </h2>\
-\
-        <div class="row justify-content-center">\
-            <div class="col-lg-10">\
-                <div class="card teacher-intro-card text-center p-4 p-md-5">\
-                    <div class="card-body">\
-                        <h1 class="display-5 fw-bold">\uc0\u40643 \u25964 \u23792  \u20225 \u26989 AI\u22521 \u35347 /\u38506 \u36305 \u23560 \u23478 </h1>\
-                        <p class="lead my-4">\uc0\u24478 \u31574 \u30053 \u21040 \u23526 \u25136 \u65292 \u24341 \u38936 \u24744 \u30340 \u22296 \u38538 \u39640 \u25928 \u36681 \u22411 </p>\
-                        <a href="#contact" class="btn btn-light btn-lg cta-button">\uc0\u31435 \u21363 \u32879 \u32363 \u65292 \u38283 \u21855  AI \u36681 \u22411 \u20043 \u26053  <i class="bi bi-arrow-right-short"></i></a>\
-                    </div>\
-                </div>\
-            </div>\
-        </div>\
-        \
-        <div id="teacher-intro">\
-            <h2 class="section-title">\uc0\u35469 \u35672 \u24744 \u30340 \u25976 \u20301 \u36681 \u22411 \u38936 \u33322 \u21729 </h2>\
-        </div>\
-        <div class="row mt-5 align-items-center">\
-            <div class="col-lg-5 text-center mb-4 mb-lg-0">\
-                <img src="https://i.ibb.co/hFqZC7NM/DSC00301-3.jpg" class="img-fluid rounded-circle teacher-photo" alt="\uc0\u40643 \u25964 \u23792 \u32769 \u24107 \u29031 \u29255 " onerror="this.src='https://placehold.co/250x250/CCCCCC/FFFFFF?text=\u32769 \u24107 \u29031 \u29255 ';">\
-                <h4 class="mt-4 fw-bold">\uc0\u40643 \u25964 \u23792  (\u38463 \u23792 \u32769 \u24107 )</h4>\
-            </div>\
-            <div class="col-lg-7">\
-                <h3 class="fw-bold">\uc0\u32147 \u27511 \u20142 \u40670 </h3>\
-                <ul class="list-group list-group-flush fs-5">\
-                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>\uc0\u20225 \u26989  AI \u30693 \u21517 \u22521 \u35347 \u32769 \u24107 </li>\
-                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>\uc0\u36628 \u23566 \u36926  400 \u38291 \u20225 \u26989 \u23566 \u20837  AI \u33287 \u25976 \u20301 \u24037 \u20855 </li>\
-                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>\uc0\u21069 \u34892 \u25919 \u38498 \u38738 \u24180 \u20107 \u21209 \u22996 \u21729 \u26371 \u21103 \u21484 \u38598 \u20154 </li>\
-                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>\uc0\u26032 \u21271 \u24066 \u38738 \u24180 \u20107 \u21209 \u22996 \u21729 </li>\
-                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>\uc0\u22283 \u31435 \u26481 \u33775 \u22823 \u23416 \u21109 \u26032 \u32946 \u25104 \u20013 \u24515 \u20225 \u26989 \u36628 \u23566 \u39015 \u21839 </li>\
-                </ul>\
-            </div>\
-        </div>\
-\
-        <h2 class="section-title">\uc0\u38463 \u23792 \u32769 \u24107 \u25480 \u35506 \u29305 \u33394 </h2>\
-        <div class="row text-center g-4">\
-             <div class="col-lg-4 col-md-6">\
-                <div class="card h-100 p-3">\
-                    <div class="feature-icon mb-3"><i class="bi bi-lightbulb"></i></div>\
-                    <h5 class="fw-bold">\uc0\u28145 \u20837 \u28154 \u20986 \u65292 \u21270 \u32321 \u28858 \u31777 </h5>\
-                    <p class="text-muted">\uc0\u23559 \u35079 \u38620 \u30340  AI \u25216 \u34899 \u36681 \u21270 \u28858 \u31777 \u21934 \u26131 \u25026 \u30340 \u23526 \u29992 \u30693 \u35672 \u65292 \u35731 \u19981 \u21516 \u32972 \u26223 \u30340 \u23416 \u21729 \u37117 \u33021 \u36629 \u39686 \u25484 \u25569 \u12290 </p>\
-                </div>\
-            </div>\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card h-100 p-3">\
-                    <div class="feature-icon mb-3"><i class="bi bi-tools"></i></div>\
-                    <h5 class="fw-bold">\uc0\u23526 \u25136 \u23566 \u21521 \u65292 \u21363 \u23416 \u21363 \u29992 </h5>\
-                    <p class="text-muted">\uc0\u35506 \u31243 \u35373 \u35336 \u24375 \u35519 \u23526 \u29992 \u24615 \u65292 \u32080 \u21512 \u23526 \u38555 \u24037 \u20316 \u22580 \u26223 \u65292 \u36879 \u36942 \u22823 \u37327 \u23526 \u25805 \u28436 \u32244 \u65292 \u30906 \u20445 \u23416 \u21729 \u31435 \u21363 \u25552 \u21319 \u24037 \u20316 \u25928 \u29575 \u12290 </p>\
-                </div>\
-            </div>\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card h-100 p-3">\
-                    <div class="feature-icon mb-3"><i class="bi bi-people"></i></div>\
-                    <h5 class="fw-bold">\uc0\u20114 \u21205 \u24335 \u25945 \u23416 \u65292 \u27963 \u28497 \u29983 \u21205 </h5>\
-                    <p class="text-muted">\uc0\u35506 \u22530 \u27683 \u27675 \u36629 \u39686 \u27963 \u28497 \u65292 \u40723 \u21237 \u25552 \u21839 \u33287 \u35342 \u35542 \u65292 \u36879 \u36942 \u23567 \u32068 \u27963 \u21205 \u33287 \u26696 \u20363 \u20998 \u26512 \u65292 \u25552 \u39640 \u23416 \u32722 \u21443 \u33287 \u24230 \u12290 </p>\
-                </div>\
-            </div>\
-        </div>\
-\
-        <h2 class="section-title">\uc0\u26356 \u22810  AI \u23416 \u32722 \u36039 \u28304 </h2>\
-        <div class="row g-4 justify-content-center">\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card resource-card h-100">\
-                    <a href="https://line.me/ti/g2/o6oRaGIHTzZ1nEofxnT9Rbv7_ZHAX-rylbJfKA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">\
-                        <div class="card-body text-center p-4">\
-                            <div class="feature-icon mb-3"><i class="bi bi-people-fill"></i></div>\
-                            <h5 class="fw-bold">AI \uc0\u23416 \u21729 \u31038 \u32676 (\u21487 \u40670 \u25802 )</h5>\
-                            <p class="text-muted mb-0">\uc0\u21152 \u20837  LINE \u31038 \u32676 \u65292 \u33287 \u20854 \u20182 \u23416 \u21729 \u20132 \u27969 \u24515 \u24471 \u65292 \u29554 \u21462 \u26368 \u26032 \u36039 \u35338 \u12290 </p>\
-                        </div>\
-                    </a>\
-                </div>\
-            </div>\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card resource-card h-100">\
-                    <a href="https://podcasts.apple.com/us/podcast/%E4%B8%8B%E7%8F%AD%E5%AD%B8ai-ai%E5%A4%9C%E5%A4%9Ctalk/id1777590042" target="_blank">\
-                        <div class="card-body text-center p-4">\
-                            <div class="feature-icon mb-3"><i class="bi bi-mic-fill"></i></div>\
-                            <h5 class="fw-bold">AI Podcast(\uc0\u21487 \u40670 \u25802 )</h5>\
-                            <p class="text-muted mb-0">\uc0\u25910 \u32893 \u12300 \u19979 \u29677 \u23416 AI\u12301 \u65292 \u21033 \u29992 \u36890 \u21220 \u26178 \u38291 \u65292 \u36629 \u39686 \u25484 \u25569  AI \u26032 \u30693 \u12290 </p>\
-                        </div>\
-                    </a>\
-                </div>\
-            </div>\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card resource-card h-100">\
-                     <a href="https://vocus.cc/salon/StartupForYou" target="_blank">\
-                        <div class="card-body text-center p-4">\
-                            <div class="feature-icon mb-3"><i class="bi bi-file-text-fill"></i></div>\
-                            <h5 class="fw-bold">AI \uc0\u25991 \u31456 \u23560 \u27396 (\u21487 \u40670 \u25802 )</h5>\
-                            <p class="text-muted mb-0">\uc0\u38321 \u35712 \u26041 \u26684 \u23376 \u23560 \u27396 \u65292 \u28145 \u24230 \u20102 \u35299  AI \u36264 \u21218 \u33287 \u23526 \u25136 \u25216 \u24039 \u12290 </p>\
-                        </div>\
-                    </a>\
-                </div>\
-            </div>\
-        </div>\
-\
-        <h2 class="section-title">\uc0\u36229 \u36942  400+ \u20225 \u26989 \u33287 \u27231 \u27083 \u30340 \u20449 \u36084 \u25512 \u34214 </h2>\
-        <div class="card p-4 p-md-5">\
-            <div class="client-logo-container">\
-                <img src="https://i.ibb.co/msCc9JR/2025-05-25-10-45-21.png" alt="\uc0\u23458 \u25142  Logo 1" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/XZYkkqkN/2025-05-25-10-45-15.png" alt="\uc0\u23458 \u25142  Logo 2" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/NgCknD5y/2025-05-25-10-45-10.png" alt="\uc0\u23458 \u25142  Logo 3" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/qMkdYMpT/2025-05-25-10-45-06.png" alt="\uc0\u23458 \u25142  Logo 4" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/RpDhbqwv/2025-05-25-10-45-01.png" alt="\uc0\u23458 \u25142  Logo 5" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/YFzLftPm/2025-05-25-10-44-57.png" alt="\uc0\u23458 \u25142  Logo 6" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/yFrHXv20/2025-05-25-10-44-52.png" alt="\uc0\u23458 \u25142  Logo 7" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/5xszGtxd/2025-05-25-10-44-48.png" alt="\uc0\u23458 \u25142  Logo 8" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/mF1RLB1v/2025-05-25-10-44-43.png" alt="\uc0\u23458 \u25142  Logo 9" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/whj6F03m/2025-05-25-10-44-39.png" alt="\uc0\u23458 \u25142  Logo 10" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/bjdHY2b4/2025-05-25-10-44-34.png" alt="\uc0\u23458 \u25142  Logo 11" class="client-logo" onerror="this.style.display='none'">\
-                <img src="https://i.ibb.co/fYQYTbmC/2025-05-25-10-44-29.png" alt="\uc0\u23458 \u25142  Logo 12" class="client-logo" onerror="this.style.display='none'">\
-            </div>\
-        </div>\
-\
-        <h2 class="section-title">\uc0\u31934 \u24425 \u30636 \u38291 </h2>\
-        <div class="row g-4 justify-content-center">\
-            <div class="col-lg-5 col-md-6">\
-                <div class="card testimonial-card">\
-                    <img src="https://i.ibb.co/HfjhD0GR/A7C00941.jpg" class="card-img-top testimonial-img" alt="\uc0\u21488 \u28771 \u29983 \u29289 \u31185 \u25216 \u20844 \u21496 \u25480 \u35506 \u29031 \u29255 " onerror="this.src='https://placehold.co/600x400/EEEEEE/AAAAAA?text=\u29031 \u29255 1';">\
-                    <div class="card-body">\
-                        <h5 class="card-title fw-bold">\uc0\u21488 \u28771 \u29983 \u29289 \u31185 \u25216 \u20844 \u21496 </h5>\
-                        <p class="card-text">\uc0\u28858 \u20013 \u39640 \u38542 \u20027 \u31649 \u24118 \u20358 AI\u31574 \u30053 \u35506 \u31243 \u65292 \u28145 \u20837 \u25506 \u35342 \u29986 \u26989 \u25033 \u29992 \u33287 \u26410 \u20358 \u36264 \u21218 \u12290 </p>\
-                    </div>\
-                </div>\
-            </div>\
-            <div class="col-lg-5 col-md-6">\
-                 <div class="card testimonial-card">\
-                    <img src="https://i.ibb.co/C3KVdVkb/IMG-2831.jpg" class="card-img-top testimonial-img" alt="\uc0\u39340 \u20358 \u35199 \u20126 \u22823 \u23416 MBA\u25480 \u35506 \u29031 \u29255 " onerror="this.src='https://placehold.co/600x400/EEEEEE/AAAAAA?text=\u29031 \u29255 2';">\
-                    <div class="card-body">\
-                        <h5 class="card-title fw-bold">\uc0\u39340 \u20358 \u35199 \u20126 \u22823 \u23416  MBA \u35506 \u31243 </h5>\
-                        <p class="card-text">\uc0\u20998 \u20139 AI\u21830 \u26989 \u25033 \u29992 \u23526 \u25136 \u32147 \u39511 \u65292 \u21855 \u30332 \u23416 \u21729 \u30340 \u21109 \u26032 \u24605 \u32173 \u33287 \u22283 \u38555 \u35222 \u37326 \u12290 </p>\
-                    </div>\
-                </div>\
-            </div>\
-        </div>\
-        \
-        <h2 class="section-title">\uc0\u32893 \u32893 \u20182 \u20497 \u24590 \u40636 \u35498 </h2>\
-        <div class="row g-4">\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card testimonial-card">\
-                    <img src="https://i.ibb.co/mVXNmGBk/2025-05-25-10-46-41.png" class="img-fluid rounded" alt="\uc0\u23458 \u25142 \u35211 \u35657 1" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=\u35211 \u35657 1';">\
-                </div>\
-            </div>\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card testimonial-card">\
-                    <img src="https://i.ibb.co/pj7TLPnf/2025-05-25-10-46-46.png" class="img-fluid rounded" alt="\uc0\u23458 \u25142 \u35211 \u35657 2" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=\u35211 \u35657 2';">\
-                </div>\
-            </div>\
-            <div class="col-lg-4 col-md-6">\
-                <div class="card testimonial-card">\
-                    <img src="https://i.ibb.co/HpqhfxQN/2025-05-25-10-46-51.png" class="img-fluid rounded" alt="\uc0\u23458 \u25142 \u35211 \u35657 3" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=\u35211 \u35657 3';">\
-                </div>\
-            </div>\
-        </div>\
-        \
-        <h2 class="section-title">\uc0\u23416 \u21729 \u33287 \u35506 \u31243 \u35211 \u35657 </h2>\
-        <div class="row g-4 justify-content-center">\
-            <div class="col-12">\
-                <h3 class="text-center mb-4 fw-bold">\uc0\u23416 \u21729 \u35211 \u35657 \u24433 \u29255 </h3>\
-                <div class="row g-4">\
-                    <div class="col-lg-4 col-md-6">\
-                        <div class="ratio ratio-16x9">\
-                            <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-4 col-md-6">\
-                        <div class="ratio ratio-16x9">\
-                             <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-4 col-md-6">\
-                        <div class="ratio ratio-16x9">\
-                             <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\
-                        </div>\
-                    </div>\
-                </div>\
-            </div>\
-             <div class="col-12 mt-5">\
-                <h3 class="text-center mb-4 fw-bold">\uc0\u35506 \u31243 \u35211 \u35657 \u24433 \u29255 </h3>\
-                 <div class="row g-4 justify-content-center">\
-                    <div class="col-lg-4 col-md-6">\
-                        <div class="ratio ratio-16x9">\
-                            <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\
-                        </div>\
-                    </div>\
-                    <div class="col-lg-4 col-md-6">\
-                        <div class="ratio ratio-16x9">\
-                             <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\
-                        </div>\
-                    </div>\
-                </div>\
-            </div>\
-        </div>\
-\
-\
-        <div id="contact" class="mt-5">\
-            <h2 class="section-title">\uc0\u31435 \u21363 \u32879 \u32363 \u65292 \u38283 \u21855  AI \u36681 \u22411 \u20043 \u26053 </h2>\
-        </div>\
-\
-        <div class="card p-4">\
-             <div class="row text-center align-items-center">\
-                <p class="lead mb-4">\uc0\u35731 \u38463 \u23792 \u32769 \u24107 \u28858 \u24744 \u37327 \u36523 \u25171 \u36896 \u26368 \u36969 \u21512 \u30340  AI \u23566 \u20837 \u26041 \u26696 </p>\
-                <div class="col-md-4 mb-4 mb-md-0 contact-icon">\
-                    <a href="https://line.me/ti/g2/o6oRaGIHTzZ1nEofxnT9Rbv7_ZHAX-rylbJfKA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" title="\uc0\u21152 \u20837 LINE\u31038 \u32676 ">\
-                        <i class="bi bi-line" style="color: #06C755;"></i>\
-                        <p class="fs-5 mt-2">LINE</p>\
-                    </a>\
-                </div>\
-                <div class="col-md-4 mb-4 mb-md-0 contact-icon">\
-                    <a href="tel:0976715102" title="\uc0\u25765 \u25171 \u38651 \u35441 ">\
-                        <i class="bi bi-telephone-fill"></i>\
-                         <p class="fs-5 mt-2">0976-715-102</p>\
-                    </a>\
-                </div>\
-                <div class="col-md-4 contact-icon">\
-                    <a href="mailto:nikeshoxmiles@gmail.com" title="\uc0\u23492 \u36865 Email">\
-                        <i class="bi bi-envelope-fill"></i>\
-                        <p class="fs-5 mt-2">E-Mail</p>\
-                    </a>\
-                </div>\
-            </div>\
-        </div>\
-\
-    </div>\
-\
-    <script type="text/template-data">\
-        \{\
-            "name": "\uc0\u31038 \u32676 \u36028 \u25991 \u23567 \u24171 \u25163 ",\
-            "category": "\uc0\u34892 \u37559 \u25991 \u26696 ",\
-            "structure": [\
-                \{ "id": "topic", "label": "\uc0\u20027 \u38988 ", "type": "text", "placeholder": "\u20363 \u22914 \u65306 \u20171 \u32057 \u26032 \u19978 \u24066 \u30340 AI\u21654 \u21857 \u27231 " \},\
-                \{ "id": "keywords", "label": "\uc0\u38364 \u37749 \u23383 ", "type": "text", "placeholder": "\u20363 \u22914 \u65306 \u26234 \u33021 \u12289 \u30465 \u26178 \u12289 \u39080 \u21619 \u12289 \u20778 \u24800 " \},\
-                \{ "id": "tone", "label": "\uc0\u35486 \u27683 ", "type": "text", "placeholder": "\u20363 \u22914 \u65306 \u27963 \u28497 \u12289 \u23560 \u26989 \u12289 \u35242 \u20999 " \}\
-            ]\
-        \}\
-        ---PROMPT---\
-        \uc0\u35531 \u20320 \u25198 \u28436 \u19968 \u20301 \u31038 \u32676 \u25991 \u26696 \u23560 \u23478 \u65292 \u24171 \u25105 \u25776 \u23531 \u19968 \u31687 \u38364 \u26044 \u12300 <<<topic>>>\u12301 \u30340 \u31038 \u32676 \u23186 \u39636 \u36028 \u25991 \u12290 \
-\
-        # \uc0\u30446 \u27161 \u65306 \
-        - \uc0\u21560 \u24341 \u30446 \u27161 \u23458 \u32676 \u27880 \u24847 \
-        - \uc0\u25552 \u39640 \u29986 \u21697 \u35426 \u21839 \u24230 \
-\
-        # \uc0\u35201 \u27714 \u65306 \
-        - \uc0\u38364 \u37749 \u23383 \u65306 \u21253 \u21547 \u12300 <<<keywords>>>\u12301 \
-        - \uc0\u35486 \u27683 \u65306 \u20351 \u29992 \u12300 <<<tone>>>\u12301 \u30340 \u39080 \u26684 \
-        - \uc0\u20839 \u23481 \u65306 \u21253 \u21547 \u24341 \u20154 \u20837 \u21213 \u30340 \u38283 \u38957 \u12289 \u29986 \u21697 \u20142 \u40670 \u20171 \u32057 \u12289 \u26126 \u30906 \u30340 \u34892 \u21205 \u21628 \u31858 \u65288 Call to Action\u65289 \
-        - Emojis\uc0\u65306 \u36969 \u30070 \u20351 \u29992 \u34920 \u24773 \u31526 \u34399 \u65292 \u22686 \u21152 \u36028 \u25991 \u27963 \u28497 \u24230 \
-        - Hashtags\uc0\u65306 \u26368 \u24460 \u21152 \u19978  3-5 \u20491 \u30456 \u38364 \u30340  hashtag\
-    </script>\
-    <script type="text/template-data">\
-        \{\
-            "name": "\uc0\u38651 \u23376 \u37109 \u20214 \u25776 \u23531 ",\
-            "category": "\uc0\u36774 \u20844 \u25033 \u29992 ",\
-            "structure": [\
-                \{ "id": "recipient", "label": "\uc0\u25910 \u20214 \u20154 ", "type": "text", "placeholder": "\u20363 \u22914 \u65306 \u23458 \u25142 \u12289 \u20027 \u31649 \u12289 \u21516 \u20107 " \},\
-                \{ "id": "purpose", "label": "\uc0\u20449 \u20214 \u30446 \u30340 ", "type": "textarea", "placeholder": "\u20363 \u22914 \u65306 \u35426 \u21839 \u23560 \u26696 \u36914 \u24230 \u12289 \u30003 \u35531 \u20241 \u20551 \u12289 \u24863 \u35613 \u23458 \u25142 \u25903 \u25345 " \},\
-                \{ "id": "points", "label": "\uc0\u28317 \u36890 \u35201 \u40670 ", "type": "textarea", "placeholder": "\u35531 \u26781 \u21015 \u35498 \u26126 \u38656 \u35201 \u21253 \u21547 \u22312 \u20449 \u20214 \u20013 \u30340 \u35201 \u40670 " \}\
-            ]\
-        \}\
-        ---PROMPT---\
-        \uc0\u35531 \u24171 \u25105 \u33609 \u25836 \u19968 \u23553 \u23560 \u26989 \u30340 \u38651 \u23376 \u37109 \u20214 \u12290 \
-\
-        - \uc0\u25910 \u20214 \u20154 \u65306 <<<recipient>>>\
-        - \uc0\u20449 \u20214 \u30446 \u30340 \u65306 <<<purpose>>>\
-        - \uc0\u24517 \u38920 \u21253 \u21547 \u30340 \u28317 \u36890 \u35201 \u40670 \u65306 \
-        <<<points>>>\
-\
-        \uc0\u35531 \u30906 \u20445 \u20449 \u20214 \u30340 \u35486 \u27683 \u23560 \u26989 \u12289 \u20839 \u23481 \u28165 \u26224 \u12289 \u32080 \u27083 \u23436 \u25972 \u65288 \u21253 \u21547 \u20027 \u26088 \u12289 \u31281 \u35586 \u12289 \u27491 \u25991 \u12289 \u32080 \u23614 \u25964 \u35486 \u33287 \u32626 \u21517 \u65289 \u12290 \
-    </script>\
-\
-\
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>\
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>\
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>\
-    <script>\
-    $(document).ready(function() \{\
-        // --- START: \uc0\u24478  PHP \u36681 \u25563 \u36942 \u20358 \u30340  JS \u35722 \u25976  ---\
-        const userDisplayName = '\uc0\u28204 \u35430 \u20351 \u29992 \u32773 ';\
-        const userPictureUrl = 'https://api.dicebear.com/8.x/initials/svg?seed=User&backgroundColor=0084ff,d1d4f9,ffdfbf,ffd5dc,ffefc5';\
-\
-        // \uc0\u23559 \u20351 \u29992 \u32773 \u36039 \u35338 \u22635 \u20837  Navbar\
-        $('#user-display-name').text(userDisplayName);\
-        $('#user-avatar').attr('src', userPictureUrl);\
-        // --- END: \uc0\u24478  PHP \u36681 \u25563 \u36942 \u20358 \u30340  JS \u35722 \u25976  ---\
-\
-        const templates = \{\};\
-        const categories = new Set();\
-\
-        // 1. Load templates and extract categories\
-        $('script[type="text/template-data"]').each(function(index) \{\
-            const id = 'template_' + index;\
-            try \{\
-                const content = $(this).text().trim().split('---PROMPT---');\
-                const header = JSON.parse(content[0]);\
-                const prompt = content[1].trim();\
-                \
-                templates[id] = \{ \
-                    name: header.name, \
-                    structure: header.structure, \
-                    template: prompt,\
-                    category: header.category \
-                \};\
-\
-                if (header.category) \{\
-                    categories.add(header.category);\
-                \}\
-            \} catch (e) \{\
-                console.error("Error parsing template data:", e, $(this).text());\
-            \}\
-        \});\
-\
-        // 2. Create and append filter buttons\
-        const filterContainer = $('#category-filters');\
-        if (categories.size > 0) \{\
-            filterContainer.append('<button class="btn btn-secondary btn-sm me-2 filter-btn active" data-category="all">\uc0\u20840 \u37096 \u39023 \u31034 </button>');\
-            categories.forEach(category => \{\
-                filterContainer.append(`<button class="btn btn-outline-secondary btn-sm me-2 filter-btn" data-category="$\{category\}">$\{category\}</button>`);\
-            \});\
-        \}\
-        \
-        // 3. Function to populate dropdown based on filter\
-        const populateDropdown = (filterCategory) => \{\
-            const selector = $('#templateSelector').empty();\
-            let hasOptions = false;\
-            Object.keys(templates).forEach(id => \{\
-                const template = templates[id];\
-                if (filterCategory === 'all' || template.category === filterCategory) \{\
-                    selector.append(`<option value="$\{id\}">$\{template.name\}</option>`);\
-                    hasOptions = true;\
-                \}\
-            \});\
-            \
-            if (hasOptions) \{\
-                selector.trigger('change');\
-            \} else \{\
-                $('#prompt-form-container').empty().html('<p class="text-center text-muted">\uc0\u27492 \u20998 \u39006 \u19979 \u27794 \u26377 \u21487 \u29992 \u30340 \u27169 \u26495 \u12290 </p>');\
-                 $('#output').text('\uc0\u35531 \u36984 \u25799 \u19968 \u20491 \u27169 \u26495 ...');\
-            \}\
-        \};\
-\
-        const buildForm = (key) => \{\
-            if (!key || !templates[key]) \{\
-                 $('#prompt-form-container').empty();\
-                 $('#output').text('\uc0\u35531 \u36984 \u25799 \u19968 \u20491 \u27169 \u26495 ...');\
-                return;\
-            \};\
-            const c = $('#prompt-form-container').empty();\
-            templates[key].structure.forEach(i => \{\
-                const el = i.type === 'textarea' ? `<textarea class="form-control form-control-lg prompt-input" id="$\{i.id\}" placeholder="$\{i.placeholder\}"></textarea>` : `<input type="text" class="form-control prompt-input" id="$\{i.id\}" placeholder="$\{i.placeholder\}">`;\
-                c.append(`<div class="mb-3"><label for="$\{i.id\}" class="form-label"><strong>$\{i.label\}</strong></label>$\{el\}</div>`);\
-            \});\
-            updatePrompt();\
-        \};\
-\
-        const updatePrompt = () => \{\
-            const key = $('#templateSelector').val();\
-            if (!key || !templates[key]) return;\
-            let tpl = templates[key].template;\
-            templates[key].structure.forEach(i => \{\
-                const val = $(`#$\{i.id\}`).val() || $(`#$\{i.id\}`).attr('placeholder');\
-                tpl = tpl.replace(new RegExp(`<<<\{$\{i.id\}\}>>>`, 'g'), val);\
-            \});\
-            $('#output').text(tpl);\
-        \};\
-\
-        if (Object.keys(templates).length > 0) \{\
-            // 4. Add click event listener for filter buttons\
-            $('#category-filters').on('click', '.filter-btn', function() \{\
-                $('.filter-btn').removeClass('active btn-secondary').addClass('btn-outline-secondary');\
-                $(this).addClass('active btn-secondary').removeClass('btn-outline-secondary');\
-                const selectedCategory = $(this).data('category');\
-                populateDropdown(selectedCategory);\
-            \});\
-\
-            // 5. Add change listener for dropdown\
-            $('#templateSelector').on('change', () => buildForm($('#templateSelector').val()));\
-            $('#prompt-form-container').on('input', '.prompt-input', updatePrompt);\
-\
-            // 6. Initial population\
-            populateDropdown('all');\
-        \} else \{\
-            // \uc0\u22914 \u26524 \u27794 \u26377 \u20219 \u20309 \u31684 \u26412 \u65292 \u38577 \u34255 \u29986 \u29983 \u22120 \u21312 \u22602 \
-            $('.card').first().parent().html('<div class="alert alert-warning text-center">\uc0\u25214 \u19981 \u21040 \u20219 \u20309 \u25552 \u31034 \u35422 \u31684 \u26412 \u65292 \u35531 \u27298 \u26597 \u31243 \u24335 \u30908 \u12290 </div>');\
-        \}\
-\
-        $('#copyBtn').on('click', () => \{\
-             navigator.clipboard.writeText($('#output').text()).then(() => \{\
-                const originalText = $('#copyBtn').text();\
-                $('#copyBtn').text('\uc0\u24050 \u35079 \u35069 !');\
-                setTimeout(() => \{\
-                    $('#copyBtn').text(originalText);\
-                \}, 2000);\
-            \});\
-        \});\
-\
-        // \uc0\u38913 \u38754 \u24179 \u28369 \u28414 \u21205 \u25928 \u26524 \
-        $('a[href^="#"]').on('click', function(event) \{\
-            var target = $(this.getAttribute('href'));\
-            if( target.length ) \{\
-                event.preventDefault();\
-                $('html, body').stop().animate(\{\
-                    scrollTop: target.offset().top - 70 // \uc0\u28187 \u21435  navbar \u30340 \u39640 \u24230 \
-                \}, 500);\
-            \}\
-        \});\
-    \});\
-    </script>\
-</body>\
-</html>}
+        <h2 class="section-title">別讓您的企業錯過 AI 浪潮！</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card teacher-intro-card text-center p-4 p-md-5">
+                    <div class="card-body">
+                        <h1 class="display-5 fw-bold">黃敬峰 企業AI培訓/陪跑專家</h1>
+                        <p class="lead my-4">從策略到實戰，引領您的團隊高效轉型</p>
+                        <a href="#contact" class="btn btn-light btn-lg cta-button">立即聯繫，開啟 AI 轉型之旅 <i class="bi bi-arrow-right-short"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="teacher-intro">
+            <h2 class="section-title">認識您的數位轉型領航員</h2>
+        </div>
+        <div class="row mt-5 align-items-center">
+            <div class="col-lg-5 text-center mb-4 mb-lg-0">
+                <img src="https://i.ibb.co/hFqZC7NM/DSC00301-3.jpg" class="img-fluid rounded-circle teacher-photo" alt="黃敬峰老師照片" onerror="this.src='https://placehold.co/250x250/CCCCCC/FFFFFF?text=老師照片';">
+                <h4 class="mt-4 fw-bold">黃敬峰 (阿峰老師)</h4>
+            </div>
+            <div class="col-lg-7">
+                <h3 class="fw-bold">經歷亮點</h3>
+                <ul class="list-group list-group-flush fs-5">
+                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>企業 AI 知名培訓老師</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>輔導逾 400 間企業導入 AI 與數位工具</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>前行政院青年事務委員會副召集人</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>新北市青年事務委員</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-star-fill text-warning me-2"></i>國立東華大學創新育成中心企業輔導顧問</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">阿峰老師授課特色</h2>
+        <div class="row text-center g-4">
+             <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-3">
+                    <div class="feature-icon mb-3"><i class="bi bi-lightbulb"></i></div>
+                    <h5 class="fw-bold">深入淺出，化繁為簡</h5>
+                    <p class="text-muted">將複雜的 AI 技術轉化為簡單易懂的實用知識，讓不同背景的學員都能輕鬆掌握。</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-3">
+                    <div class="feature-icon mb-3"><i class="bi bi-tools"></i></div>
+                    <h5 class="fw-bold">實戰導向，即學即用</h5>
+                    <p class="text-muted">課程設計強調實用性，結合實際工作場景，透過大量實操演練，確保學員立即提升工作效率。</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-3">
+                    <div class="feature-icon mb-3"><i class="bi bi-people"></i></div>
+                    <h5 class="fw-bold">互動式教學，活潑生動</h5>
+                    <p class="text-muted">課堂氣氛輕鬆活潑，鼓勵提問與討論，透過小組活動與案例分析，提高學習參與度。</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">更多 AI 學習資源</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="card resource-card h-100">
+                    <a href="https://line.me/ti/g2/o6oRaGIHTzZ1nEofxnT9Rbv7_ZHAX-rylbJfKA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3"><i class="bi bi-people-fill"></i></div>
+                            <h5 class="fw-bold">AI 學員社群(可點擊)</h5>
+                            <p class="text-muted mb-0">加入 LINE 社群，與其他學員交流心得，獲取最新資訊。</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card resource-card h-100">
+                    <a href="https://podcasts.apple.com/us/podcast/%E4%B8%8B%E7%8F%AD%E5%AD%B8ai-ai%E5%A4%9C%E5%A4%9Ctalk/id1777590042" target="_blank">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3"><i class="bi bi-mic-fill"></i></div>
+                            <h5 class="fw-bold">AI Podcast(可點擊)</h5>
+                            <p class="text-muted mb-0">收聽「下班學AI」，利用通勤時間，輕鬆掌握 AI 新知。</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card resource-card h-100">
+                     <a href="https://vocus.cc/salon/StartupForYou" target="_blank">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3"><i class="bi bi-file-text-fill"></i></div>
+                            <h5 class="fw-bold">AI 文章專欄(可點擊)</h5>
+                            <p class="text-muted mb-0">閱讀方格子專欄，深度了解 AI 趨勢與實戰技巧。</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">超過 400+ 企業與機構的信賴推薦</h2>
+        <div class="card p-4 p-md-5">
+            <div class="client-logo-container">
+                <img src="https://i.ibb.co/msCc9JR/2025-05-25-10-45-21.png" alt="客戶 Logo 1" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/XZYkkqkN/2025-05-25-10-45-15.png" alt="客戶 Logo 2" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/NgCknD5y/2025-05-25-10-45-10.png" alt="客戶 Logo 3" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/qMkdYMpT/2025-05-25-10-45-06.png" alt="客戶 Logo 4" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/RpDhbqwv/2025-05-25-10-45-01.png" alt="客戶 Logo 5" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/YFzLftPm/2025-05-25-10-44-57.png" alt="客戶 Logo 6" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/yFrHXv20/2025-05-25-10-44-52.png" alt="客戶 Logo 7" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/5xszGtxd/2025-05-25-10-44-48.png" alt="客戶 Logo 8" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/mF1RLB1v/2025-05-25-10-44-43.png" alt="客戶 Logo 9" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/whj6F03m/2025-05-25-10-44-39.png" alt="客戶 Logo 10" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/bjdHY2b4/2025-05-25-10-44-34.png" alt="客戶 Logo 11" class="client-logo" onerror="this.style.display='none'">
+                <img src="https://i.ibb.co/fYQYTbmC/2025-05-25-10-44-29.png" alt="客戶 Logo 12" class="client-logo" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <h2 class="section-title">精彩瞬間</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-5 col-md-6">
+                <div class="card testimonial-card">
+                    <img src="https://i.ibb.co/HfjhD0GR/A7C00941.jpg" class="card-img-top testimonial-img" alt="台灣生物科技公司授課照片" onerror="this.src='https://placehold.co/600x400/EEEEEE/AAAAAA?text=照片1';">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">台灣生物科技公司</h5>
+                        <p class="card-text">為中高階主管帶來AI策略課程，深入探討產業應用與未來趨勢。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                 <div class="card testimonial-card">
+                    <img src="https://i.ibb.co/C3KVdVkb/IMG-2831.jpg" class="card-img-top testimonial-img" alt="馬來西亞大學MBA授課照片" onerror="this.src='https://placehold.co/600x400/EEEEEE/AAAAAA?text=照片2';">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">馬來西亞大學 MBA 課程</h5>
+                        <p class="card-text">分享AI商業應用實戰經驗，啟發學員的創新思維與國際視野。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">聽聽他們怎麼說</h2>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card">
+                    <img src="https://i.ibb.co/mVXNmGBk/2025-05-25-10-46-41.png" class="img-fluid rounded" alt="客戶見證1" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=見證1';">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card">
+                    <img src="https://i.ibb.co/pj7TLPnf/2025-05-25-10-46-46.png" class="img-fluid rounded" alt="客戶見證2" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=見證2';">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card">
+                    <img src="https://i.ibb.co/HpqhfxQN/2025-05-25-10-46-51.png" class="img-fluid rounded" alt="客戶見證3" onerror="this.src='https://placehold.co/400x300/EEEEEE/AAAAAA?text=見證3';">
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">學員與課程見證</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12">
+                <h3 class="text-center mb-4 fw-bold">學員見證影片</h3>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ratio ratio-16x9">
+                             <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ratio ratio-16x9">
+                             <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-12 mt-5">
+                <h3 class="text-center mb-4 fw-bold">課程見證影片</h3>
+                 <div class="row g-4 justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ratio ratio-16x9">
+                             <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="contact" class="mt-5">
+            <h2 class="section-title">立即聯繫，開啟 AI 轉型之旅</h2>
+        </div>
+
+        <div class="card p-4">
+             <div class="row text-center align-items-center">
+                <p class="lead mb-4">讓阿峰老師為您量身打造最適合的 AI 導入方案</p>
+                <div class="col-md-4 mb-4 mb-md-0 contact-icon">
+                    <a href="https://line.me/ti/g2/o6oRaGIHTzZ1nEofxnT9Rbv7_ZHAX-rylbJfKA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" title="加入LINE社群">
+                        <i class="bi bi-line" style="color: #06C755;"></i>
+                        <p class="fs-5 mt-2">LINE</p>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0 contact-icon">
+                    <a href="tel:0976715102" title="撥打電話">
+                        <i class="bi bi-telephone-fill"></i>
+                         <p class="fs-5 mt-2">0976-715-102</p>
+                    </a>
+                </div>
+                <div class="col-md-4 contact-icon">
+                    <a href="mailto:nikeshoxmiles@gmail.com" title="寄送Email">
+                        <i class="bi bi-envelope-fill"></i>
+                        <p class="fs-5 mt-2">E-Mail</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/template-data">
+        {
+            "name": "社群貼文小幫手",
+            "category": "行銷文案",
+            "structure": [
+                { "id": "topic", "label": "主題", "type": "text", "placeholder": "例如：介紹新上市的AI咖啡機" },
+                { "id": "keywords", "label": "關鍵字", "type": "text", "placeholder": "例如：智能、省時、風味、優惠" },
+                { "id": "tone", "label": "語氣", "type": "text", "placeholder": "例如：活潑、專業、親切" }
+            ]
+        }
+        ---PROMPT---
+        請你扮演一位社群文案專家，幫我撰寫一篇關於「<<<topic>>>」的社群媒體貼文。
+
+        # 目標：
+        - 吸引目標客群注意
+        - 提高產品詢問度
+
+        # 要求：
+        - 關鍵字：包含「<<<keywords>>>」
+        - 語氣：使用「<<<tone>>>」的風格
+        - 內容：包含引人入勝的開頭、產品亮點介紹、明確的行動呼籲（Call to Action）
+        - Emojis：適當使用表情符號，增加貼文活潑度
+        - Hashtags：最後加上 3-5 個相關的 hashtag
+    </script>
+    <script type="text/template-data">
+        {
+            "name": "電子郵件撰寫",
+            "category": "辦公應用",
+            "structure": [
+                { "id": "recipient", "label": "收件人", "type": "text", "placeholder": "例如：客戶、主管、同事" },
+                { "id": "purpose", "label": "信件目的", "type": "textarea", "placeholder": "例如：詢問專案進度、申請休假、感謝客戶支持" },
+                { "id": "points", "label": "溝通要點", "type": "textarea", "placeholder": "請條列說明需要包含在信件中的要點" }
+            ]
+        }
+        ---PROMPT---
+        請幫我草擬一封專業的電子郵件。
+
+        - 收件人：<<<recipient>>>
+        - 信件目的：<<<purpose>>>
+        - 必須包含的溝通要點：
+        <<<points>>>
+
+        請確保信件的語氣專業、內容清晰、結構完整（包含主旨、稱謂、正文、結尾敬語與署名）。
+    </script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // --- START: 從 PHP 轉換過來的 JS 變數 ---
+        const userDisplayName = '測試使用者';
+        const userPictureUrl = 'https://api.dicebear.com/8.x/initials/svg?seed=User&backgroundColor=0084ff,d1d4f9,ffdfbf,ffd5dc,ffefc5';
+
+        // 將使用者資訊填入 Navbar
+        $('#user-display-name').text(userDisplayName);
+        $('#user-avatar').attr('src', userPictureUrl);
+        // --- END: 從 PHP 轉換過來的 JS 變數 ---
+
+        const templates = {};
+        const categories = new Set();
+
+        // 1. Load templates and extract categories
+        $('script[type="text/template-data"]').each(function(index) {
+            const id = 'template_' + index;
+            try {
+                const content = $(this).text().trim().split('---PROMPT---');
+                const header = JSON.parse(content[0]);
+                const prompt = content[1].trim();
+                
+                templates[id] = { 
+                    name: header.name, 
+                    structure: header.structure, 
+                    template: prompt,
+                    category: header.category 
+                };
+
+                if (header.category) {
+                    categories.add(header.category);
+                }
+            } catch (e) {
+                console.error("Error parsing template data:", e, $(this).text());
+            }
+        });
+
+        // 2. Create and append filter buttons
+        const filterContainer = $('#category-filters');
+        if (categories.size > 0) {
+            filterContainer.append('<button class="btn btn-secondary btn-sm me-2 filter-btn active" data-category="all">全部顯示</button>');
+            categories.forEach(category => {
+                filterContainer.append(`<button class="btn btn-outline-secondary btn-sm me-2 filter-btn" data-category="${category}">${category}</button>`);
+            });
+        }
+        
+        // 3. Function to populate dropdown based on filter
+        const populateDropdown = (filterCategory) => {
+            const selector = $('#templateSelector').empty();
+            let hasOptions = false;
+            Object.keys(templates).forEach(id => {
+                const template = templates[id];
+                if (filterCategory === 'all' || template.category === filterCategory) {
+                    selector.append(`<option value="${id}">${template.name}</option>`);
+                    hasOptions = true;
+                }
+            });
+            
+            if (hasOptions) {
+                selector.trigger('change');
+            } else {
+                $('#prompt-form-container').empty().html('<p class="text-center text-muted">此分類下沒有可用的模板。</p>');
+                 $('#output').text('請選擇一個模板...');
+            }
+        };
+
+        const buildForm = (key) => {
+            if (!key || !templates[key]) {
+                 $('#prompt-form-container').empty();
+                 $('#output').text('請選擇一個模板...');
+                return;
+            };
+            const c = $('#prompt-form-container').empty();
+            templates[key].structure.forEach(i => {
+                const el = i.type === 'textarea' ? `<textarea class="form-control form-control-lg prompt-input" id="${i.id}" placeholder="${i.placeholder}"></textarea>` : `<input type="text" class="form-control prompt-input" id="${i.id}" placeholder="${i.placeholder}">`;
+                c.append(`<div class="mb-3"><label for="${i.id}" class="form-label"><strong>${i.label}</strong></label>${el}</div>`);
+            });
+            updatePrompt();
+        };
+
+        const updatePrompt = () => {
+            const key = $('#templateSelector').val();
+            if (!key || !templates[key]) return;
+            let tpl = templates[key].template;
+            templates[key].structure.forEach(i => {
+                const val = $(`#${i.id}`).val() || $(`#${i.id}`).attr('placeholder');
+                tpl = tpl.replace(new RegExp(`<<<{${i.id}}>>>`, 'g'), val);
+            });
+            $('#output').text(tpl);
+        };
+
+        if (Object.keys(templates).length > 0) {
+            // 4. Add click event listener for filter buttons
+            $('#category-filters').on('click', '.filter-btn', function() {
+                $('.filter-btn').removeClass('active btn-secondary').addClass('btn-outline-secondary');
+                $(this).addClass('active btn-secondary').removeClass('btn-outline-secondary');
+                const selectedCategory = $(this).data('category');
+                populateDropdown(selectedCategory);
+            });
+
+            // 5. Add change listener for dropdown
+            $('#templateSelector').on('change', () => buildForm($('#templateSelector').val()));
+            $('#prompt-form-container').on('input', '.prompt-input', updatePrompt);
+
+            // 6. Initial population
+            populateDropdown('all');
+        } else {
+            // 如果沒有任何範本，隱藏產生器區塊
+            $('.card').first().parent().html('<div class="alert alert-warning text-center">找不到任何提示詞範本，請檢查程式碼。</div>');
+        }
+
+        $('#copyBtn').on('click', () => {
+             navigator.clipboard.writeText($('#output').text()).then(() => {
+                const originalText = $('#copyBtn').text();
+                $('#copyBtn').text('已複製!');
+                setTimeout(() => {
+                    $('#copyBtn').text(originalText);
+                }, 2000);
+            });
+        });
+
+        // 頁面平滑滾動效果
+        $('a[href^="#"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if( target.length ) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 70 // 減去 navbar 的高度
+                }, 500);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
