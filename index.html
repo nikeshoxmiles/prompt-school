@@ -18,7 +18,7 @@
         .copy-btn { position: absolute; top: 15px; right: 15px; }
         .template-selector-group { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
         .template-selector { max-width: 350px; }
-        .filter-btn.active { font-weight: bold; }
+        .filter-btn.active { font-weight: bold; } /* Will be overridden by btn-secondary for active */
         .section-title { text-align: center; margin: 60px 0 40px; font-weight: bold; color: #343a40; }
         .teacher-intro-card { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; }
         .feature-icon { font-size: 2.5rem; color: #007bff; }
@@ -34,6 +34,20 @@
         .client-logo { height: 65px; max-width: 150px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; transition: all 0.3s ease-in-out; }
         .client-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
         .sticky-top { position: sticky; top: 0; z-index: 1020; }
+        .ad-placeholder {
+            background-color: #e0e0e0;
+            color: #757575;
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            max-width: 728px; /* Example ad width */
+            min-height: 90px; /* Example ad height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -47,13 +61,15 @@
         </div>
     </nav>
     <div class="container main-container">
+        <div class="ad-placeholder">廣告版位建議區域 1</div>
+
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card">
                     <div class="card-header bg-white">
                         <h5 class="mb-3">1. 選擇版型並填寫</h5>
                         <div id="category-filters" class="mb-3">
-                        </div>
+                            </div>
                         <select id="templateSelector" class="form-select"></select>
                     </div>
                     <div class="card-body p-4" id="prompt-form-container">
@@ -68,6 +84,8 @@
                 </div>
             </div>
         </div>
+        
+        <div class="ad-placeholder">廣告版位建議區域 2</div>
 
         <h2 class="section-title">別讓您的企業錯過 AI 浪潮！</h2>
 
@@ -291,9 +309,7 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
+    </div> 
 
 
 
@@ -4740,35 +4756,34 @@ HTML
 
 
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     $(document).ready(function() {
-        // --- START: 從 PHP 轉換過來的 JS 變數 (模擬) ---
-        const userDisplayName = '測試使用者'; // 模擬使用者名稱
-        const userPictureUrl = 'https://api.dicebear.com/8.x/initials/svg?seed=User&backgroundColor=0084ff,d1d4f9,ffdfbf,ffd5dc,ffefc5'; // 模擬使用者頭像
+        // --- START: 模擬使用者資訊 ---
+        const userDisplayName = '測試使用者'; 
+        const userPictureUrl = 'https://api.dicebear.com/8.x/initials/svg?seed=User&backgroundColor=0084ff,d1d4f9,ffdfbf,ffd5dc,ffefc5';
 
-        // 將使用者資訊填入 Navbar
         $('#user-display-name').text(userDisplayName);
         $('#user-avatar').attr('src', userPictureUrl);
-        // --- END: 從 PHP 轉換過來的 JS 變數 ---
+        // --- END: 模擬使用者資訊 ---
 
-        const templates = {};
+        window.templates = {}; // 全域儲存模板資料
         const categories = new Set();
 
-        // 1. Load templates and extract categories
+        // 1. 載入模板並提取分類
         $('script[type="text/template-data"]').each(function(index) {
             const id = 'template_' + index;
             try {
                 const content = $(this).text().trim().split('---PROMPT---');
                 const header = JSON.parse(content[0]);
-                const prompt = content[1].trim();
+                const promptText = content[1].trim();
                 
-                templates[id] = { 
+                window.templates[id] = { 
                     name: header.name, 
                     structure: header.structure, 
-                    template: prompt,
+                    template: promptText,
                     category: header.category 
                 };
 
@@ -4776,154 +4791,168 @@ HTML
                     categories.add(header.category);
                 }
             } catch (e) {
-                console.error("Error parsing template data:", e, $(this).text());
+                console.error("解析模板數據錯誤:", e, $(this).text());
             }
         });
 
-        // 2. Create and append filter buttons
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlCategory = urlParams.get('category');
+        const urlTemplateId = urlParams.get('template');
+
+        // 2. 創建並附加分類過濾按鈕
         const filterContainer = $('#category-filters');
         if (categories.size > 0) {
-            filterContainer.append('<button class="btn btn-secondary btn-sm me-2 filter-btn active" data-category="all">全部顯示</button>');
+            filterContainer.append('<button class="btn btn-outline-secondary btn-sm me-2 filter-btn" data-category="all">全部顯示</button>');
             categories.forEach(category => {
                 filterContainer.append(`<button class="btn btn-outline-secondary btn-sm me-2 filter-btn" data-category="${category}">${category}</button>`);
             });
         }
         
-        // 3. Function to populate dropdown based on filter
+        // 根據 URL 參數或預設高亮當前分類按鈕
+        const categoryToActivate = urlCategory || 'all';
+        $('.filter-btn').removeClass('active btn-secondary').addClass('btn-outline-secondary');
+        $(`.filter-btn[data-category="${categoryToActivate}"]`).addClass('active btn-secondary').removeClass('btn-outline-secondary');
+
+        // 3. 根據過濾條件填充下拉選單的函數
         const populateDropdown = (filterCategory) => {
             const selector = $('#templateSelector').empty();
             let hasOptions = false;
-            Object.keys(templates).forEach(id => {
-                const template = templates[id];
+            Object.keys(window.templates).forEach(id => {
+                const template = window.templates[id];
                 if (filterCategory === 'all' || template.category === filterCategory) {
                     selector.append(`<option value="${id}">${template.name}</option>`);
                     hasOptions = true;
                 }
             });
             
-            if (hasOptions) {
-                selector.trigger('change'); // Trigger change to load the first template in the filtered list
-            } else {
+            if (!hasOptions) {
                 $('#prompt-form-container').empty().html('<p class="text-center text-muted">此分類下沒有可用的模板。</p>');
-                 $('#output').text('請選擇一個模板...');
+                $('#output').text('請選擇一個模板...');
             }
         };
 
-        // Function to build the form based on the selected template
+        // 根據選擇的模板建立表單的函數
         const buildForm = (key) => {
-            if (!key || !templates[key]) {
-                 $('#prompt-form-container').empty(); // Clear form if no key or template
+            if (!key || !window.templates[key]) {
+                 $('#prompt-form-container').empty(); 
                  $('#output').text('請選擇一個模板...');
                 return;
             };
             const formContainer = $('#prompt-form-container').empty();
-            templates[key].structure.forEach(field => {
+            window.templates[key].structure.forEach(field => {
                 const fieldElement = field.type === 'textarea' ? 
-                    `<textarea class="form-control form-control-lg prompt-input" id="${field.id}" placeholder="${field.placeholder}"></textarea>` : 
-                    `<input type="text" class="form-control prompt-input" id="${field.id}" placeholder="${field.placeholder}">`;
+                    `<textarea class="form-control form-control-lg prompt-input" id="${field.id}" placeholder="${field.placeholder || ''}"></textarea>` : 
+                    `<input type="text" class="form-control prompt-input" id="${field.id}" placeholder="${field.placeholder || ''}">`;
                 formContainer.append(`<div class="mb-3"><label for="${field.id}" class="form-label"><strong>${field.label}</strong></label>${fieldElement}</div>`);
             });
-            updatePrompt(); // Initial prompt update
+            updatePrompt(); 
         };
 
-        // Function to update the output prompt based on form inputs
+        // 根據表單輸入更新提示詞輸出的函數
         const updatePrompt = () => {
             const key = $('#templateSelector').val();
-            if (!key || !templates[key]) return; // Exit if no template selected
-            let tpl = templates[key].template;
-            templates[key].structure.forEach(field => {
-                const value = $(`#${field.id}`).val() || $(`#${field.id}`).attr('placeholder'); // Use placeholder if value is empty
+            if (!key || !window.templates[key]) return; 
+            let tpl = window.templates[key].template;
+            window.templates[key].structure.forEach(field => {
+                const value = $(`#${field.id}`).val() || $(`#${field.id}`).attr('placeholder') || ''; 
                 tpl = tpl.replace(new RegExp(`<<<{${field.id}}>>>`, 'g'), value);
             });
             $('#output').text(tpl);
         };
 
-        if (Object.keys(templates).length > 0) {
-            // 4. Add click event listener for filter buttons
-            $('#category-filters').on('click', '.filter-btn', function() {
-                $('.filter-btn').removeClass('active btn-secondary').addClass('btn-outline-secondary');
-                $(this).addClass('active btn-secondary').removeClass('btn-outline-secondary');
-                const selectedCategory = $(this).data('category');
-                populateDropdown(selectedCategory);
-            });
+        // 初始化：填充下拉選單
+        populateDropdown(categoryToActivate);
 
-            // 5. Add change listener for dropdown and input listener for form fields
-            $('#templateSelector').on('change', () => buildForm($('#templateSelector').val()));
-            $('#prompt-form-container').on('input', '.prompt-input', updatePrompt);
-
-            // 6. Initial population of dropdown and form
-            populateDropdown('all'); // Populate with 'all' category initially
-        } else {
-            // If no templates are found, display a message and hide the generator section
-            $('.card').first().parent().html('<div class="alert alert-warning text-center">找不到任何提示詞範本，請檢查程式碼。</div>');
+        // 初始化：根據 URL 或預設選擇模板並建立表單
+        if (urlTemplateId && window.templates[urlTemplateId] && $(`#templateSelector option[value="${urlTemplateId}"]`).length > 0) {
+            $('#templateSelector').val(urlTemplateId);
+        } else if ($('#templateSelector option').length > 0) {
+            $('#templateSelector').val($('#templateSelector option:first').val());
+        }
+        
+        if ($('#templateSelector').val()) {
+            buildForm($('#templateSelector').val());
+        } else if (Object.keys(window.templates).length === 0) {
+             $('.card').first().parent().html('<div class="alert alert-warning text-center">找不到任何提示詞範本，請檢查程式碼。</div>');
         }
 
-        // Copy button functionality
+
+        // 事件處理：點擊分類按鈕 (重新載入頁面)
+        $('#category-filters').on('click', '.filter-btn', function() {
+            const newCategory = $(this).data('category');
+            const currentParams = new URLSearchParams(window.location.search);
+            const currentTemplate = currentParams.get('template');
+            let newUrl = window.location.pathname + '?category=' + newCategory;
+
+            if (currentTemplate && window.templates[currentTemplate]) {
+                if (newCategory === 'all' || window.templates[currentTemplate].category === newCategory) {
+                    newUrl += '&template=' + currentTemplate; 
+                }
+            }
+            window.location.href = newUrl;
+        });
+
+        // 事件處理：選擇模板 (重新載入頁面)
+        $('#templateSelector').on('change', function() {
+            const selectedTemplateId = $(this).val();
+            const currentCategory = $('.filter-btn.active').data('category') || 'all';
+            window.location.href = window.location.pathname + '?category=' + currentCategory + '&template=' + selectedTemplateId;
+        });
+
+        // 事件處理：表單輸入時即時更新提示詞預覽 (不重新載入)
+        $('#prompt-form-container').on('input', '.prompt-input', updatePrompt);
+
+        // 複製按鈕功能
         $('#copyBtn').on('click', () => {
             const textToCopy = $('#output').text();
             const textArea = document.createElement("textarea");
-
-            // --- Start of styling to make textarea inconspicuous ---
             textArea.style.position = 'fixed';
             textArea.style.top = '0';
             textArea.style.left = '0';
-            textArea.style.width = '2em'; // Small size
-            textArea.style.height = '2em'; // Small size
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
             textArea.style.padding = '0';
             textArea.style.border = 'none';
             textArea.style.outline = 'none';
             textArea.style.boxShadow = 'none';
             textArea.style.background = 'transparent';
-            // --- End of styling ---
-
             textArea.value = textToCopy;
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
-
             try {
                 const successful = document.execCommand('copy');
                 const originalText = $('#copyBtn').text();
                 if (successful) {
-                    $('#copyBtn').text('已複製!'); // "Copied!"
+                    $('#copyBtn').text('已複製!');
                 } else {
-                    $('#copyBtn').text('複製失敗'); // "Copy failed"
-                    console.error('Fallback: Oops, unable to copy using execCommand');
-                    // Attempt to use navigator.clipboard as a secondary fallback if execCommand failed
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(textToCopy).then(() => {
-                             $('#copyBtn').text('已複製!');
-                        }).catch(err => {
-                            console.error('Secondary Fallback: Oops, unable to copy using navigator.clipboard', err);
-                            $('#copyBtn').text('複製失敗');
-                        });
-                    }
+                    $('#copyBtn').text('複製失敗');
                 }
                 setTimeout(() => {
                     $('#copyBtn').text(originalText);
                 }, 2000);
             } catch (err) {
-                console.error('Fallback: Oops, unable to copy', err);
                 const originalText = $('#copyBtn').text();
                 $('#copyBtn').text('複製失敗');
-                setTimeout(() => {
+                 setTimeout(() => {
                     $('#copyBtn').text(originalText);
                 }, 2000);
             }
             document.body.removeChild(textArea);
         });
         
-        // Smooth scrolling for anchor links
+        // 頁面平滑滾動效果
         $('a[href^="#"]').on('click', function(event) {
             var target = $(this.getAttribute('href'));
             if( target.length ) {
                 event.preventDefault();
                 $('html, body').stop().animate({
-                    scrollTop: target.offset().top - 70 // Adjust for sticky navbar height
-                }, 500); // Animation speed in ms
+                    scrollTop: target.offset().top - 70 
+                }, 500); 
             }
         });
     });
     </script>
 </body>
 </html>
+
